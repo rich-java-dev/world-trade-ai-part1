@@ -4,11 +4,10 @@ Main entry point into program
 '''
 # %%
 import argparse
-import pandas as pd
-from models import WorldState, Country, Resource, Node
+from models import Node
 
 #
-#  PRICER - Produces Stock price data onto a given Kafka server
+#  Look-ahead
 #
 # %%
 parser = argparse.ArgumentParser(
@@ -24,17 +23,13 @@ depth: int = args.depth
 
 # sanitize input here...
 
-print(model)
-print(depth)
-
-world_state = WorldState()
-curr_depth = 0
-
+print(f'Model: {model}')
+print(f'Depth: {depth}')
 
 # initialize root node
 root: Node = Node()
 
-frontier = [root]  # search
+frontier = [root]  # search frontier
 solutions = []  # Nodes which represent viable solutions (depth achieved)
 
 
@@ -43,14 +38,16 @@ def calc_quality():
 
 
 while(len(frontier) > 0):
-    node = frontier[0]
+    node = frontier.pop(0)
 
-    #check if bounded depth has been reached
+    # check if bounded depth has been reached
     if(node.is_solution(depth)):
+        print(f'Solution: {node.schedule}')
         solutions.append(node)
         continue
 
     children = node.generate_successors()
+    for child in children:
+        frontier.append(child)
 
-    # generate successors 
-    frontier.append(children)
+    # generate successors

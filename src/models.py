@@ -1,10 +1,11 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+import pandas as pd
+
 '''
 World State Object
 '''
 
 
-@dataclass
 class WorldState:
     counties: list = []
 
@@ -21,7 +22,6 @@ County Name/Identifier, and Material listing of each countries resources
 '''
 
 
-@dataclass
 class Country:
     name: str = ""
     resources: list = []
@@ -34,6 +34,7 @@ The fundamental 'material' commodities which Countries aim to use to optimize th
 
 Resources have the following properties:
 
+utility:
 construction/infrastructure:
 energy:
 technology/R&D:
@@ -41,19 +42,32 @@ nutrition:
 liquidity:
 culture:
 
+Resources also have a function which gives an aggregate admissible heuristic 
+(metric based on its "least useful" attribute based on how a resource gets utiltized in the least useful way)
+This is also akin to a Mini-Max search, in which the "opponent" is minimizing the value I can get out of a resource.
+
 '''
 
 
-@dataclass
 class Resource:
 
     resource_id: int = 0
-    quantity: int = 0
     name: str = ""
+
+    quantity: int = 0
+
+    utility: int = 0
+    construction: int = 0
+    energy: int = 0
+    technology: int = 0
+    nutrition: int = 0
+    liquidity: int = 0
+    culture: int = 0
+
     descript: str = ""
     critical_resource: bool = False
 
-    price: float = 0
+    price: int = 0
 
     def heuristic_value(self) -> float:
         return self.unit_price * self.quantity_on_hand
@@ -63,25 +77,35 @@ class Resource:
 
 
 class Node:
+    pass
+
+
+class Node:
 
     state: WorldState  # the world/global state at a particular Node
 
     depth: int = 0  # the schedule/number of events triggered at given 'layer' in search
     quality: float = 0  # the aggregation of state quality at this node/state
 
-    schedule: list = []  # describes the history which led to this specific node/state
+    # describes the history which led to this specific node/state
+    schedule: list = []
 
     # action which led to this node
     action: str = ""
     parent: Node
-    children: list = []  # transition states to scan next.
+
+    # transition states to scan next.
+    children: list = []
 
     # set of allowable actions, defining events which trigger state transition
-    actions: list = []
+    actions: list = ['A', 'B', 'C']
 
     # composite/tree pattern, can link back through parents to learn full path
-    def __init__(self, parent: Node, action: str):
+    def __init__(self, parent: Node = None, action: str = ""):
         self.parent = parent
+        if parent:
+            self.depth = parent.depth + 1
+            self.schedule = [*parent.schedule, action]
         self.action = action
 
         # apply action to parent Node to produce new State
@@ -102,7 +126,7 @@ class Node:
 
             child: Node = Node(self, action)
 
-            children.insert(child)
+            children.append(child)
 
         self.children = children
         return children
