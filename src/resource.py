@@ -46,24 +46,22 @@ This is also akin to a Mini-Max search, in which the "opponent" is minimizing th
 
 class Resource:
 
-    resource_id: int = 0
-    name: str = ""
-    quantity: int = 0
-    weight: float = .7
-
-    construction: int = 0
-    infrastructure: int = 0
-    energy: int = 0
-    rnd: int = 0
-    technology: int = 0
-    nutrition: int = 0
-    liquidity: int = 0
-    culture: int = 0
-
-    descript: str = ""
-    critical_resource: bool = False
-
-    price: int = 0
+    def __init__(self):
+        self.resource_id: int = 0
+        self.name: str = ""
+        self.quantity: int = 0
+        self.weight: float = .7
+        self.construction: int = 0
+        self.infrastructure: int = 0
+        self.energy: int = 0
+        self.rnd: int = 0
+        self.technology: int = 0
+        self.nutrition: int = 0
+        self.liquidity: int = 0
+        self.culture: int = 0
+        self.descript: str = ""
+        self.critical_resource: bool = False
+        self.price: int = 0
 
     def heuristic_value(self) -> float:
         return self.unit_price * self.quantity_on_hand

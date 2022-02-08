@@ -19,7 +19,7 @@ apply:      "Pure" function taking in a given World State, and applies
 '''
 
 from abc import ABC, abstractmethod
-from models import WorldState
+from node import WorldState
 
 # Uses abstract methods as a means to express some static polymorphism/Inheritence
 
@@ -42,5 +42,6 @@ class Transform(Action):
     def is_viable(self) -> bool:
         return False
 
-    def apply(self) -> WorldState:
+    # "Flux" like pattern, taking in a current state
+    def apply(self, state: WorldState) -> WorldState:
         return WorldState()

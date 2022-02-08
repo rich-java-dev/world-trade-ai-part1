@@ -7,8 +7,10 @@ County Name/Identifier, and Material Listing/Manifest each countries
 
 
 class Country:
-    name: str = ""
-    resources: list = []
+
+    def __init__(self):
+        self.name: str = ""
+        self.resources: list = []
 
     # define a print out of the Country and their resource list
     def print(self):

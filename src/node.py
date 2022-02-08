@@ -1,7 +1,5 @@
-from ast import Str
 from dataclasses import dataclass, field
-from importlib import resources
-from sre_parse import State
+import copy
 import pandas as pd
 from resource import Resource
 from country import Country
@@ -38,7 +36,6 @@ class Node():
     state: WorldState  # the world/global state at a particular Node
 
     depth: int = 0  # the schedule/number of events triggered at given 'layer' in search
-    quality: float = 0  # the aggregation of state quality at this node/state
 
     # describes the history which led to this specific node/state
     # NOTE: may replace with a function which builds the schedule by chaining together parent node calls
@@ -56,24 +53,55 @@ class Node():
     # set of allowable actions, defining events which trigger state transition
     actions: list = ['A', 'B', 'C']
 
+    def action_a(self) -> WorldState:
+        c: Country = self.state.countries[0]
+        r: Resource = c.resources[0]
+        r.quantity = r.quantity + 100
+
+    def action_b(self):
+        c: Country = self.state.countries[0]
+        r: Resource = c.resources[0]
+        r.quantity = r.quantity - 100
+
+    def action_c(self):
+        c: Country = self.state.countries[0]
+        r: Resource = c.resources[0]
+        r.quantity = r.quantity + 50
+
+    action_map: dict = {
+        'A': action_a,
+        'B': action_b,
+        'C': action_c
+    }
+
     # A dictionary of resources and properties.
     # These values placed on the objects could differ from others view on the material.
-    resource_map: dict = {}
+    resource_map: dict = {
+        "R1": {},
+        "R2": {},
+        "R3": {}
+    }
 
     # composite/tree pattern, can link back through parents to learn full path
     def __init__(self, parent: Node = None, action: str = "", state: WorldState = None):
 
-        self.state = state
+        self.state = copy.deepcopy(state)
         if not state:
             self.state = WorldState()
+            self.state.countries[0].print()
+
+        self.state.countries = copy.deepcopy(self.state.countries)
 
         self.parent = parent
         if parent:
             self.depth = parent.depth + 1
             self.schedule = [*parent.schedule, action]
 
-        self.action = action
         # apply action to parent Node to produce new State
+        self.action = action
+
+        if action in self.action_map:
+            self.action_map[action](self)
 
     # The intrinsic quality of the State.
 

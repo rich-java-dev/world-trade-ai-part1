@@ -60,6 +60,9 @@ while(len(frontier) > 0):
     if(node.is_solution(depth)):
         print(f'Solution: {node.schedule}')
         print(f'quality: ' + str(node.calc_quality()))
+        print(f'State:')
+        node.state.countries[0].print()
+        print()
         solutions.append(node)
         continue
 

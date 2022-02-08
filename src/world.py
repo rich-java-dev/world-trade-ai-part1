@@ -9,17 +9,14 @@ import pandas as pd
 
 class WorldState:
 
-    countries: list = []
-
     def __init__(self):
-
+        self.countries: list = []
         # load in world state
         print(f"loading countries file...")
         df = pd.read_csv('resources/example-initial-countries.csv')
         resource_cols = ["R1", "R2", "R3", "R21", "R22", "R23"]
 
         for idx, row in df.iterrows():
-
             country_name = row['Country']
 
             c: Country = Country()
@@ -34,4 +31,3 @@ class WorldState:
             self.countries.append(c)
 
         print("Countries Loaded: ")
-        [country.print() for country in self.countries]
