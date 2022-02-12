@@ -14,7 +14,8 @@ class WorldState:
         # load in world state
         print(f"loading countries file...")
         df = pd.read_csv('resources/example-initial-countries.csv')
-        resource_cols = ["R1", "R2", "R3", "R21", "R22", "R23"]
+        resource_cols = ["R1", "R2", "R3", "R21",
+                         "R22", "R23", "R21'", "R22'", "R23'"]
 
         for idx, row in df.iterrows():
             country_name = row['Country']
@@ -26,8 +27,9 @@ class WorldState:
                 r: Resource = Resource()
                 r.name = res_name
                 r.quantity = int(row[res_name])
-                c.resources.append(r)
+                c.resources[res_name] = r
 
             self.countries.append(c)
 
         print("Countries Loaded: ")
+       # self.countries[0].print()

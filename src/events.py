@@ -19,7 +19,9 @@ apply:      "Pure" function taking in a given World State, and applies
 '''
 
 from abc import ABC, abstractmethod
-from node import WorldState
+from world import WorldState
+from country import Country
+from resource import Resource
 
 # Uses abstract methods as a means to express some static polymorphism/Inheritence
 
@@ -39,9 +41,110 @@ class Action(ABC):
 
 class Transform(Action):
 
-    def is_viable(self) -> bool:
+    def is_viable(self, state: WorldState) -> bool:
         return False
 
     # "Flux" like pattern, taking in a current state
     def apply(self, state: WorldState) -> WorldState:
-        return WorldState()
+        return state
+
+
+class Transfer(Action):
+    pass
+
+
+'''
+Alloys Template:
+((TRANSFORM ?C (INPUTS (R1 1) (R2, 2)) (OUTPUTS (R1 1) (R21, 1) (R21’ 1)),
+preconditions are of the form ?ARj <= ?C(?Rj)
+'''
+
+
+class AlloyTemplate(Transform):
+
+    def is_viable(self, world: WorldState):
+        c: Country = world.countries[0]
+        return c.resources['R1'].quantity >= 1 and c.resources['R2'].quantity >= 2
+
+    def apply(self, world: WorldState) -> WorldState:
+        c: Country = world.countries[0]
+
+        # use up to half of resources on given transform
+        factor: int = max([1, c.resources['R2'].quantity / 4])
+
+        r2_consumed: int = factor * 2
+        r21_gained: int = factor
+        r21_waist_gained: int = factor
+
+        c.resources['R2'].quantity -= r2_consumed
+        c.resources['R21'].quantity += r21_gained
+        c.resources['R21\''].quantity += r21_waist_gained
+
+        return world
+
+
+'''
+Electronics Template:
+(TRANSFORM ?C (INPUTS (R1 3) (R2 2) (R21 2)) (OUTPUTS (R22 2) (R22’ 2) (R1 3)),
+preconditions are of the form ?ARj <= ?C(?Rj)
+'''
+
+
+class ElectronicsTemplate(Transform):
+
+    def is_viable(self, world: WorldState):
+        c: Country = world.countries[0]
+        return c.resources['R1'].quantity >= 3 and c.resources['R2'].quantity >= 2 and c.resources['R21'].quantity >= 2
+
+    def apply(self, world: WorldState) -> WorldState:
+        c: Country = world.countries[0]
+
+        # use up to half of resources on given transform
+        r2_max_factor: int = max([1, c.resources['R2'].quantity / 4])
+        r21_max_factor: int = max([1, c.resources['R21'].quantity / 4])
+
+        factor: int = min([r2_max_factor, r21_max_factor])
+
+        r2_consumed: int = factor * 2
+        r21_consumed: int = factor * 2
+
+        r22_gained: int = factor * 2
+        r22_waist_gained: int = factor * 2
+
+        c.resources['R2'].quantity -= r2_consumed
+        c.resources['R21'].quantity -= r21_consumed
+        c.resources['R22'].quantity += r22_gained
+        c.resources['R22\''].quantity += r22_waist_gained
+
+        return world
+
+
+'''
+Housing Template:
+(TRANSFORM ?C (INPUTS (R1 5) (R2, 1) (R3 5) (R21 3) (OUTPUTS (R1 5) (R23, 1) (R23’ 1)),
+preconditions are of the form ?AIk <= ?C(?Rk)
+'''
+
+
+def action_a(world: WorldState):
+    c: Country = world.state.countries[0]
+    r: Resource = c.resources[0]
+    r.quantity = r.quantity*2
+
+
+def action_b(world: WorldState):
+    c: Country = world.state.countries[0]
+    r: Resource = c.resources[0]
+    r.quantity = r.quantity/2
+
+
+def action_c(world: WorldState):
+    c: Country = world.state.countries[0]
+    r: Resource = c.resources[0]
+    r.quantity = r.quantity + 500
+
+
+action_map: dict = {
+    'Alloy Template': AlloyTemplate(),
+    'Electronics Template': ElectronicsTemplate()
+}

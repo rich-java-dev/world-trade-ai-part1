@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 
 '''
 Resources structure:
@@ -37,6 +38,10 @@ culture:            The impact this resource has on Culture.
                     generally "higher order" resources such as food, art (music, visual, performance, etc)
                     forming a band from people and instruments for instance has high culture value
 
+climate:
+
+environment:
+
 Resources also have a function which gives an aggregate admissible heuristic
 (metric based on its "least useful" attribute based on how a resource gets utiltized in the least useful way)
 This is also akin to a Mini-Max search, in which the "opponent" is minimizing the value I can get out of a resource.
@@ -44,27 +49,27 @@ This is also akin to a Mini-Max search, in which the "opponent" is minimizing th
 '''
 
 
+@dataclass
 class Resource:
 
-    def __init__(self):
-        self.resource_id: int = 0
-        self.name: str = ""
-        self.quantity: int = 0
-        self.weight: float = .7
-        self.construction: int = 0
-        self.infrastructure: int = 0
-        self.energy: int = 0
-        self.rnd: int = 0
-        self.technology: int = 0
-        self.nutrition: int = 0
-        self.liquidity: int = 0
-        self.culture: int = 0
-        self.descript: str = ""
-        self.critical_resource: bool = False
-        self.price: int = 0
+    resource_id: int = 0
+    name: str = ""
+    quantity: int = 0
+    weight: float = .1
+    construction: int = 0
+    infrastructure: int = 0
+    energy: int = 0
+    rnd: int = 0
+    technology: int = 0
+    nutrition: int = 0
+    liquidity: int = 0
+    culture: int = 0
+    descript: str = ""
+    critical_resource: bool = False
+    price: int = 0
 
     def heuristic_value(self) -> float:
-        return self.unit_price * self.quantity_on_hand
+        return self.quantity_on_hand * self.weight
 
     def calc_utility_to_cost_ratio(self, utility_function) -> float:
         utility_function(self)
