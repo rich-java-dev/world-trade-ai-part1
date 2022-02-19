@@ -139,3 +139,144 @@ R21':175
 R22':66
 R23':29
 
+Top Solutions:
+Solution: ['Alloy Template', 'Alloy Template', 'Housing Template', 'Housing Template', 'Housing Template']
+quality: 94.87878907431252
+State:
+Country: Atlantis
+R1:100
+R2:100
+R3:1620
+R21:34
+R22:0
+R23:76
+R21':262
+R22':0
+R23':76
+
+Solution: ['Alloy Template', 'Housing Template', 'Alloy Template', 'Housing Template', 'Housing Template']
+quality: 91.74388418026149
+State:
+Country: Atlantis
+R1:100
+R2:119
+R3:1645
+R21:42
+R22:0
+R23:71
+R21':255
+R22':0
+R23':71
+
+Solution: ['Alloy Template', 'Alloy Template', 'Housing Template', 'Alloy Template', 'Housing Template']
+quality: 91.3795167548072
+State:
+Country: Atlantis
+R1:100
+R2:40
+R3:1650
+R21:85
+R22:0
+R23:70
+R21':295
+R22':0
+R23':70
+
+Solution: ['Alloy Template', 'Alloy Template', 'Alloy Template', 'Housing Template', 'Housing Template']
+quality: 86.8830634081667
+State:
+Country: Atlantis
+R1:100
+R2:22
+R3:1670
+R21:108
+R22:0
+R23:66
+R21':306
+R22':0
+R23':66
+
+Solution: ['Alloy Template', 'Alloy Template', 'Housing Template', 'Housing Template', 'Alloy Template']
+quality: 85.31044549922356
+State:
+Country: Atlantis
+R1:100
+R2:57
+R3:1675
+R21:94
+R22:0
+R23:65
+R21':289
+R22':0
+R23':65
+
+Solution: ['Alloy Template', 'Alloy Template', 'Housing Template', 'Housing Template']
+quality: 85.04308870875464
+State:
+Country: Atlantis
+R1:100
+R2:111
+R3:1675
+R21:67
+R22:0
+R23:65
+R21':262
+R22':0
+R23':65
+
+Solution: ['Alloy Template', 'Alloy Template', 'Housing Template', 'Housing Template', 'Electronics Template']
+quality: 84.8650218272948
+State:
+Country: Atlantis
+R1:100
+R2:79
+R3:1675
+R21:35
+R22:32
+R23:65
+R21':262
+R22':32
+R23':65
+
+Solution: ['Alloy Template', 'Housing Template', 'Alloy Template', 'Alloy Template', 'Housing Template']
+quality: 82.08621143026392
+State:
+Country: Atlantis
+R1:100
+R2:47
+R3:1685
+R21:106
+R22:0
+R23:63
+R21':295
+R22':0
+R23':63
+
+Solution: ['Alloy Template', 'Housing Template', 'Housing Template', 'Alloy Template', 'Housing Template']
+quality: 81.66542135804703
+State:
+Country: Atlantis
+R1:100
+R2:135
+R3:1685
+R21:62
+R22:0
+R23:63
+R21':251
+R22':0
+R23':63
+
+Solution: ['Alloy Template', 'Housing Template', 'Alloy Template', 'Housing Template', 'Alloy Template']
+quality: 69.04234703400185
+State:
+Country: Atlantis
+R1:100
+R2:67
+R3:1715
+R21:117
+R22:0
+R23:57
+R21':288
+R22':0
+R23':57
+

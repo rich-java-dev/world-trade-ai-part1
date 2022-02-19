@@ -81,7 +81,7 @@ class BalancedElectronics(Goal):
             return r23.quantity
 
         # Electronics quality following a Logistic Curve approximation mapped to domain 0-1
-        return r23.quantity * inv_logit_function(electronics_ratio)
+        return r23.quantity * inv_logit_function(electronics_ratio, 5)
 
 
 class MinimalWaste(Goal):
