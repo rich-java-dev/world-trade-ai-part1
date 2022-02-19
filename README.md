@@ -1,6 +1,6 @@
 # world-trade-ai-part1
 
-##Intro: 
+## Intro: 
 This Repository describes an AI Agent capable of performing Transforms and Transfers/Trades with other World Trade AI agents, as well as predict in advanced 'N' steps based on its cost function and optimization strategy
 
 
