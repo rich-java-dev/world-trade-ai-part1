@@ -26,6 +26,9 @@ parser.add_argument('--depth',  '--d', '-d', default=5,
 parser.add_argument('--soln_set_size',  '--s', '-s', default=10,
                     type=int, help='Number of Solutions (Depth achieved) to track in the best solutions object')
 
+parser.add_argument('--output', '--o', '-o', default='schedule.txt',
+                    type=str, help='The output file to print the top Schedules to')
+
 
 args = parser.parse_args()
 
@@ -33,6 +36,7 @@ model: str = args.model
 heuristic: str = args.heuristic
 depth: int = args.depth
 soln_size: int = args.soln_set_size
+output_file: str = args.output
 
 
 # sanitize input here...
@@ -69,6 +73,7 @@ while(len(frontier) > 0):
     if(model == "UCS"):
         frontier.sort(key=lambda n: n.calc_discounted_reward(), reverse=True)
 
+    # grab the 0th node on the Stack (or Queue)
     node = frontier.pop(0)
 
     # check if bounded depth has been reached - Recursive Base Case
@@ -102,13 +107,17 @@ while(len(frontier) > 0):
 
 
 # Search finished: print the top results
-
-# generate successors
 print("Top Solutions: ")
-while(len(top_solutions) > 0):
-    soln = top_solutions.pop(0)
-    print(f'Solution: {soln.schedule}')
-    print(f'quality: ' + str(soln.calc_quality()))
-    print(f'State:')
-    soln.state.countries[0].print()
-    print()
+with open(output_file, 'a+') as output:
+    output.write('Top Solutions:\n')
+
+    while(len(top_solutions) > 0):
+        soln = top_solutions.pop(0)
+
+        for prt in [print, output.write]:
+            soln.state.countries[0].printer = prt
+            prt(f'Solution: {soln.schedule}\n')
+            prt(f'quality: {soln.calc_quality()}\n')
+            prt(f'State:\n')
+            soln.state.countries[0].print()
+            prt(f'\n')

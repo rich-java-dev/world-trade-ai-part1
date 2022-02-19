@@ -31,21 +31,21 @@ class Action(ABC):
     name: str
 
     @abstractmethod
-    def is_viable(self) -> bool:
+    def is_viable(self, state: WorldState, **kwargs) -> bool:
         return False
 
     @abstractmethod
-    def apply(self) -> WorldState:
+    def apply(self, state: WorldState, **kwargs) -> WorldState:
         return WorldState()
 
 
 class Transform(Action):
 
-    def is_viable(self, state: WorldState) -> bool:
+    def is_viable(self, state: WorldState, **kwargs) -> bool:
         return False
 
     # "Flux" like pattern, taking in a current state
-    def apply(self, state: WorldState) -> WorldState:
+    def apply(self, state: WorldState, **kwargs) -> WorldState:
         return state
 
 
@@ -62,15 +62,16 @@ preconditions are of the form ?ARj <= ?C(?Rj)
 
 class AlloyTemplate(Transform):
 
-    def is_viable(self, world: WorldState):
+    def is_viable(self, world: WorldState, **kwargs):
         c: Country = world.countries[0]
-        return c.resources['R1'].quantity >= 1 and c.resources['R2'].quantity >= 2
+        return c.resources['R1'].quantity >= 1 \
+            and c.resources['R2'].quantity >= 2
 
-    def apply(self, world: WorldState) -> WorldState:
+    def apply(self, world: WorldState, **kwargs) -> WorldState:
         c: Country = world.countries[0]
 
         # use up to half of resources on given transform
-        factor: int = max([1, c.resources['R2'].quantity / 4])
+        factor: int = max([1, int(c.resources['R2'].quantity / 4)])
 
         r2_consumed: int = factor * 2
         r21_gained: int = factor
@@ -78,7 +79,7 @@ class AlloyTemplate(Transform):
 
         c.resources['R2'].quantity -= r2_consumed
         c.resources['R21'].quantity += r21_gained
-        c.resources['R21\''].quantity += r21_waist_gained
+        c.resources["R21'"].quantity += r21_waist_gained
 
         return world
 
@@ -92,16 +93,18 @@ preconditions are of the form ?ARj <= ?C(?Rj)
 
 class ElectronicsTemplate(Transform):
 
-    def is_viable(self, world: WorldState):
+    def is_viable(self, world: WorldState, **kwargs):
         c: Country = world.countries[0]
-        return c.resources['R1'].quantity >= 3 and c.resources['R2'].quantity >= 2 and c.resources['R21'].quantity >= 2
+        return c.resources['R1'].quantity >= 3 \
+            and c.resources['R2'].quantity >= 2 \
+            and c.resources['R21'].quantity >= 2
 
-    def apply(self, world: WorldState) -> WorldState:
+    def apply(self, world: WorldState, **kwargs) -> WorldState:
         c: Country = world.countries[0]
 
         # use up to half of resources on given transform
-        r2_max_factor: int = max([1, c.resources['R2'].quantity / 4])
-        r21_max_factor: int = max([1, c.resources['R21'].quantity / 4])
+        r2_max_factor: int = max([1, int(c.resources['R2'].quantity / 4)])
+        r21_max_factor: int = max([1, int(c.resources['R21'].quantity / 4)])
 
         factor: int = min([r2_max_factor, r21_max_factor])
 
@@ -114,7 +117,7 @@ class ElectronicsTemplate(Transform):
         c.resources['R2'].quantity -= r2_consumed
         c.resources['R21'].quantity -= r21_consumed
         c.resources['R22'].quantity += r22_gained
-        c.resources['R22\''].quantity += r22_waist_gained
+        c.resources["R22'"].quantity += r22_waist_gained
 
         return world
 
@@ -126,25 +129,44 @@ preconditions are of the form ?AIk <= ?C(?Rk)
 '''
 
 
-def action_a(world: WorldState):
-    c: Country = world.state.countries[0]
-    r: Resource = c.resources[0]
-    r.quantity = r.quantity*2
+class HousingTemplate(Transform):
 
+    def is_viable(self, world: WorldState, **kwargs):
+        c: Country = world.countries[0]
+        return c.resources['R1'].quantity >= 5 \
+            and c.resources['R2'].quantity >= 1 \
+            and c.resources['R3'].quantity >= 5 \
+            and c.resources['R21'].quantity >= 3
 
-def action_b(world: WorldState):
-    c: Country = world.state.countries[0]
-    r: Resource = c.resources[0]
-    r.quantity = r.quantity/2
+    def apply(self, world: WorldState, **kwargs) -> WorldState:
+        c: Country = world.countries[0]
 
+        # use up to half of resources on given transform
+        r2_max_factor: int = max([1, int(c.resources['R2'].quantity / 2)])
+        r3_max_factor: int = max([1, int(c.resources['R3'].quantity / 10)])
+        r21_max_factor: int = max([1, int(c.resources['R21'].quantity / 6)])
 
-def action_c(world: WorldState):
-    c: Country = world.state.countries[0]
-    r: Resource = c.resources[0]
-    r.quantity = r.quantity + 500
+        factor: int = min([r2_max_factor, r3_max_factor, r21_max_factor])
+
+        r2_consumed: int = factor
+        r3_consumed: int = factor * 5
+        r21_consumed: int = factor * 3
+
+        r23_gained: int = factor
+        r23_waist_gained: int = factor
+
+        c.resources['R2'].quantity -= r2_consumed
+        c.resources['R3'].quantity -= r3_consumed
+        c.resources['R21'].quantity -= r21_consumed
+
+        c.resources['R23'].quantity += r23_gained
+        c.resources["R23'"].quantity += r23_waist_gained
+
+        return world
 
 
 action_map: dict = {
     'Alloy Template': AlloyTemplate(),
-    'Electronics Template': ElectronicsTemplate()
+    'Electronics Template': ElectronicsTemplate(),
+    'Housing Template': HousingTemplate(),
 }

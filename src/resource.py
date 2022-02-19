@@ -55,7 +55,7 @@ class Resource:
     resource_id: int = 0
     name: str = ""
     quantity: int = 0
-    weight: float = .1
+    weight: float = 0
     construction: int = 0
     infrastructure: int = 0
     energy: int = 0

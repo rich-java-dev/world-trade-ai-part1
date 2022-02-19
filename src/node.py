@@ -5,6 +5,7 @@ from resource import Resource
 from country import Country
 from world import WorldState
 from events import Action, action_map
+from quality import calc_quality
 
 # define Node class so that can be referenced for redefining as Composite/Recursive manner
 
@@ -33,16 +34,8 @@ TreeNode-Like Structure, implementing an A* Search:
 
 class Node():
 
-    # A dictionary of resources and properties.
-    # These values placed on the objects could differ from others view on the material.
-    resource_map: dict = {
-        "R1": {},
-        "R2": {},
-        "R3": {}
-    }
-
     # composite/tree pattern, can link back through parents to learn full path
-    def __init__(self, parent: Node = None, action: str = "", state: WorldState = None):
+    def __init__(self, parent: Node = None, state: WorldState = None, action: str = "", **kwargs):
         self.GAMMA: float = 0.64
         self.depth: int = 0  # the schedule/number of events triggered at given 'layer' in search
         self.action_map = action_map
@@ -69,21 +62,11 @@ class Node():
         self.action: str = action
 
         if action in self.action_map and self.action_map[action].is_viable(self.state):
-            self.action_map[action].apply(self.state)
+            self.action_map[action].apply(self.state, **kwargs)
 
     # The intrinsic quality of the State.
-
     def calc_quality(self):
-        # assume we are first entry in a non-changing list of countries
-        country = self.state.countries[0]
-
-        q: float = 0
-
-        for resource in country.resources.values():
-            q = q + resource.quantity * resource.weight
-
-        # define a utility function which calculates based on the current state.
-        return q
+        return calc_quality(self.state)
 
     # A* search
     def calc_a_star(self, h=None) -> float:
@@ -126,7 +109,7 @@ class Node():
             action: Action = self.action_map[action_id]
             # Check that action is allowed/viable given Action constraints
             if action.is_viable(self.state):
-                child: Node = Node(self, action_id, self.state)
+                child: Node = Node(self, self.state, action_id)
                 children.append(child)
 
         self.children = children

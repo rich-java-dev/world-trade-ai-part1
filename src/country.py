@@ -11,8 +11,10 @@ class Country:
     def __init__(self):
         self.name: str = ""
         self.resources: dict = {}
+        self.printer = print
 
     # define a print out of the Country and their resource list
     def print(self):
-        print("Country: " + self.name)
-        [print(r.name + ":" + str(r.quantity)) for r in self.resources.values()]
+        self.printer("Country: " + self.name+'\n')
+        [self.printer(r.name + ":" + str(r.quantity)+'\n')
+         for r in self.resources.values()]
