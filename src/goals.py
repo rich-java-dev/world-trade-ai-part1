@@ -107,31 +107,31 @@ class MinimalWaste(Goal):
         # eg: If I have 100 Housing Units, and 100 Housing Waste, thats considered acceptable,
         # however, if I have 100 Housing Units, and 200 Housing waste, that far exceeds the expectation, and causes a rectifying term to kick in
 
-        housing_waste_surplus = r23p.quantity - r23.quantity
-        if(housing_waste_surplus > 0):
-            housing_waste_ratio = r23p.quantity/(r23.quantity + r23p.quantity)
+        # housing_waste_surplus = r23p.quantity - r23.quantity
+        # if(housing_waste_surplus > 0):
+        #     housing_waste_ratio = r23p.quantity/(r23.quantity + r23p.quantity)
 
-            waste += housing_waste_surplus * \
-                inv_logit_function(housing_waste_ratio) /\
-                (r21.quantity + r22.quantity + r23.quantity)
+        #     waste += housing_waste_surplus * \
+        #         inv_logit_function(housing_waste_ratio) /\
+        #         (r21.quantity + r22.quantity + r23.quantity)
 
-        # Apply similar thining to Electronics Waste
-        elec_waste_surplus = r22p.quantity - r22.quantity
-        if(elec_waste_surplus > 0):
-            elec_waste_ratio = r22p.quantity / (r22.quantity + r22p.quantity)
+        # # Apply similar thining to Electronics Waste
+        # elec_waste_surplus = r22p.quantity - r22.quantity
+        # if(elec_waste_surplus > 0):
+        #     elec_waste_ratio = r22p.quantity / (r22.quantity + r22p.quantity)
 
-            waste += elec_waste_surplus * \
-                inv_logit_function(elec_waste_ratio) /\
-                (r21.quantity + r22.quantity + r23.quantity)
+        #     waste += elec_waste_surplus * \
+        #         inv_logit_function(elec_waste_ratio) /\
+        #         (r21.quantity + r22.quantity + r23.quantity)
 
-        # Apply similar thinking to Alloy waste, however, we cap out with a ratio of  waste surplus to products produced
-        alloy_waste_surplus = r21p.quantity - r21.quantity
-        if(alloy_waste_surplus > 0):
-            alloy_waste_ratio = r21p.quantity/(r21.quantity + r21p.quantity)
+        # # Apply similar thinking to Alloy waste, however, we cap out with a ratio of  waste surplus to products produced
+        # alloy_waste_surplus = r21p.quantity - r21.quantity
+        # if(alloy_waste_surplus > 0):
+        #     alloy_waste_ratio = r21p.quantity/(r21.quantity + r21p.quantity)
 
-            waste += alloy_waste_surplus * \
-                inv_logit_function(alloy_waste_ratio) /\
-                (r21.quantity + r22.quantity + r23.quantity)
+        #     waste += alloy_waste_surplus * \
+        #         inv_logit_function(alloy_waste_ratio) /\
+        #         (r21.quantity + r22.quantity + r23.quantity)
 
         # waste is detrimental to quality calculation, so negate
         return -waste

@@ -35,8 +35,8 @@ class Action(ABC):
         return False
 
     @abstractmethod
-    def apply(self, state: WorldState, **kwargs) -> WorldState:
-        return WorldState()
+    def apply(self, state: WorldState, **kwargs) -> int:
+        return 0
 
 
 class Transform(Action):
@@ -45,8 +45,8 @@ class Transform(Action):
         return False
 
     # "Flux" like pattern, taking in a current state
-    def apply(self, state: WorldState, **kwargs) -> WorldState:
-        return state
+    def apply(self, state: WorldState, **kwargs) -> int:
+        return 0
 
 
 class Transfer(Action):
@@ -67,7 +67,8 @@ class AlloyTemplate(Transform):
         return c.resources['R1'].quantity >= 1 \
             and c.resources['R2'].quantity >= 2
 
-    def apply(self, world: WorldState, **kwargs) -> WorldState:
+    # returns the 'factor' applied for the given base operation/inputs
+    def apply(self, world: WorldState, **kwargs) -> int:
         c: Country = world.countries[0]
 
         # use up to half of resources on given transform
@@ -81,7 +82,7 @@ class AlloyTemplate(Transform):
         c.resources['R21'].quantity += r21_gained
         c.resources["R21'"].quantity += r21_waist_gained
 
-        return world
+        return factor
 
 
 '''
@@ -99,7 +100,8 @@ class ElectronicsTemplate(Transform):
             and c.resources['R2'].quantity >= 2 \
             and c.resources['R21'].quantity >= 2
 
-    def apply(self, world: WorldState, **kwargs) -> WorldState:
+    # returns the 'factor' applied for the given base operation/inputs
+    def apply(self, world: WorldState, **kwargs) -> int:
         c: Country = world.countries[0]
 
         # use up to half of resources on given transform
@@ -119,7 +121,7 @@ class ElectronicsTemplate(Transform):
         c.resources['R22'].quantity += r22_gained
         c.resources["R22'"].quantity += r22_waist_gained
 
-        return world
+        return factor
 
 
 '''
@@ -138,7 +140,8 @@ class HousingTemplate(Transform):
             and c.resources['R3'].quantity >= 5 \
             and c.resources['R21'].quantity >= 3
 
-    def apply(self, world: WorldState, **kwargs) -> WorldState:
+    # returns the 'factor' applied for the given base operation/inputs
+    def apply(self, world: WorldState, **kwargs) -> int:
         c: Country = world.countries[0]
 
         # use up to half of resources on given transform
@@ -162,7 +165,7 @@ class HousingTemplate(Transform):
         c.resources['R23'].quantity += r23_gained
         c.resources["R23'"].quantity += r23_waist_gained
 
-        return world
+        return factor
 
 
 action_map: dict = {

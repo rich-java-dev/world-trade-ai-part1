@@ -6,9 +6,11 @@ World Trade/Transform Game Simulation
 '''
 
 # %%
+import os
 import argparse
 from node import Node
 import copy
+
 
 # %%
 parser = argparse.ArgumentParser(
@@ -20,10 +22,10 @@ parser.add_argument('--model', '--m', '-m',  default='UCS',
 parser.add_argument('--heuristic', '--htype', '-htype', default='',
                     type=str, help='Choosing Heuristic function model')
 
-parser.add_argument('--depth',  '--d', '-d', default=5,
+parser.add_argument('--depth',  '--d', '-d', default=100,
                     type=int, help='Search Depth of the model')
 
-parser.add_argument('--soln_set_size',  '--s', '-s', default=10,
+parser.add_argument('--soln_set_size',  '--s', '-s', default=3,
                     type=int, help='Number of Solutions (Depth achieved) to track in the best solutions object')
 
 parser.add_argument('--output', '--o', '-o', default='schedule.txt',
@@ -63,8 +65,23 @@ frontier = [root]  # search frontier
 #  solutions contain the World State, history of transactions,
 # and Utility function/measure of State quality at given step.
 top_solutions = []
+soln_count: int = 0
 
-# Continue Search as long as there exists searchable nodes/expansion where depth has not been achieved
+
+def print_top_solutions():
+
+    # windows vs. linux variant
+    os.system('cls')
+    os.system('clear')
+
+    for soln in top_solutions:
+        print(f'Solution: {soln.schedule}')
+        print(f'quality: {soln.calc_quality()}')
+        print(f'State:')
+        soln.state.countries[0].print()
+        print('')
+
+    # Continue Search as long as there exists searchable nodes/expansion where depth has not been achieved
 while(len(frontier) > 0):
 
     # Best First Search/Uniform Cost Search
@@ -76,22 +93,28 @@ while(len(frontier) > 0):
     # grab the 0th node on the Stack (or Queue)
     node = frontier.pop(0)
 
-    # check if bounded depth has been reached - Recursive Base Case
-    if(node.is_solution(depth)):
-        print(f'Solution: {node.schedule}')
-        print(f'quality: ' + str(node.calc_quality()))
-        print(f'State:')
-        node.state.countries[0].print()
-        print()
-        continue
-
     # keep a small list of top solutions, based on quality order
     soln = copy.deepcopy(node)
+
     top_solutions.append(soln)  # add solution to "top solutions"
     top_solutions.sort(key=lambda n: n.calc_quality(),
                        reverse=True)  # sort top solutions
     while len(top_solutions) > soln_size:  # only keep the X best solutions
         removed_soln = top_solutions.pop()
+
+    soln_count += 1
+    if(soln_count % 20 == 0):
+        print_top_solutions()
+
+    # check if bounded depth has been reached - Recursive Base Case:
+    # Avoid generating successors beyond this point
+    if(node.is_solution(depth)):
+        # print(f'Solution: {node.schedule}')
+        # print(f'quality: ' + str(node.calc_quality()))
+        # print(f'State:')
+        # node.state.countries[0].print()
+        # print()
+        continue
 
     # if current depth is not a solution, then expand in all ways
     children = node.generate_successors()

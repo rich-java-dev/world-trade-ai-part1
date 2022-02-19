@@ -1,8 +1,6 @@
 from dataclasses import dataclass, field
 import copy
-import pandas as pd
 from resource import Resource
-from country import Country
 from world import WorldState
 from events import Action, action_map
 from quality import calc_quality
@@ -62,9 +60,13 @@ class Node():
         self.action: str = action
 
         if action in self.action_map and self.action_map[action].is_viable(self.state):
-            self.action_map[action].apply(self.state, **kwargs)
+
+            factor: int = self.action_map[action].apply(self.state, **kwargs)
+            # factor is the applied number of units of the underlying transform
+            self.schedule[-1] += f' x {factor}'
 
     # The intrinsic quality of the State.
+
     def calc_quality(self):
         return calc_quality(self.state)
 
