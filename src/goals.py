@@ -32,11 +32,9 @@ class Goal(ABC):
 # # penalize unspect quantity on hand.
 # r2: Resource = country.resources['R2']  # analog to metallic elements
 # r3: Resource = country.resources['R3']  # analog to timber
-
 # r21: Resource = country.resources['R21']  # analog to metallic alloys
 # r22: Resource = country.resources['R22']  # analog to electronics
 # r23: Resource = country.resources['R23']  # analog to housing
-
 # r21p: Resource = country.resources["R21'"]  # metallic waste
 # r22p: Resource = country.resources["R22'"]  # electronics waste
 # r23p: Resource = country.resources["R23'"]  # housing waste
@@ -53,11 +51,12 @@ class EndHomelessness(Goal):
             return 0
 
         housing_ratio = r23.quantity/r1.quantity
-        if(housing_ratio >= 1):
-            return r23.weight * r1.quantity
 
         # Homelessenss quality following a Logistic Curve approximation mapped to domain 0-1
-        return r23.weight * r1.quantity * inv_logit_function(housing_ratio)
+        # This w=0.8, and population starts at 100, with inverse logit creates range 0-80
+        return r23.weight * r1.quantity * \
+            (1 if housing_ratio >= 1 else
+             inv_logit_function(housing_ratio))
 
 
 class BalancedElectronics(Goal):
@@ -67,8 +66,8 @@ class BalancedElectronics(Goal):
 
     def progress(self,  state: WorldState) -> float:
         country = state.countries[0]
-        r23: Resource = country.resources['R23']  # analog to housing
         r22: Resource = country.resources['R22']  # analog to electronics
+        r23: Resource = country.resources['R23']  # analog to housing
 
         if(r23.quantity == 0):
             return 0
@@ -76,12 +75,12 @@ class BalancedElectronics(Goal):
             return 0
 
         electronics_ratio = r22.quantity/r23.quantity
-        max_cap = 4
-        if(electronics_ratio >= max_cap):
-            return r22.weight * r23.quantity
+        max_cap = 3
 
         # Electronics quality following a Logistic Curve approximation mapped to domain 0-1
-        return r22.weight * r23.quantity * inv_logit_function(electronics_ratio, max_cap)
+        return r22.weight * r22.quantity * \
+            (1 if electronics_ratio >= max_cap else
+             inv_logit_function(electronics_ratio, max_cap))
 
 
 class MinimalWaste(Goal):
@@ -107,40 +106,51 @@ class MinimalWaste(Goal):
         # eg: If I have 100 Housing Units, and 100 Housing Waste, thats considered acceptable,
         # however, if I have 100 Housing Units, and 200 Housing waste, that far exceeds the expectation, and causes a rectifying term to kick in
 
-        # housing_waste_surplus = r23p.quantity - r23.quantity
-        # if(housing_waste_surplus > 0):
-        #     housing_waste_ratio = r23p.quantity/(r23.quantity + r23p.quantity)
+        housing_waste_surplus = r23p.quantity - r23.quantity
+        if(housing_waste_surplus > 0):
+            housing_waste_ratio = r23p.quantity/(r23p.quantity + r23.quantity)
 
-        #     waste += housing_waste_surplus * \
-        #         inv_logit_function(housing_waste_ratio) /\
-        #         (r21.quantity + r22.quantity + r23.quantity)
+            waste += 0.01 * housing_waste_surplus * r23p.weight * \
+                (1 if housing_waste_ratio == 1 else
+                 inv_logit_function(housing_waste_ratio))
 
-        # # Apply similar thining to Electronics Waste
-        # elec_waste_surplus = r22p.quantity - r22.quantity
-        # if(elec_waste_surplus > 0):
-        #     elec_waste_ratio = r22p.quantity / (r22.quantity + r22p.quantity)
+        # Apply similar thining to Electronics Waste
+        elec_waste_surplus = r22p.quantity - r22.quantity
+        if(elec_waste_surplus > 0):
+            elec_waste_ratio = r22p.quantity / (r22.quantity + r22p.quantity)
 
-        #     waste += elec_waste_surplus * \
-        #         inv_logit_function(elec_waste_ratio) /\
-        #         (r21.quantity + r22.quantity + r23.quantity)
+            waste += 0.01 * elec_waste_surplus * r22p.weight * \
+                (1 if elec_waste_ratio == 1 else
+                 inv_logit_function(elec_waste_ratio))
 
-        # # Apply similar thinking to Alloy waste, however, we cap out with a ratio of  waste surplus to products produced
-        # alloy_waste_surplus = r21p.quantity - r21.quantity
-        # if(alloy_waste_surplus > 0):
-        #     alloy_waste_ratio = r21p.quantity/(r21.quantity + r21p.quantity)
+        # Apply similar thinking to Alloy waste, however, we cap out with a ratio of  waste surplus to products produced
+        alloy_waste_surplus = r21p.quantity - r21.quantity
+        if(alloy_waste_surplus > 0):
+            alloy_waste_ratio = r21p.quantity/(r21.quantity + r21p.quantity)
 
-        #     waste += alloy_waste_surplus * \
-        #         inv_logit_function(alloy_waste_ratio) /\
-        #         (r21.quantity + r22.quantity + r23.quantity)
+            waste += 0.01 * alloy_waste_surplus * r21p.weight * \
+                (1 if alloy_waste_ratio == 1 else
+                 inv_logit_function(alloy_waste_ratio))
 
         # waste is detrimental to quality calculation, so negate
         return -waste
 
 
 class ResourcesOnHand(Goal):
-    
+
     def progress(self,  state: WorldState) -> float:
-        return 0
+        country = state.countries[0]
+
+        r1: Resource = country.resources['R1']  # analog to population
+        r21: Resource = country.resources['R21']  # analog to metallic alloys
+        r22: Resource = country.resources['R22']  # analog to electronics
+        r23: Resource = country.resources['R23']  # analog to housing
+
+        # simple weighted sum of resources per capita
+        return (r21.quantity * r21.weight +
+                r22.quantity * r22.weight +
+                r23.quantity * r23.weight) /\
+            r1.quantity
 
 
 goal_map: dict = {

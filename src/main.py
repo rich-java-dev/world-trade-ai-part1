@@ -103,8 +103,9 @@ while(len(frontier) > 0):
     while len(top_solutions) > soln_size:  # only keep the X best solutions
         removed_soln = top_solutions.pop()
 
+    # CLI/'TOP' like command, that refreshes/clears screen and reposts top solutions every 100 solns checked.
     soln_count += 1
-    if(soln_count % 20 == 0):
+    if(soln_count % 100 == 0):
         print_top_solutions()
 
     # check if bounded depth has been reached - Recursive Base Case:
