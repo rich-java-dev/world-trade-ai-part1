@@ -177,7 +177,7 @@ Potential Enhancements: Offer multi-Resource Trade Transactions:
 
     c1_offer: { -- Country 1 Trade Offer
         resource: 'R3'
-        quantity: 100, 
+        quantity: 100,
     },
 
     c2_offer: { -- Country 2 Trade Offer (Proposed By Country 1 Currently)
@@ -199,13 +199,13 @@ class Transfer(Action):
 
         c1: Country = world.countries[c1_idx]
         c1_offer: dict = kwargs['c1_offer']
-        c1_offer_rsrc: str = c1.offer.resource
-        c1_offer_qty: int = c1_offer.quantity
+        c1_offer_rsrc: str = c1_offer['resource']
+        c1_offer_qty: int = int(c1_offer['quantity'])
 
         c2: Country = world.countries[c2_idx]
         c2_offer: dict = kwargs['c2_offer']
-        c2_offer_rsrc: str = c2.offer.resource
-        c2_offer_qty: int = c2_offer.quantity
+        c2_offer_rsrc: str = c2_offer['resource']
+        c2_offer_qty: int = int(c2_offer['quantity'])
 
         # abort if trade resource is infeasible
         if c1_offer_qty <= 0 or c2_offer_qty <= 0:
@@ -229,21 +229,26 @@ class Transfer(Action):
 
         c1: Country = world.countries[c1_idx]
         c1_offer: dict = kwargs['c1_offer']
-        c1_offer_rsrc = c1.offer.resource
-        c1_offer_qty = c1_offer.quantity
+        c1_offer_rsrc = c1_offer['resource']
+        c1_offer_qty = int(c1_offer['quantity'])
 
         c2: Country = world.countries[c2_idx]
         c2_offer: dict = kwargs['c2_offer']
-        c2_offer_rsrc = c2.offer.resource
-        c2_offer_qty = c2_offer.quantity
+        c2_offer_rsrc = c2_offer['resource']
+        c2_offer_qty = int(c2_offer['quantity'])
 
         # Subtract resources from both countries, and then redistribute
-        c1.resources[c1_offer_rsrc] -= c1_offer_qty
-        c2.resources[c2_offer_rsrc] -= c2_offer_qty
+        c1.resources[c1_offer_rsrc].quantity -= c1_offer_qty
+        c2.resources[c2_offer_rsrc].quantity -= c2_offer_qty
 
         # reflect quantities:
-        c1.resources[c2_offer_rsrc] += c2_offer_qty
-        c2.resources[c1_offer_rsrc] += c1_offer_qty
+        c1.resources[c2_offer_rsrc].quantity += c2_offer_qty
+        c2.resources[c1_offer_rsrc].quantity += c1_offer_qty
+
+        print_line = f'c1: {c1.name}, c1.res.name: {c1_offer_rsrc}, c1.res.qty: {c1_offer_qty} \
+            c2: {c2.name}, c2.res.name: {c2_offer_rsrc}, c2.res.qty: {c2_offer_qty}'
+
+        return print_line
 
 
 action_map: dict = {

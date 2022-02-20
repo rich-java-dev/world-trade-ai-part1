@@ -25,7 +25,7 @@ parser.add_argument('--heuristic', '--htype', '-htype', default='',
 parser.add_argument('--depth',  '--d', '-d', default=10,
                     type=int, help='Search Depth of the model')
 
-parser.add_argument('--soln_set_size',  '--s', '-s', default=3,
+parser.add_argument('--soln_set_size',  '--s', '-s', default=2,
                     type=int, help='Number of Solutions (Depth achieved) to track in the best solutions object')
 
 parser.add_argument('--output', '--o', '-o', default='schedule.txt',
@@ -74,8 +74,9 @@ def print_top_solutions():
     os.system('cls')
     # os.system('clear')
     print(f'States found: {soln_count}')
+
     for soln in top_solutions:
-        print(f'Solution: {soln.schedule}')
+        print(f'Solution: {soln.print_schedule()}')
         print(f'quality: {soln.calc_quality()}')
         print(f'State:')
         soln.state.countries[0].print()

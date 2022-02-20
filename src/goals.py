@@ -78,15 +78,17 @@ class BalancedElectronics(Goal):
 
         housing_ratio = r23.quantity/r1.quantity
         electronics_ratio = r22.quantity/r23.quantity
-        max_cap = 3
+        max_cap = 2
 
         # Electronics quality following an Decaying inverse Logit Function:
         # in short, Electronics are a weighted sum, but also have a damping term applied relative to Housing sufficiency.
         # This encodes the idea that Houses/Housing Sufficiency impacts How useful electronics are at a given time:
         # If we have 100 electronics, and 1 house, this is out of balance.
-        # However, if we have say, 70 houses, and up to 70 electronics will have a fairly linear scaling, but beyond that, the
-        # added benifit to more electronicss have diminishing returns
-        # also dependent on housing ratio, such that electronics don't have as much impact until homelessness is ended
+        # However, if we have say, 50 houses, and up to around 50 electronics will have a fairly linear scaling, but beyond that, the
+        # added benifit to more electronics have diminishing returns
+        #
+        # also dependent on housing ratio, such that electronics don't have as much impact until homelessness has mostly ended
+        #
         return r22.weight * r22.quantity * housing_ratio * \
             (0 if electronics_ratio >= max_cap else
              inv_logit_decay_function(electronics_ratio, max_cap))
@@ -151,6 +153,8 @@ class ResourcesOnHand(Goal):
         country = state.countries[0]
 
         r1: Resource = country.resources['R1']  # analog to population
+        r2: Resource = country.resources['R2']  # analog to metallic alloys
+        r3: Resource = country.resources['R3']  # analog to metallic alloys
         r21: Resource = country.resources['R21']  # analog to metallic alloys
         r22: Resource = country.resources['R22']  # analog to electronics
         r23: Resource = country.resources['R23']  # analog to housing
@@ -158,6 +162,8 @@ class ResourcesOnHand(Goal):
         # simple weighted sum of resources per capita
         return (r21.quantity * r21.weight +
                 r22.quantity * r22.weight +
+                r2.quantity * (r2.weight + 0.05) +
+                r3.quantity * (r3.weight + 0.05) +
                 r23.quantity * r23.weight) /\
             r1.quantity
 

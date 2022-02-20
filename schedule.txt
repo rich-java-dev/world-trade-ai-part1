@@ -41,3 +41,235 @@ R21' : 280 	--	 waste
 R22' : 64 	--	 waste 
 R23' : 70 	--	 waste 
 
+Top Solutions:
+Solution: ['Alloy Template x 175', 'Alloy Template x 87', 'Housing Template x 43', 'Housing Template x 22', 'Electronics Template x 16', 'Alloy Template x 19', 'Housing Template x 9', 'Electronics Template x 6', 'Electronics Template x 3', 'Electronics Template x 2']
+quality: 83.08425317369824
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 10 	--	 analog to metallic elements 
+R3 : 1630 	--	 analog to timber 
+R21 : 5 	--	 analog to metallic alloys 
+R22 : 54 	--	 analog to electronics 
+R23 : 74 	--	 analog to housing (and housing sufficiency) 
+R21' : 281 	--	 waste 
+R22' : 54 	--	 waste 
+R23' : 74 	--	 waste 
+
+Solution: ['Alloy Template x 175', 'Alloy Template x 87', 'Housing Template x 43', 'Housing Template x 22', 'Electronics Template x 16', 'Alloy Template x 19', 'Electronics Template x 10', 'Housing Template x 5', 'Housing Template x 3', 'Electronics Template x 2']
+quality: 82.91677172750293
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 9 	--	 analog to metallic elements 
+R3 : 1635 	--	 analog to timber 
+R21 : 6 	--	 analog to metallic alloys 
+R22 : 56 	--	 analog to electronics 
+R23 : 73 	--	 analog to housing (and housing sufficiency) 
+R21' : 281 	--	 waste 
+R22' : 56 	--	 waste 
+R23' : 73 	--	 waste 
+
+Solution: ['Alloy Template x 175', 'Alloy Template x 87', 'Housing Template x 43', 'Housing Template x 22', 'Electronics Template x 16', 'Alloy Template x 19', 'Electronics Template x 10', 'Electronics Template x 5', 'Housing Template x 4', 'Housing Template x 2']
+quality: 82.62155862344956
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 5 	--	 analog to metallic elements 
+R3 : 1645 	--	 analog to timber 
+R21 : 6 	--	 analog to metallic alloys 
+R22 : 62 	--	 analog to electronics 
+R23 : 71 	--	 analog to housing (and housing sufficiency) 
+R21' : 281 	--	 waste 
+R22' : 62 	--	 waste 
+R23' : 71 	--	 waste 
+
+Top Solutions:
+Solution: []
+quality: 1.35
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 700 	--	 analog to metallic elements 
+R3 : 2000 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Top Solutions:
+Solution: []
+quality: 1.35
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 700 	--	 analog to metallic elements 
+R3 : 2000 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Top Solutions:
+Solution: []
+quality: 1.35
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 700 	--	 analog to metallic elements 
+R3 : 2000 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Top Solutions:
+Solution: []
+quality: 1.35
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 700 	--	 analog to metallic elements 
+R3 : 2000 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Top Solutions:
+Solution: []
+quality: 1.35
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 700 	--	 analog to metallic elements 
+R3 : 2000 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Solution: ['Transfer x None']
+quality: 1.35
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 1200 	--	 analog to metallic elements 
+R3 : 1500 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Solution: ['Transfer x None']
+quality: 1.35
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 900 	--	 analog to metallic elements 
+R3 : 1800 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Top Solutions:
+Solution: []
+quality: 1.35
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 700 	--	 analog to metallic elements 
+R3 : 2000 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Solution: ['Transfer x None']
+quality: 1.35
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 1200 	--	 analog to metallic elements 
+R3 : 1500 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Solution: ['Transfer x None', 'Transfer x None']
+quality: 1.35
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 1350 	--	 analog to metallic elements 
+R3 : 1350 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Top Solutions:
+Solution: ['Alloy Template x 175', 'Housing Template x 29']
+quality: 2.7403623043912946
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 321 	--	 analog to metallic elements 
+R3 : 1855 	--	 analog to timber 
+R21 : 88 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 29 	--	 analog to housing (and housing sufficiency) 
+R21' : 175 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 29 	--	 waste 
+
+Solution: ['Alloy Template x 175', 'Alloy Template x 87']
+quality: 1.6119999999999999
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 176 	--	 analog to metallic elements 
+R3 : 2000 	--	 analog to timber 
+R21 : 262 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 262 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Solution: ['Alloy Template x 175']
+quality: 1.525
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 350 	--	 analog to metallic elements 
+R3 : 2000 	--	 analog to timber 
+R21 : 175 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 175 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+

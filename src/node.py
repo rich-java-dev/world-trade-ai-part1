@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 import copy
 from resource import Resource
+from country import Country
 from world import WorldState
 from events import Action, action_map
 from quality import calc_quality
@@ -34,7 +35,7 @@ class Node():
 
     # composite/tree pattern, can link back through parents to learn full path
     def __init__(self, parent: Node = None, state: WorldState = None, action: str = "", **kwargs):
-        self.GAMMA: float = 0.64
+        self.GAMMA: float = 0.80
         self.depth: int = 0  # the schedule/number of events triggered at given 'layer' in search
         self.action_map = action_map
 
@@ -59,9 +60,10 @@ class Node():
         # apply action to parent Node to produce new State
         self.action: str = action
 
-        if action in self.action_map and self.action_map[action].is_viable(self.state):
+        if action in self.action_map and self.action_map[action].is_viable(self.state, **kwargs):
 
-            factor: int = self.action_map[action].apply(self.state, **kwargs)
+            factor = self.action_map[action].apply(self.state, **kwargs)
+            # TODO - procress kwargs into action
             # factor is the applied number of units of the underlying transform
             self.schedule[-1] += f' x {factor}'
 
@@ -109,6 +111,11 @@ class Node():
 
         for action_id in self.action_map.keys():
             action: Action = self.action_map[action_id]
+
+            if(action_id == 'Transfer'):
+                children.extend(self.generate_transfer_successors())
+                continue
+
             # Check that action is allowed/viable given Action constraints
             if action.is_viable(self.state):
                 child: Node = Node(self, self.state, action_id)
@@ -116,3 +123,57 @@ class Node():
 
         self.children = children
         return children
+
+    def generate_transfer_successors(self) -> list:
+        world = self.state
+        successors: list = []
+        action_id: str = 'Transfer'
+        action: Action = action_map[action_id]
+
+        resource_list: list = ['R2', 'R3', 'R21', 'R22']
+
+        c1 = world.countries[0]
+        for r1_offer in resource_list:
+            r1: Resource = c1.resources[r1_offer]
+            if r1.quantity == 0:
+                continue
+
+            for c2_idx in range(1, len(world.countries)):
+                c2: Country = world.countries[c2_idx]  # 2nd country in trade
+
+                for r2_offer in resource_list:
+                    r2: Resource = c2.resources[r2_offer]
+                    if r2.quantity == 0:
+                        continue
+                    if r1.name == r2.name:
+                        continue
+
+                    for percentage in [0.10, 0.25, 0.35, 0.50]:
+
+                        r1_qty = int(percentage * r1.quantity)
+                        r2_qty = int(percentage * r1.quantity)
+
+                        proposition: dict = {
+                            'c1': 0,
+                            'c2': c2_idx,
+                            'c1_offer': {
+                                'resource': r1_offer,
+                                'quantity': r1_qty,
+                            },
+                            'c2_offer': {
+                                'resource': r2_offer,
+                                'quantity': r2_qty,
+                            },
+                        }
+
+                        if action.is_viable(world, **proposition):
+                            child: Node = Node(
+                                self, world, action_id, **proposition)
+
+                            successors.append(child)
+
+        return successors
+
+    def print_schedule(self):
+        for entry in self.schedule:
+            print(entry)
