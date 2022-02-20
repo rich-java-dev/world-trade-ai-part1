@@ -175,5 +175,7 @@ class Node():
         return successors
 
     def print_schedule(self):
-        for entry in self.schedule:
-            print(entry)
+
+        for i in range(len(self.schedule)):
+            entry = self.schedule[i]
+            print(f'{i+1}: {entry}')

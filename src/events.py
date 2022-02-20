@@ -67,8 +67,8 @@ class AlloyTemplate(Transform):
     def apply(self, world: WorldState, **kwargs) -> int:
         c: Country = world.countries[0]
 
-        # use up to half of resources on given transform
-        factor: int = max([1, int(c.resources['R2'].quantity / 4)])
+        # use about 2/3 of resources on given transform
+        factor: int = max([1, int(c.resources['R2'].quantity / 3)])
 
         r2_consumed: int = factor * 2
         r21_gained: int = factor
@@ -141,9 +141,9 @@ class HousingTemplate(Transform):
         c: Country = world.countries[0]
 
         # use up to half of resources on given transform
-        r2_max_factor: int = max([1, int(c.resources['R2'].quantity / 2)])
-        r3_max_factor: int = max([1, int(c.resources['R3'].quantity / 10)])
-        r21_max_factor: int = max([1, int(c.resources['R21'].quantity / 6)])
+        r2_max_factor: int = max([1, int(c.resources['R2'].quantity)])
+        r3_max_factor: int = max([1, int(c.resources['R3'].quantity / 5)])
+        r21_max_factor: int = max([1, int(c.resources['R21'].quantity / 3)])
 
         factor: int = min([r2_max_factor, r3_max_factor, r21_max_factor])
 

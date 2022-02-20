@@ -16,7 +16,7 @@ import copy
 parser = argparse.ArgumentParser(
     description='CLI args to fine-tuning/running variants on the World Trade/Game Search')
 
-parser.add_argument('--model', '--m', '-m',  default='UCS',
+parser.add_argument('--model', '--m', '-m',  default='DFS',
                     type=str, help='Choosing Search Model')
 
 parser.add_argument('--heuristic', '--htype', '-htype', default='',
@@ -46,8 +46,8 @@ output_file: str = args.output
 # supported models:
 # UCS - Uniform Cost Search - uses Priority Queue/ Dijkstras search expanding/checking nodes with top cost regardless of depth
 # DFS - Depth First Search - uses Priority Stack/expanding towards best quality function
-if(model != "UCS"):
-    model = "DFS"
+if(model != "DFS"):
+    model = "UCS"
 
 print(f'model:      {model}')
 print(f'heuristic:  {heuristic}')
@@ -76,10 +76,13 @@ def print_top_solutions():
     print(f'States found: {soln_count}')
 
     for soln in top_solutions:
-        print(f'Solution: {soln.print_schedule()}')
+        print(f'Schedule: ')
+        soln.print_schedule()
+        print('')
         print(f'quality: {soln.calc_quality()}')
         print(f'State:')
         soln.state.countries[0].print()
+        print('')
         print('')
 
 
