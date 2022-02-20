@@ -54,7 +54,9 @@ class Resource:
 
     resource_id: int = 0
     name: str = ""
+    descript: str = ""
     quantity: int = 0
+
     weight: float = 0
     construction: int = 0
     infrastructure: int = 0
@@ -64,7 +66,6 @@ class Resource:
     nutrition: int = 0
     liquidity: int = 0
     culture: int = 0
-    descript: str = ""
     critical_resource: bool = False
     price: int = 0
 

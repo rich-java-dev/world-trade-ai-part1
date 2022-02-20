@@ -54,10 +54,10 @@ class EndHomelessness(Goal):
 
         housing_ratio = r23.quantity/r1.quantity
         if(housing_ratio >= 1):
-            return r1.quantity
+            return r23.weight * r1.quantity
 
         # Homelessenss quality following a Logistic Curve approximation mapped to domain 0-1
-        return r1.quantity * inv_logit_function(housing_ratio)
+        return r23.weight * r1.quantity * inv_logit_function(housing_ratio)
 
 
 class BalancedElectronics(Goal):
@@ -76,12 +76,12 @@ class BalancedElectronics(Goal):
             return 0
 
         electronics_ratio = r22.quantity/r23.quantity
-        max_cap = 5
+        max_cap = 4
         if(electronics_ratio >= max_cap):
-            return r23.quantity
+            return r22.weight * r23.quantity
 
         # Electronics quality following a Logistic Curve approximation mapped to domain 0-1
-        return r23.quantity * inv_logit_function(electronics_ratio, 5)
+        return r22.weight * r23.quantity * inv_logit_function(electronics_ratio, max_cap)
 
 
 class MinimalWaste(Goal):
@@ -138,7 +138,7 @@ class MinimalWaste(Goal):
 
 
 class ResourcesOnHand(Goal):
-
+    
     def progress(self,  state: WorldState) -> float:
         return 0
 

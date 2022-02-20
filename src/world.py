@@ -43,6 +43,7 @@ class WorldState:
                 r.name = res_name
                 r.quantity = int(row[res_name])
                 r.weight = self.resource_template[res_name]["Weight"]
+                r.descript = self.resource_template[res_name]["Notes"]
                 c.resources[res_name] = r
 
             self.countries.append(c)

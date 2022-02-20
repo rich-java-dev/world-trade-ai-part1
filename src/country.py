@@ -17,5 +17,5 @@ class Country:
     def print(self):
         nl = '\n' if not self.printer == print else ''
         self.printer(f'Country: {self.name} {nl}')
-        [self.printer(f'{r.name}:{r.quantity}{nl}')
+        [self.printer(f'{r.name} : {r.quantity} \t--\t {r.descript} {nl}')
          for r in self.resources.values()]

@@ -22,7 +22,7 @@ parser.add_argument('--model', '--m', '-m',  default='UCS',
 parser.add_argument('--heuristic', '--htype', '-htype', default='',
                     type=str, help='Choosing Heuristic function model')
 
-parser.add_argument('--depth',  '--d', '-d', default=100,
+parser.add_argument('--depth',  '--d', '-d', default=20,
                     type=int, help='Search Depth of the model')
 
 parser.add_argument('--soln_set_size',  '--s', '-s', default=3,
@@ -72,14 +72,15 @@ def print_top_solutions():
 
     # windows vs. linux variant
     os.system('cls')
-    os.system('clear')
-
+    # os.system('clear')
+    print(f'States found: {soln_count}')
     for soln in top_solutions:
         print(f'Solution: {soln.schedule}')
         print(f'quality: {soln.calc_quality()}')
         print(f'State:')
         soln.state.countries[0].print()
         print('')
+
 
     # Continue Search as long as there exists searchable nodes/expansion where depth has not been achieved
 while(len(frontier) > 0):
@@ -94,7 +95,7 @@ while(len(frontier) > 0):
     node = frontier.pop(0)
 
     # keep a small list of top solutions, based on quality order
-    soln = copy.deepcopy(node)
+    soln = node  # copy.deepcopy(node)
 
     top_solutions.append(soln)  # add solution to "top solutions"
     top_solutions.sort(key=lambda n: n.calc_quality(),
@@ -122,11 +123,11 @@ while(len(frontier) > 0):
     # append to list in reverse order for Depth (Priority Stack)
     # for Best First Search, sort Frontier, and not only successors
     if(model == "DFS"):
-        children.sort(key=lambda n: n.calc_discounted_reward(), reverse=True)
+        children.sort(key=lambda n: n.calc_discounted_reward(), reverse=False)
 
-    # append successors to frontier
+    # append successors to frontier at 'beginning' of list
     for child in children:
-        frontier.append(child)
+        frontier.insert(0, child)
 
 
 # Search finished: print the top results

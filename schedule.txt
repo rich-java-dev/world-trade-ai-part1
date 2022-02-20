@@ -1,413 +1,86 @@
 Top Solutions:
-Solution: ['Alloy Template x 175', 'Alloy Template x 87', 'Housing Template x 43', 'Housing Template x 22', 'Housing Template x 11']
-quality: 96.9469964664311
-State:
-Country: Atlantis
-R1:100
-R2:100
-R3:1620
-R21:34
-R22:0
-R23:76
-R21':262
-R22':0
-R23':76
-
-Solution: ['Alloy Template x 175', 'Housing Template x 29', 'Alloy Template x 80', 'Housing Template x 28', 'Housing Template x 14']
-quality: 93.62045513994245
-State:
-Country: Atlantis
-R1:100
-R2:119
-R3:1645
-R21:42
-R22:0
-R23:71
-R21':255
-R22':0
-R23':71
-
-Solution: ['Alloy Template x 175', 'Alloy Template x 87', 'Housing Template x 43', 'Alloy Template x 33', 'Housing Template x 27']
-quality: 92.7027027027027
-State:
-Country: Atlantis
-R1:100
-R2:40
-R3:1650
-R21:85
-R22:0
-R23:70
-R21':295
-R22':0
-R23':70
-
-Solution: ['Alloy Template x 175', 'Alloy Template x 87', 'Alloy Template x 44', 'Housing Template x 44', 'Housing Template x 22']
-quality: 87.97307221542228
-State:
-Country: Atlantis
-R1:100
-R2:22
-R3:1670
-R21:108
-R22:0
-R23:66
-R21':306
-R22':0
-R23':66
-
-Solution: ['Alloy Template x 175', 'Alloy Template x 87', 'Housing Template x 43', 'Housing Template x 22', 'Electronics Template x 16']
-quality: 86.58062884628808
-State:
-Country: Atlantis
-R1:100
-R2:79
-R3:1675
-R21:35
-R22:32
-R23:65
-R21':262
-R22':32
-R23':65
-
-Top Solutions:
-Solution: ['Alloy Template x 175', 'Alloy Template x 87', 'Housing Template x 43', 'Housing Template x 22', 'Housing Template x 11']
-quality: 96.9469964664311
-State:
-Country: Atlantis
-R1:100
-R2:100
-R3:1620
-R21:34
-R22:0
-R23:76
-R21':262
-R22':0
-R23':76
-
-Solution: ['Alloy Template x 175', 'Housing Template x 29', 'Alloy Template x 80', 'Housing Template x 28', 'Housing Template x 14']
-quality: 93.62045513994245
-State:
-Country: Atlantis
-R1:100
-R2:119
-R3:1645
-R21:42
-R22:0
-R23:71
-R21':255
-R22':0
-R23':71
-
-Solution: ['Alloy Template x 175', 'Alloy Template x 87', 'Housing Template x 43', 'Alloy Template x 33', 'Housing Template x 27']
-quality: 92.7027027027027
-State:
-Country: Atlantis
-R1:100
-R2:40
-R3:1650
-R21:85
-R22:0
-R23:70
-R21':295
-R22':0
-R23':70
-
-Solution: ['Alloy Template x 175', 'Alloy Template x 87', 'Alloy Template x 44', 'Housing Template x 44', 'Housing Template x 22']
-quality: 87.97307221542228
-State:
-Country: Atlantis
-R1:100
-R2:22
-R3:1670
-R21:108
-R22:0
-R23:66
-R21':306
-R22':0
-R23':66
-
-Solution: ['Alloy Template x 175', 'Alloy Template x 87', 'Housing Template x 43', 'Housing Template x 22', 'Electronics Template x 16']
-quality: 86.58062884628808
-State:
-Country: Atlantis
-R1:100
-R2:79
-R3:1675
-R21:35
-R22:32
-R23:65
-R21':262
-R22':32
-R23':65
-
-Top Solutions:
-Solution: ['Alloy Template x 175', 'Alloy Template x 87', 'Housing Template x 43', 'Housing Template x 22', 'Housing Template x 11']
-quality: 96.9469964664311
-State:
-Country: Atlantis
-R1:100
-R2:100
-R3:1620
-R21:34
-R22:0
-R23:76
-R21':262
-R22':0
-R23':76
-
-Solution: ['Alloy Template x 175', 'Housing Template x 29', 'Alloy Template x 80', 'Housing Template x 28', 'Housing Template x 14']
-quality: 93.62045513994245
-State:
-Country: Atlantis
-R1:100
-R2:119
-R3:1645
-R21:42
-R22:0
-R23:71
-R21':255
-R22':0
-R23':71
-
-Solution: ['Alloy Template x 175', 'Alloy Template x 87', 'Housing Template x 43', 'Alloy Template x 33', 'Housing Template x 27']
-quality: 92.7027027027027
-State:
-Country: Atlantis
-R1:100
-R2:40
-R3:1650
-R21:85
-R22:0
-R23:70
-R21':295
-R22':0
-R23':70
-
-Solution: ['Alloy Template x 175', 'Alloy Template x 87', 'Alloy Template x 44', 'Housing Template x 44', 'Housing Template x 22']
-quality: 87.97307221542228
-State:
-Country: Atlantis
-R1:100
-R2:22
-R3:1670
-R21:108
-R22:0
-R23:66
-R21':306
-R22':0
-R23':66
-
-Solution: ['Alloy Template x 175', 'Alloy Template x 87', 'Housing Template x 43', 'Housing Template x 22', 'Electronics Template x 16']
-quality: 86.58062884628808
-State:
-Country: Atlantis
-R1:100
-R2:79
-R3:1675
-R21:35
-R22:32
-R23:65
-R21':262
-R22':32
-R23':65
-
-Top Solutions:
-Solution: ['Alloy Template x 175', 'Alloy Template x 87', 'Housing Template x 43', 'Housing Template x 22', 'Housing Template x 11']
-quality: 96.9469964664311
-State:
-Country: Atlantis
-R1:100
-R2:100
-R3:1620
-R21:34
-R22:0
-R23:76
-R21':262
-R22':0
-R23':76
-
-Solution: ['Alloy Template x 175', 'Housing Template x 29', 'Alloy Template x 80', 'Housing Template x 28', 'Housing Template x 14']
-quality: 93.62045513994245
-State:
-Country: Atlantis
-R1:100
-R2:119
-R3:1645
-R21:42
-R22:0
-R23:71
-R21':255
-R22':0
-R23':71
-
-Top Solutions:
-Solution: ['Alloy Template x 175', 'Alloy Template x 87', 'Housing Template x 43', 'Housing Template x 22', 'Housing Template x 11']
-quality: 96.9469964664311
-State:
-Country: Atlantis
-R1:100
-R2:100
-R3:1620
-R21:34
-R22:0
-R23:76
-R21':262
-R22':0
-R23':76
-
-Solution: ['Alloy Template x 175', 'Housing Template x 29', 'Alloy Template x 80', 'Housing Template x 28', 'Housing Template x 14']
-quality: 93.62045513994245
-State:
-Country: Atlantis
-R1:100
-R2:119
-R3:1645
-R21:42
-R22:0
-R23:71
-R21':255
-R22':0
-R23':71
-
-Top Solutions:
-Solution: ['Alloy Template x 175', 'Alloy Template x 87', 'Housing Template x 43', 'Housing Template x 22', 'Housing Template x 11']
-quality: 96.9469964664311
-State:
-Country: Atlantis
-R1:100
-R2:100
-R3:1620
-R21:34
-R22:0
-R23:76
-R21':262
-R22':0
-R23':76
-
-Solution: ['Alloy Template x 175', 'Housing Template x 29', 'Alloy Template x 80', 'Housing Template x 28', 'Housing Template x 14']
-quality: 93.62045513994245
-State:
-Country: Atlantis
-R1:100
-R2:119
-R3:1645
-R21:42
-R22:0
-R23:71
-R21':255
-R22':0
-R23':71
-
-Solution: ['Alloy Template x 175', 'Alloy Template x 87', 'Housing Template x 43', 'Alloy Template x 33', 'Housing Template x 27']
-quality: 92.7027027027027
-State:
-Country: Atlantis
-R1:100
-R2:40
-R3:1650
-R21:85
-R22:0
-R23:70
-R21':295
-R22':0
-R23':70
-
-Solution: ['Alloy Template x 175', 'Alloy Template x 87', 'Alloy Template x 44', 'Housing Template x 44', 'Housing Template x 22']
-quality: 87.97307221542228
-State:
-Country: Atlantis
-R1:100
-R2:22
-R3:1670
-R21:108
-R22:0
-R23:66
-R21':306
-R22':0
-R23':66
-
-Solution: ['Alloy Template x 175', 'Alloy Template x 87', 'Housing Template x 43', 'Housing Template x 22', 'Electronics Template x 16']
-quality: 86.58062884628808
-State:
-Country: Atlantis
-R1:100
-R2:79
-R3:1675
-R21:35
-R22:32
-R23:65
-R21':262
-R22':32
-R23':65
-
-Top Solutions:
-Solution: ['Alloy Template x 175', 'Alloy Template x 87', 'Housing Template x 43', 'Housing Template x 22', 'Housing Template x 11']
-quality: 96.9469964664311
+Solution: []
+quality: 20.83783783783784
 State:
 Country: Atlantis 
-R1:100
-R2:100
-R3:1620
-R21:34
-R22:0
-R23:76
-R21':262
-R22':0
-R23':76
+R1 : 100 	--	 analog to population 
+R2 : 0 	--	 analog to metallic elements 
+R3 : 1850 	--	 analog to timber 
+R21 : 8 	--	 analog to metallic alloys 
+R22 : 158 	--	 analog to electronics 
+R23 : 30 	--	 analog to housing (and housing sufficiency) 
+R21' : 256 	--	 waste 
+R22' : 158 	--	 waste 
+R23' : 30 	--	 waste 
 
-Solution: ['Alloy Template x 175', 'Housing Template x 29', 'Alloy Template x 80', 'Housing Template x 28', 'Housing Template x 14']
-quality: 93.62045513994245
+Solution: ['Alloy Template x 175']
+quality: 20.83783783783784
 State:
 Country: Atlantis 
-R1:100
-R2:119
-R3:1645
-R21:42
-R22:0
-R23:71
-R21':255
-R22':0
-R23':71
+R1 : 100 	--	 analog to population 
+R2 : 0 	--	 analog to metallic elements 
+R3 : 1850 	--	 analog to timber 
+R21 : 8 	--	 analog to metallic alloys 
+R22 : 158 	--	 analog to electronics 
+R23 : 30 	--	 analog to housing (and housing sufficiency) 
+R21' : 256 	--	 waste 
+R22' : 158 	--	 waste 
+R23' : 30 	--	 waste 
 
-Solution: ['Alloy Template x 175', 'Alloy Template x 87', 'Housing Template x 43', 'Alloy Template x 33', 'Housing Template x 27']
-quality: 92.7027027027027
+Solution: ['Electronics Template x 43']
+quality: 20.83783783783784
 State:
 Country: Atlantis 
-R1:100
-R2:40
-R3:1650
-R21:85
-R22:0
-R23:70
-R21':295
-R22':0
-R23':70
+R1 : 100 	--	 analog to population 
+R2 : 0 	--	 analog to metallic elements 
+R3 : 1850 	--	 analog to timber 
+R21 : 8 	--	 analog to metallic alloys 
+R22 : 158 	--	 analog to electronics 
+R23 : 30 	--	 analog to housing (and housing sufficiency) 
+R21' : 256 	--	 waste 
+R22' : 158 	--	 waste 
+R23' : 30 	--	 waste 
 
-Solution: ['Alloy Template x 175', 'Alloy Template x 87', 'Alloy Template x 44', 'Housing Template x 44', 'Housing Template x 22']
-quality: 87.97307221542228
+Top Solutions:
+Solution: []
+quality: 20.83783783783784
 State:
 Country: Atlantis 
-R1:100
-R2:22
-R3:1670
-R21:108
-R22:0
-R23:66
-R21':306
-R22':0
-R23':66
+R1 : 100 	--	 analog to population 
+R2 : 0 	--	 analog to metallic elements 
+R3 : 1850 	--	 analog to timber 
+R21 : 8 	--	 analog to metallic alloys 
+R22 : 158 	--	 analog to electronics 
+R23 : 30 	--	 analog to housing (and housing sufficiency) 
+R21' : 256 	--	 waste 
+R22' : 158 	--	 waste 
+R23' : 30 	--	 waste 
 
-Solution: ['Alloy Template x 175', 'Alloy Template x 87', 'Housing Template x 43', 'Housing Template x 22', 'Electronics Template x 16']
-quality: 86.58062884628808
+Solution: ['Alloy Template x 175']
+quality: 20.83783783783784
 State:
 Country: Atlantis 
-R1:100
-R2:79
-R3:1675
-R21:35
-R22:32
-R23:65
-R21':262
-R22':32
-R23':65
+R1 : 100 	--	 analog to population 
+R2 : 0 	--	 analog to metallic elements 
+R3 : 1850 	--	 analog to timber 
+R21 : 8 	--	 analog to metallic alloys 
+R22 : 158 	--	 analog to electronics 
+R23 : 30 	--	 analog to housing (and housing sufficiency) 
+R21' : 256 	--	 waste 
+R22' : 158 	--	 waste 
+R23' : 30 	--	 waste 
+
+Solution: ['Electronics Template x 43']
+quality: 20.83783783783784
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 0 	--	 analog to metallic elements 
+R3 : 1850 	--	 analog to timber 
+R21 : 8 	--	 analog to metallic alloys 
+R22 : 158 	--	 analog to electronics 
+R23 : 30 	--	 analog to housing (and housing sufficiency) 
+R21' : 256 	--	 waste 
+R22' : 158 	--	 waste 
+R23' : 30 	--	 waste 
 
