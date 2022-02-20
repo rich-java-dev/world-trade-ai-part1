@@ -22,7 +22,7 @@ parser.add_argument('--model', '--m', '-m',  default='UCS',
 parser.add_argument('--heuristic', '--htype', '-htype', default='',
                     type=str, help='Choosing Heuristic function model')
 
-parser.add_argument('--depth',  '--d', '-d', default=20,
+parser.add_argument('--depth',  '--d', '-d', default=10,
                     type=int, help='Search Depth of the model')
 
 parser.add_argument('--soln_set_size',  '--s', '-s', default=3,

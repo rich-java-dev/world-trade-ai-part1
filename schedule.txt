@@ -1,86 +1,43 @@
 Top Solutions:
-Solution: []
-quality: 20.83783783783784
+Solution: ['Alloy Template x 175', 'Alloy Template x 87', 'Housing Template x 43', 'Housing Template x 22', 'Electronics Template x 16', 'Alloy Template x 19', 'Electronics Template x 10', 'Electronics Template x 5', 'Housing Template x 4', 'Housing Template x 2']
+quality: 103.4044206761558
 State:
 Country: Atlantis 
 R1 : 100 	--	 analog to population 
-R2 : 0 	--	 analog to metallic elements 
-R3 : 1850 	--	 analog to timber 
-R21 : 8 	--	 analog to metallic alloys 
-R22 : 158 	--	 analog to electronics 
-R23 : 30 	--	 analog to housing (and housing sufficiency) 
-R21' : 256 	--	 waste 
-R22' : 158 	--	 waste 
-R23' : 30 	--	 waste 
+R2 : 5 	--	 analog to metallic elements 
+R3 : 1645 	--	 analog to timber 
+R21 : 6 	--	 analog to metallic alloys 
+R22 : 62 	--	 analog to electronics 
+R23 : 71 	--	 analog to housing (and housing sufficiency) 
+R21' : 281 	--	 waste 
+R22' : 62 	--	 waste 
+R23' : 71 	--	 waste 
 
-Solution: ['Alloy Template x 175']
-quality: 20.83783783783784
+Solution: ['Alloy Template x 175', 'Alloy Template x 87', 'Housing Template x 43', 'Housing Template x 22', 'Electronics Template x 16', 'Alloy Template x 19', 'Electronics Template x 10', 'Housing Template x 5', 'Electronics Template x 4', 'Electronics Template x 2']
+quality: 103.20013950286048
 State:
 Country: Atlantis 
 R1 : 100 	--	 analog to population 
-R2 : 0 	--	 analog to metallic elements 
-R3 : 1850 	--	 analog to timber 
-R21 : 8 	--	 analog to metallic alloys 
-R22 : 158 	--	 analog to electronics 
-R23 : 30 	--	 analog to housing (and housing sufficiency) 
-R21' : 256 	--	 waste 
-R22' : 158 	--	 waste 
-R23' : 30 	--	 waste 
+R2 : 4 	--	 analog to metallic elements 
+R3 : 1650 	--	 analog to timber 
+R21 : 7 	--	 analog to metallic alloys 
+R22 : 64 	--	 analog to electronics 
+R23 : 70 	--	 analog to housing (and housing sufficiency) 
+R21' : 281 	--	 waste 
+R22' : 64 	--	 waste 
+R23' : 70 	--	 waste 
 
-Solution: ['Electronics Template x 43']
-quality: 20.83783783783784
+Solution: ['Alloy Template x 175', 'Alloy Template x 87', 'Housing Template x 43', 'Housing Template x 22', 'Electronics Template x 16', 'Housing Template x 5', 'Alloy Template x 18', 'Electronics Template x 9', 'Electronics Template x 5', 'Electronics Template x 2']
+quality: 103.19813180485006
 State:
 Country: Atlantis 
 R1 : 100 	--	 analog to population 
-R2 : 0 	--	 analog to metallic elements 
-R3 : 1850 	--	 analog to timber 
-R21 : 8 	--	 analog to metallic alloys 
-R22 : 158 	--	 analog to electronics 
-R23 : 30 	--	 analog to housing (and housing sufficiency) 
-R21' : 256 	--	 waste 
-R22' : 158 	--	 waste 
-R23' : 30 	--	 waste 
-
-Top Solutions:
-Solution: []
-quality: 20.83783783783784
-State:
-Country: Atlantis 
-R1 : 100 	--	 analog to population 
-R2 : 0 	--	 analog to metallic elements 
-R3 : 1850 	--	 analog to timber 
-R21 : 8 	--	 analog to metallic alloys 
-R22 : 158 	--	 analog to electronics 
-R23 : 30 	--	 analog to housing (and housing sufficiency) 
-R21' : 256 	--	 waste 
-R22' : 158 	--	 waste 
-R23' : 30 	--	 waste 
-
-Solution: ['Alloy Template x 175']
-quality: 20.83783783783784
-State:
-Country: Atlantis 
-R1 : 100 	--	 analog to population 
-R2 : 0 	--	 analog to metallic elements 
-R3 : 1850 	--	 analog to timber 
-R21 : 8 	--	 analog to metallic alloys 
-R22 : 158 	--	 analog to electronics 
-R23 : 30 	--	 analog to housing (and housing sufficiency) 
-R21' : 256 	--	 waste 
-R22' : 158 	--	 waste 
-R23' : 30 	--	 waste 
-
-Solution: ['Electronics Template x 43']
-quality: 20.83783783783784
-State:
-Country: Atlantis 
-R1 : 100 	--	 analog to population 
-R2 : 0 	--	 analog to metallic elements 
-R3 : 1850 	--	 analog to timber 
-R21 : 8 	--	 analog to metallic alloys 
-R22 : 158 	--	 analog to electronics 
-R23 : 30 	--	 analog to housing (and housing sufficiency) 
-R21' : 256 	--	 waste 
-R22' : 158 	--	 waste 
-R23' : 30 	--	 waste 
+R2 : 6 	--	 analog to metallic elements 
+R3 : 1650 	--	 analog to timber 
+R21 : 6 	--	 analog to metallic alloys 
+R22 : 64 	--	 analog to electronics 
+R23 : 70 	--	 analog to housing (and housing sufficiency) 
+R21' : 280 	--	 waste 
+R22' : 64 	--	 waste 
+R23' : 70 	--	 waste 
 

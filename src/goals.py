@@ -9,7 +9,7 @@ Using Logistic functions to compute
 '''
 
 from abc import ABC, abstractmethod
-from mathfunctions import sigmoid, inv_logit_function
+from mathfunctions import sigmoid, inv_logit_function, inv_logit_decay_function
 from world import WorldState
 from resource import Resource
 
@@ -66,6 +66,8 @@ class BalancedElectronics(Goal):
 
     def progress(self,  state: WorldState) -> float:
         country = state.countries[0]
+
+        r1: Resource = country.resources['R1']  # analog to population
         r22: Resource = country.resources['R22']  # analog to electronics
         r23: Resource = country.resources['R23']  # analog to housing
 
@@ -74,13 +76,20 @@ class BalancedElectronics(Goal):
         if(r22.quantity == 0):
             return 0
 
+        housing_ratio = r23.quantity/r1.quantity
         electronics_ratio = r22.quantity/r23.quantity
         max_cap = 3
 
-        # Electronics quality following a Logistic Curve approximation mapped to domain 0-1
-        return r22.weight * r22.quantity * \
-            (1 if electronics_ratio >= max_cap else
-             inv_logit_function(electronics_ratio, max_cap))
+        # Electronics quality following an Decaying inverse Logit Function:
+        # in short, Electronics are a weighted sum, but also have a damping term applied relative to Housing sufficiency.
+        # This encodes the idea that Houses/Housing Sufficiency impacts How useful electronics are at a given time:
+        # If we have 100 electronics, and 1 house, this is out of balance.
+        # However, if we have say, 70 houses, and up to 70 electronics will have a fairly linear scaling, but beyond that, the
+        # added benifit to more electronicss have diminishing returns
+        # also dependent on housing ratio, such that electronics don't have as much impact until homelessness is ended
+        return r22.weight * r22.quantity * housing_ratio * \
+            (0 if electronics_ratio >= max_cap else
+             inv_logit_decay_function(electronics_ratio, max_cap))
 
 
 class MinimalWaste(Goal):
@@ -110,7 +119,7 @@ class MinimalWaste(Goal):
         if(housing_waste_surplus > 0):
             housing_waste_ratio = r23p.quantity/(r23p.quantity + r23.quantity)
 
-            waste += 0.01 * housing_waste_surplus * r23p.weight * \
+            waste += 0.1 * housing_waste_surplus * r23p.weight * \
                 (1 if housing_waste_ratio == 1 else
                  inv_logit_function(housing_waste_ratio))
 
@@ -119,7 +128,7 @@ class MinimalWaste(Goal):
         if(elec_waste_surplus > 0):
             elec_waste_ratio = r22p.quantity / (r22.quantity + r22p.quantity)
 
-            waste += 0.01 * elec_waste_surplus * r22p.weight * \
+            waste += 0.1 * elec_waste_surplus * r22p.weight * \
                 (1 if elec_waste_ratio == 1 else
                  inv_logit_function(elec_waste_ratio))
 
@@ -128,7 +137,7 @@ class MinimalWaste(Goal):
         if(alloy_waste_surplus > 0):
             alloy_waste_ratio = r21p.quantity/(r21.quantity + r21p.quantity)
 
-            waste += 0.01 * alloy_waste_surplus * r21p.weight * \
+            waste += 0.1 * alloy_waste_surplus * r21p.weight * \
                 (1 if alloy_waste_ratio == 1 else
                  inv_logit_function(alloy_waste_ratio))
 
