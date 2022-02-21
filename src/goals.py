@@ -42,8 +42,8 @@ class Goal(ABC):
 class EndHomelessness(Goal):
 
     # base calculation on a ratio of percentage of unhoused people, presuming 1:1 population to housing unit
-    def progress(self, state: WorldState) -> float:
-        country = state.countries[0]
+    def progress(self, state: WorldState, country_idx: int = 0) -> float:
+        country = state.countries[country_idx]
         r1: Resource = country.resources['R1']  # analog to population
         r23: Resource = country.resources['R23']  # analog to housing
 
@@ -64,7 +64,7 @@ class BalancedElectronics(Goal):
     # There is also a max_cap of quality for Electronics per house-hold
     # This means exceeding this ratio does not improve quality
 
-    def progress(self,  state: WorldState) -> float:
+    def progress(self,  state: WorldState, country_idx: int = 0) -> float:
         country = state.countries[0]
 
         r1: Resource = country.resources['R1']  # analog to population
@@ -99,8 +99,8 @@ class MinimalWaste(Goal):
     # There is also a max_cap of quality for Electronics per house-hold
     # This means exceeding this ratio does not improve quality
 
-    def progress(self,  state: WorldState) -> float:
-        country = state.countries[0]
+    def progress(self,  state: WorldState, country_idx: int = 0) -> float:
+        country = state.countries[country_idx]
 
         r21: Resource = country.resources['R21']  # analog to metallic alloys
         r22: Resource = country.resources['R22']  # analog to electronics
@@ -149,8 +149,8 @@ class MinimalWaste(Goal):
 
 class ResourcesOnHand(Goal):
 
-    def progress(self,  state: WorldState) -> float:
-        country = state.countries[0]
+    def progress(self,  state: WorldState, country_idx: int = 0) -> float:
+        country = state.countries[country_idx]
 
         r1: Resource = country.resources['R1']  # analog to population
         r2: Resource = country.resources['R2']  # analog to metallic alloys

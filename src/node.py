@@ -5,6 +5,7 @@ from country import Country
 from world import WorldState
 from events import Action, action_map
 from quality import calc_quality
+import math
 
 # define Node class so that can be referenced for redefining as Composite/Recursive manner
 
@@ -42,6 +43,7 @@ class Node():
         # describes the history which led to this specific node/state
         # NOTE: may replace with a function which builds the schedule by chaining together parent node calls
         self.schedule: list = []
+        self.schedule_probability: list = [1.0, ]
 
         # transition states to scan next.
         self.children: list = []
@@ -52,15 +54,22 @@ class Node():
             self.state = WorldState()
             # self.state.countries[0].print()
 
+        #
         self.parent: Node = parent
         if parent:
             self.depth = parent.depth + 1
             self.schedule = [*parent.schedule, action]
+            self.schedule_probability = [*parent.schedule_probability, ]
 
         # apply action to parent Node to produce new State
         self.action: str = action
+        if action in self.action_map and \
+                self.action_map[action].is_viable(self.state, **kwargs):
 
-        if action in self.action_map and self.action_map[action].is_viable(self.state, **kwargs):
+            # track likelihood/probability of Trade being accepted by other Country
+            likelihood = self.action_map[action].probability(
+                self.state, **kwargs)
+            self.schedule_probability.append(likelihood)
 
             factor = self.action_map[action].apply(self.state, **kwargs)
             # TODO - procress kwargs into action
@@ -134,6 +143,9 @@ class Node():
 
         c1 = world.countries[0]
 
+        # 4 for-loops.. making the state space
+        # (4 tradable resources from C1, 4 tradable resources from C2, 5 trade percentage options, 5 other countries),
+        # = (4)(4)(5)(5) = 400, but only approx 35 are reachable from initial conditions
         for r1_offer in resource_list:
             r1: Resource = c1.resources[r1_offer]
 
@@ -170,8 +182,12 @@ class Node():
                                 self, world, action_id, **proposition)
                             yield child
 
-    def print_schedule(self):
-
+    def print_schedule(self) -> str:
+        result: str = ''
         for i in range(len(self.schedule)):
             entry = self.schedule[i]
-            print(f'{i+1}: {entry}')
+            ln = f'{i+1}: {entry}\n'
+            result += ln
+        result += f'Schedule Probability: {self.schedule_probability} = {math.prod(self.schedule_probability)}\n'
+        print(result)
+        return result

@@ -19,9 +19,12 @@ apply:      "Pure" function taking in a given World State, and applies
 '''
 
 from abc import ABC, abstractmethod
+import copy
 from world import WorldState
 from country import Country
 from resource import Resource
+from mathfunctions import sigmoid
+from quality import calc_quality
 
 # Uses abstract methods as a means to express some static polymorphism/Inheritence
 
@@ -38,6 +41,10 @@ class Action(ABC):
     def apply(self, state: WorldState, **kwargs):
         return 0
 
+    @abstractmethod
+    def probability(self, state: WorldState, **kwargs) -> float:
+        return 1.0
+
 
 class Transform(Action):
 
@@ -47,6 +54,9 @@ class Transform(Action):
     # "Flux" like pattern, taking in a current state
     def apply(self, state: WorldState, **kwargs) -> int:
         return 0
+
+    def probability(self, state: WorldState, **kwargs) -> float:
+        return 1.0
 
 
 '''
@@ -249,6 +259,34 @@ class Transfer(Action):
             c2: {c2.name}, c2.res.name: {c2_offer_rsrc}, c2.res.qty: {c2_offer_qty}'
 
         return print_line
+
+    def probability(self, world: WorldState, **kwargs) -> float:
+
+        c1_offer: dict = kwargs['c1_offer']
+        c1_offer_rsrc = c1_offer['resource']
+        c1_offer_qty = int(c1_offer['quantity'])
+        c2_idx: int = kwargs['c2']
+        c2: Country = copy.deepcopy(world.countries[c2_idx])
+
+        pre_trade_qual: float = calc_quality(world, c2_idx)
+
+        c2_offer: dict = kwargs['c2_offer']
+        c2_offer_rsrc = c2_offer['resource']
+        c2_offer_qty = int(c2_offer['quantity'])
+
+        # Subtract resources from both countries, and then redistribute
+        # c1.resources[c1_offer_rsrc].quantity -= c1_offer_qty
+        c2.resources[c2_offer_rsrc].quantity -= c2_offer_qty
+
+        # reflect quantities:
+        # c1.resources[c2_offer_rsrc].quantity += c2_offer_qty
+        c2.resources[c1_offer_rsrc].quantity += c1_offer_qty
+
+        after_trade_qual: float = calc_quality(world, c2_idx)
+
+        sig = sigmoid((after_trade_qual - pre_trade_qual)*100000)
+
+        return sig
 
 
 action_map: dict = {

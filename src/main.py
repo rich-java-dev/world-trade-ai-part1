@@ -78,7 +78,6 @@ def print_top_solutions():
     for soln in top_solutions:
         print(f'Schedule: ')
         soln.print_schedule()
-        print('')
         print(f'quality: {soln.calc_quality()}')
         print(f'State:')
         soln.state.countries[0].print()
@@ -144,9 +143,10 @@ with open(output_file, 'a+') as output:
     while(len(top_solutions) > 0):
         soln = top_solutions.pop(0)
 
-        for prt in [print, output.write]:
+        for prt in [output.write]:
             soln.state.countries[0].printer = prt
-            prt(f'Solution: {soln.schedule}\n')
+            prt('Schedule:\n')
+            prt(soln.print_schedule())
             prt(f'quality: {soln.calc_quality()}\n')
             prt(f'State:\n')
             soln.state.countries[0].print()

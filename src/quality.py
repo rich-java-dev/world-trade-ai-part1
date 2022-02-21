@@ -15,12 +15,13 @@ infrastructure, water quality, air quality, socio-economic values, intra-country
 '''
 
 
-def calc_quality(state: WorldState) -> float:
+def calc_quality(state: WorldState, country_idx=0) -> float:
 
-    housing_goal = goal_map['housing'].progress(state)
-    electronics_goal = goal_map['electronics'].progress(state)
-    waste_goal = goal_map['waste'].progress(state)
-    resource_on_hand_goal = goal_map['raw_resources'].progress(state)
+    housing_goal = goal_map['housing'].progress(state, country_idx)
+    electronics_goal = goal_map['electronics'].progress(state, country_idx)
+    waste_goal = goal_map['waste'].progress(state, country_idx)
+    resource_on_hand_goal = goal_map['raw_resources'].progress(
+        state, country_idx)
 
     q = housing_goal+electronics_goal+waste_goal+resource_on_hand_goal
     return q
