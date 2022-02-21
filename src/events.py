@@ -207,7 +207,7 @@ class Transfer(Action):
         c2_offer_rsrc: str = c2_offer['resource']
         c2_offer_qty: int = int(c2_offer['quantity'])
 
-        # abort if trade resource is infeasible
+        # abort if trade resource requirements are infeasible
         if c1_offer_qty <= 0 or c2_offer_qty <= 0:
             return False
 

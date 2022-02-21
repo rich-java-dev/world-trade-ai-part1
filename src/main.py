@@ -22,7 +22,7 @@ parser.add_argument('--model', '--m', '-m',  default='DFS',
 parser.add_argument('--heuristic', '--htype', '-htype', default='',
                     type=str, help='Choosing Heuristic function model')
 
-parser.add_argument('--depth',  '--d', '-d', default=10,
+parser.add_argument('--depth',  '--d', '-d', default=5,
                     type=int, help='Search Depth of the model')
 
 parser.add_argument('--soln_set_size',  '--s', '-s', default=2,
@@ -138,8 +138,9 @@ while(len(frontier) > 0):
 # Search finished: print the top results
 print("Top Solutions: ")
 with open(output_file, 'a+') as output:
+    print('')
+    print(f'Total States Found: {soln_count}')
     output.write('Top Solutions:\n')
-
     while(len(top_solutions) > 0):
         soln = top_solutions.pop(0)
 

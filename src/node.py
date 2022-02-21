@@ -124,35 +124,34 @@ class Node():
         self.children = children
         return children
 
-    def generate_transfer_successors(self) -> list:
+    def generate_transfer_successors(self):
         world = self.state
-        successors: list = []
         action_id: str = 'Transfer'
         action: Action = action_map[action_id]
 
         resource_list: list = ['R2', 'R3', 'R21', 'R22']
+        percentages = [.75, .63, .5, .37, .25]
 
         c1 = world.countries[0]
+
         for r1_offer in resource_list:
             r1: Resource = c1.resources[r1_offer]
-            if r1.quantity == 0:
-                continue
 
             for c2_idx in range(1, len(world.countries)):
                 c2: Country = world.countries[c2_idx]  # 2nd country in trade
 
                 for r2_offer in resource_list:
                     r2: Resource = c2.resources[r2_offer]
-                    if r2.quantity == 0:
-                        continue
-                    if r1.name == r2.name:
-                        continue
 
-                    for percentage in [0.10, 0.25, 0.35, 0.50]:
+                    for percentage in percentages:
 
-                        r1_qty = int(percentage * r1.quantity)
-                        r2_qty = int(percentage * r1.quantity)
+                        if r2.quantity == 0 or r1.name == r2.name:
+                            continue
 
+                        r1_qty = int(percentage * r2.quantity)
+                        r2_qty = int(percentage * r2.quantity)
+
+                        # Adhere to API/expectation defined in EVENTS/TRANSFER class
                         proposition: dict = {
                             'c1': 0,
                             'c2': c2_idx,
@@ -169,10 +168,7 @@ class Node():
                         if action.is_viable(world, **proposition):
                             child: Node = Node(
                                 self, world, action_id, **proposition)
-
-                            successors.append(child)
-
-        return successors
+                            yield child
 
     def print_schedule(self):
 
