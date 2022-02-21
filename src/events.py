@@ -176,10 +176,7 @@ class HousingTemplate(Transform):
 
 '''
 Basic Transfer Template/Skeleton Implementation:
-
 Potential Enhancements: Offer multi-Resource Trade Transactions:
-
-
 
 {
     c1: 0, -- Country 1 in Trade Proposition
@@ -274,17 +271,14 @@ class Transfer(Action):
         c2_offer_rsrc = c2_offer['resource']
         c2_offer_qty = int(c2_offer['quantity'])
 
-        # Subtract resources from both countries, and then redistribute
-        # c1.resources[c1_offer_rsrc].quantity -= c1_offer_qty
         c2.resources[c2_offer_rsrc].quantity -= c2_offer_qty
-
-        # reflect quantities:
-        # c1.resources[c2_offer_rsrc].quantity += c2_offer_qty
         c2.resources[c1_offer_rsrc].quantity += c1_offer_qty
 
         after_trade_qual: float = calc_quality(world, c2_idx)
 
-        sig = sigmoid((after_trade_qual - pre_trade_qual)*100000)
+        # perform a sigmoid calculation based on the change in state quality if Country 2 Accepts Trade
+        # any increases in state quality will
+        sig = sigmoid(after_trade_qual - pre_trade_qual)
 
         return sig
 
