@@ -28,6 +28,9 @@ parser.add_argument('--depth',  '--d', '-d', default=5,
 parser.add_argument('--soln_set_size',  '--s', '-s', default=2,
                     type=int, help='Number of Solutions (Depth achieved) to track in the best solutions object')
 
+parser.add_argument('--initial_state_file',  '--i', '-i', default=1,
+                    type=int, help='1 of 4 initial state files for the search')
+
 parser.add_argument('--output', '--o', '-o', default='schedule.txt',
                     type=str, help='The output file to print the top Schedules to')
 
@@ -39,6 +42,7 @@ heuristic: str = args.heuristic
 depth: int = args.depth
 soln_size: int = args.soln_set_size
 output_file: str = args.output
+initial_state_file: int = args.initial_state_file
 
 
 # sanitize input here...
@@ -57,7 +61,9 @@ print()
 #
 # initialize root node
 #
+Node.init_state_idx = initial_state_file
 root: Node = Node()
+
 
 frontier = [root]  # search frontier
 
@@ -88,14 +94,8 @@ def print_top_solutions():
     # Continue Search as long as there exists searchable nodes/expansion where depth has not been achieved
 while(len(frontier) > 0):
 
-    # Best First Search/Uniform Cost Search
-    # for Depth First Search: comment this sort out,
-    # and only sort successors prior to placing successors on frontier
-    if(model == "UCS"):
-        frontier.sort(key=lambda n: n.calc_discounted_reward(), reverse=True)
-
     # grab the 0th node on the Stack (or Queue)
-    node = frontier.pop(0)
+    node = frontier.pop()
 
     # keep a small list of top solutions, based on quality order
     soln = node  # copy.deepcopy(node)
@@ -127,11 +127,18 @@ while(len(frontier) > 0):
     # append to list in reverse order for Depth (Priority Stack)
     # for Best First Search, sort Frontier, and not only successors
     if(model == "DFS"):
-        children.sort(key=lambda n: n.calc_discounted_reward(), reverse=False)
+        children.sort(key=lambda n: n.calc_discounted_reward())
 
     # append successors to frontier at 'beginning' of list
     for child in children:
-        frontier.insert(0, child)
+        frontier.append(child)
+
+    # Best First Search/Uniform Cost Search
+    # for Depth First Search: comment this sort out,
+    # and only sort successors prior to placing on frontier vs. sorting frontier
+    # WARNING: this does impact the performance of the search
+    if(model == "UCS"):
+        frontier.sort(key=lambda n: n.calc_discounted_reward())
 
 
 # Search finished: print the top results

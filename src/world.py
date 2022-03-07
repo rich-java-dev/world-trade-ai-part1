@@ -9,7 +9,7 @@ import pandas as pd
 
 class WorldState:
 
-    def __init__(self):
+    def __init__(self, init_state_idx: int = 1):
 
         self.countries: list = []
         self.resource_template: dict = {}
@@ -27,7 +27,9 @@ class WorldState:
 
         # load in world state
         print(f"loading countries file...")
-        df = pd.read_csv('resources/example-initial-countries.csv')
+
+        initial_country_state: str = f'resources/example-initial-countries{init_state_idx}.csv'
+        df = pd.read_csv(initial_country_state)
         resource_cols = ["R1", "R2", "R3", "R21", "R22",
                          "R23", "R21'", "R22'", "R23'"]
 

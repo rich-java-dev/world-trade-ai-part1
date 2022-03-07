@@ -252,8 +252,7 @@ class Transfer(Action):
         c1.resources[c2_offer_rsrc].quantity += c2_offer_qty
         c2.resources[c1_offer_rsrc].quantity += c1_offer_qty
 
-        print_line = f'c1: {c1.name}, c1.res.name: {c1_offer_rsrc}, c1.res.qty: {c1_offer_qty} \
-            c2: {c2.name}, c2.res.name: {c2_offer_rsrc}, c2.res.qty: {c2_offer_qty}'
+        print_line = f'COUNTRY: {c1.name} TRANSFER {c1_offer_rsrc} x{c1_offer_qty} to COUNTRY: {c2.name} for {c2_offer_rsrc} x{c2_offer_qty}'
 
         return print_line
 

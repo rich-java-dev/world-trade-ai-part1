@@ -34,9 +34,17 @@ TreeNode-Like Structure, implementing an A* Search:
 
 class Node():
 
+    id: int = -1
+    init_state_idx: int = 1
+
     # composite/tree pattern, can link back through parents to learn full path
     def __init__(self, parent: Node = None, state: WorldState = None, action: str = "", **kwargs):
-        self.GAMMA: float = 0.80
+
+        # id, which will aim to represent the ID/occurance/step' in the State Search from the inital start point
+        Node.id += 1
+        self.id = Node.id
+
+        self.GAMMA: float = 0.80  # default value used for reward discounting.
         self.depth: int = 0  # the schedule/number of events triggered at given 'layer' in search
         self.action_map = action_map
 
@@ -51,7 +59,7 @@ class Node():
         # deep copy required to prevent from modifying/passing around a single state object between depths
         self.state: WorldState = copy.deepcopy(state)
         if not state:
-            self.state = WorldState()
+            self.state = WorldState(Node.init_state_idx)
             # self.state.countries[0].print()
 
         #
@@ -133,6 +141,19 @@ class Node():
         self.children = children
         return children
 
+    '''
+    Generate Successors for Transfers:
+    The general approach taken is: 
+    1) Create a 'template'/'contract', which involves 2 parties, and 2 resources (and quantities of the resource)
+    2) Iterate over tradable resources, and vary by percentage of Country 1's resources an amount to offer 
+    2) Ensure both parties have required resources to perform trade (Don't allow debt/negative quantities)
+    4) Calculate the 
+    3) Subtract Trade Resource from both Countries 
+    4) Add Trade Resource/Qty from other party from 
+    5) Yield the new Node which results from the completed trade
+
+    '''
+
     def generate_transfer_successors(self):
         world = self.state
         action_id: str = 'Transfer'
@@ -189,5 +210,6 @@ class Node():
             ln = f'{i+1}: {entry}\n'
             result += ln
         result += f'Schedule Probability: {self.schedule_probability} = {math.prod(self.schedule_probability)}\n'
+        result += f'id: {self.id}\n'
         print(result)
         return result
