@@ -162,8 +162,8 @@ class ResourcesOnHand(Goal):
         # simple weighted sum of resources per capita
         return (r21.quantity * r21.weight +
                 r22.quantity * r22.weight +
-                r2.quantity * (r2.weight + 0.05) +
-                r3.quantity * (r3.weight + 0.05) +
+                r2.quantity * (r2.weight + 0.1) +
+                r3.quantity * (r3.weight + 0.1) +
                 r23.quantity * r23.weight) /\
             r1.quantity
 

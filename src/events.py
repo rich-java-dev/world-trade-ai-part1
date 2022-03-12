@@ -257,14 +257,15 @@ class Transfer(Action):
         return print_line
 
     def probability(self, world: WorldState, **kwargs) -> float:
+        world_state: WorldState = copy.deepcopy(world)
 
         c1_offer: dict = kwargs['c1_offer']
         c1_offer_rsrc = c1_offer['resource']
         c1_offer_qty = int(c1_offer['quantity'])
         c2_idx: int = kwargs['c2']
-        c2: Country = copy.deepcopy(world.countries[c2_idx])
+        c2: Country = world_state.countries[c2_idx]
 
-        pre_trade_qual: float = calc_quality(world, c2_idx)
+        pre_trade_qual: float = calc_quality(world_state, c2_idx)
 
         c2_offer: dict = kwargs['c2_offer']
         c2_offer_rsrc = c2_offer['resource']
@@ -273,7 +274,7 @@ class Transfer(Action):
         c2.resources[c2_offer_rsrc].quantity -= c2_offer_qty
         c2.resources[c1_offer_rsrc].quantity += c1_offer_qty
 
-        after_trade_qual: float = calc_quality(world, c2_idx)
+        after_trade_qual: float = calc_quality(world_state, c2_idx)
 
         # perform a sigmoid calculation based on the change in state quality if Country 2 Accepts Trade
         # any increases in state quality will

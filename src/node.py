@@ -15,17 +15,18 @@ class Node():
 
 
 '''
-Search Node.
+Search Node data structure.
 
-TreeNode-Like Structure, implementing an A* Search:
+Can be implemented in Main class as either a Uniform Cost/Best First Search, 
+or a Greedy/Local Depth First (default)
 
-        A* :=  g + h,
-        g := state quality function
-        h := state heuristic function
+Uses a composite like pattern, and tracks the "world state".
+Each node is a representation of the world state after N events have occured (given depth of search) 
 
-        h necessarily never over-estimates (such that it is admissible).
-        as Such, h derives its value by assuming a "minimal utilization"
-        of a given resources 'potential'
+children: the successors of the cur rent world state
+schedule: list of events/actions which led to this state
+schedule_probablity: likelihood an event
+
 '''
 
 # opted against @dataclass, due to explicit lock-out of variable/"list" like mutable arrays
@@ -53,6 +54,8 @@ class Node():
         self.schedule: list = []
         self.schedule_probability: list = [1.0, ]
 
+        self.likelihood = 1.0  # probability of the current specific action succeeding
+
         # transition states to scan next.
         self.children: list = []
 
@@ -75,9 +78,9 @@ class Node():
                 self.action_map[action].is_viable(self.state, **kwargs):
 
             # track likelihood/probability of Trade being accepted by other Country
-            likelihood = self.action_map[action].probability(
+            self.likelihood = self.action_map[action].probability(
                 self.state, **kwargs)
-            self.schedule_probability.append(likelihood)
+            self.schedule_probability.append(self.likelihood)
 
             factor = self.action_map[action].apply(self.state, **kwargs)
             # TODO - procress kwargs into action
@@ -104,7 +107,7 @@ class Node():
 
     # defined as the 'net gain' discounted for having been on a schedule
     def calc_discounted_reward(self) -> float:
-        return (self.GAMMA ** self.depth) * self.calc_reward()
+        return (self.GAMMA ** self.depth) * self.calc_reward() * self.likelihood
 
     # for heuristic to be admissible, must never over-estimate quality
     def calc_heuristic(self, h=None) -> float:
@@ -146,12 +149,11 @@ class Node():
     The general approach taken is: 
     1) Create a 'template'/'contract', which involves 2 parties, and 2 resources (and quantities of the resource)
     2) Iterate over tradable resources, and vary by percentage of Country 1's resources an amount to offer 
-    2) Ensure both parties have required resources to perform trade (Don't allow debt/negative quantities)
-    4) Calculate the 
-    3) Subtract Trade Resource from both Countries 
-    4) Add Trade Resource/Qty from other party from 
-    5) Yield the new Node which results from the completed trade
-
+    3) Ensure both parties have required resources to perform trade (Don't allow debt/negative quantities)
+    4) Subtract Trade Resource from both Countries 
+    5) Add Trade Resource/Qty from other party from 
+    6) Yield the new Node which results from the completed trade
+    7) When the new node is instantiated, the probability and impact of the trade are expanded/applied
     '''
 
     def generate_transfer_successors(self):
@@ -159,14 +161,19 @@ class Node():
         action_id: str = 'Transfer'
         action: Action = action_map[action_id]
 
-        resource_list: list = ['R2', 'R3', 'R21', 'R22']
-        percentages = [.75, .63, .5, .37, .25]
+        # "R21'", "R22'", "R23'"]
+        resource_list: list = ["R2", "R3", "R21", "R22"]
 
-        c1 = world.countries[0]
+        # Building a Schedule for Country '0' - Atlantis
+        c1_idx = 0
+        c1 = world.countries[c1_idx]
 
-        # 4 for-loops.. making the state space
-        # (4 tradable resources from C1, 4 tradable resources from C2, 5 trade percentage options, 5 other countries),
-        # = (4)(4)(5)(5) = 400, but only approx 35 are reachable from initial conditions
+        # 5 for-loops.. making the state space
+        # 4 tradable resources from C1,
+        # 4 tradable resources from C2,
+        # 5 other countries top trade with,
+        # 5 trade percentage options,
+        # = (4)(5)(4)(6)(6) = 2880 branches maximized, depending on world state
         for r1_offer in resource_list:
             r1: Resource = c1.resources[r1_offer]
 
@@ -176,32 +183,39 @@ class Node():
                 for r2_offer in resource_list:
                     r2: Resource = c2.resources[r2_offer]
 
-                    for percentage in percentages:
+                    if r2.quantity == 0 or r1.name == r2.name:
+                        continue
 
-                        if r2.quantity == 0 or r1.name == r2.name:
-                            continue
+                    # searching over a finite set of 'propositions' based on percentage of resources
+                    for r1_pct in [1.00, .80, .75, .5, .25, .10]:
+                        for r2_pct in [1.00, .80, .75, .5, .25, .10]:
 
-                        r1_qty = int(percentage * r2.quantity)
-                        r2_qty = int(percentage * r2.quantity)
+                            r1_qty = int(r1_pct * r1.quantity)
+                            r2_qty = int(r2_pct * r2.quantity)
 
-                        # Adhere to API/expectation defined in EVENTS/TRANSFER class
-                        proposition: dict = {
-                            'c1': 0,
-                            'c2': c2_idx,
-                            'c1_offer': {
-                                'resource': r1_offer,
-                                'quantity': r1_qty,
-                            },
-                            'c2_offer': {
-                                'resource': r2_offer,
-                                'quantity': r2_qty,
-                            },
-                        }
+                            # Adhere to API/expectation defined in EVENTS/TRANSFER class
+                            proposition: dict = {
+                                'c1': c1_idx,
+                                'c2': c2_idx,
+                                'c1_offer': {
+                                    'resource': r1_offer,
+                                    'quantity': r1_qty,
+                                },
+                                'c2_offer': {
+                                    'resource': r2_offer,
+                                    'quantity': r2_qty,
+                                },
+                            }
 
+                        # confirm both countries have the required resources in above proposition to proceed.
                         if action.is_viable(world, **proposition):
                             child: Node = Node(
                                 self, world, action_id, **proposition)
                             yield child
+
+    '''
+    Convenience method for printing out the Schedule of the Node/WorldState
+    '''
 
     def print_schedule(self) -> str:
         result: str = ''

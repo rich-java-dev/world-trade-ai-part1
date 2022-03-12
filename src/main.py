@@ -1,7 +1,12 @@
 '''
-Main entry point into program
 
-World Trade/Transform Game Simulation
+World-Trade Scheduling AI - Agent 
+
+entry/driver or Front-End class for building 
+AI World Trading Schedules within the bounds/Rules of the 
+Simulation as Described.
+
+author: Richard White
 
 '''
 
@@ -9,7 +14,6 @@ World Trade/Transform Game Simulation
 import os
 import argparse
 from node import Node
-import copy
 
 
 # %%
@@ -17,10 +21,13 @@ parser = argparse.ArgumentParser(
     description='CLI args to fine-tuning/running variants on the World Trade/Game Search')
 
 parser.add_argument('--model', '--m', '-m',  default='DFS',
-                    type=str, help='Choosing Search Model')
+                    type=str, help='Choosing Search Model- \
+                        DFS (greedy-local-depth-first-search \
+                        UCS (uniform-cost search (Djikstra)')
 
-parser.add_argument('--heuristic', '--htype', '-htype', default='',
-                    type=str, help='Choosing Heuristic function model')
+# not applicable at moment
+# parser.add_argument('--heuristic', '--htype', '-htype', default='',
+#                     type=str, help='Choosing Heuristic function model')
 
 parser.add_argument('--depth',  '--d', '-d', default=5,
                     type=int, help='Search Depth of the model')
@@ -29,7 +36,7 @@ parser.add_argument('--soln_set_size',  '--s', '-s', default=2,
                     type=int, help='Number of Solutions (Depth achieved) to track in the best solutions object')
 
 parser.add_argument('--initial_state_file',  '--i', '-i', default=1,
-                    type=int, help='1 of 4 initial state files for the search')
+                    type=int, help='enum 1-4. initial state file for loading the simulation/search')
 
 parser.add_argument('--output', '--o', '-o', default='schedule.txt',
                     type=str, help='The output file to print the top Schedules to')
@@ -38,7 +45,7 @@ parser.add_argument('--output', '--o', '-o', default='schedule.txt',
 args = parser.parse_args()
 
 model: str = args.model
-heuristic: str = args.heuristic
+# heuristic: str = args.heuristic
 depth: int = args.depth
 soln_size: int = args.soln_set_size
 output_file: str = args.output
@@ -54,7 +61,7 @@ if(model != "DFS"):
     model = "UCS"
 
 print(f'model:      {model}')
-print(f'heuristic:  {heuristic}')
+# print(f'heuristic:  {heuristic}')
 print(f'depth:      {depth}')
 print()
 
@@ -75,10 +82,13 @@ soln_count: int = 0
 
 
 def print_top_solutions():
+    '''
+    Render a human readable statistics of the on-going search in progress, including the 'top' results
 
+    '''
     # windows vs. linux variant
-    os.system('cls')
-    # os.system('clear')
+    os.system('cls')  # os.system('clear')
+
     print(f'States found: {soln_count}')
 
     for soln in top_solutions:
@@ -89,7 +99,6 @@ def print_top_solutions():
         soln.state.countries[0].print()
         print('')
         print('')
-
 
     # Continue Search as long as there exists searchable nodes/expansion where depth has not been achieved
 while(len(frontier) > 0):
@@ -108,7 +117,7 @@ while(len(frontier) > 0):
 
     # CLI/'TOP' like command, that refreshes/clears screen and reposts top solutions every 100 solns checked.
     soln_count += 1
-    if(soln_count % 100 == 0):
+    if(soln_count % 500 == 0):
         print_top_solutions()
 
     # check if bounded depth has been reached - Recursive Base Case:
