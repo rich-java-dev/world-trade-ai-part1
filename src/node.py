@@ -1,11 +1,11 @@
 from dataclasses import dataclass, field
 import copy
+import math
 from resource import Resource
 from country import Country
 from world import WorldState
 from events import Action, action_map
 from quality import calc_quality
-import math
 
 # define Node class so that can be referenced for redefining as Composite/Recursive manner
 
@@ -17,11 +17,11 @@ class Node():
 '''
 Search Node data structure.
 
-Can be implemented in Main class as either a Uniform Cost/Best First Search, 
+Can be implemented in Main class as either a Uniform Cost/Best First Search,
 or a Greedy/Local Depth First (default)
 
 Uses a composite like pattern, and tracks the "world state".
-Each node is a representation of the world state after N events have occured (given depth of search) 
+Each node is a representation of the world state after N events have occured (given depth of search)
 
 children: the successors of the cur rent world state
 schedule: list of events/actions which led to this state
@@ -37,15 +37,17 @@ class Node():
 
     id: int = -1
     init_state_idx: int = 1
+    gamma: float = 0.64
+    sched_threshold = 0.50
 
     # composite/tree pattern, can link back through parents to learn full path
     def __init__(self, parent: Node = None, state: WorldState = None, action: str = "", **kwargs):
 
+        self.force_leaf = False
         # id, which will aim to represent the ID/occurance/step' in the State Search from the inital start point
         Node.id += 1
         self.id = Node.id
 
-        self.GAMMA: float = 0.80  # default value used for reward discounting.
         self.depth: int = 0  # the schedule/number of events triggered at given 'layer' in search
         self.action_map = action_map
 
@@ -105,9 +107,9 @@ class Node():
             prev_quality = self.parent.calc_quality()
         return quality - prev_quality
 
-    # defined as the 'net gain' discounted for having been on a schedule
+    # defined as the 'net gain' discounted for having been on a schedule, and further discounted by probability of (acceptance/likelihood)
     def calc_discounted_reward(self) -> float:
-        return (self.GAMMA ** self.depth) * self.calc_reward() * self.likelihood
+        return (Node.gamma ** self.depth) * self.calc_reward() * self.likelihood
 
     # for heuristic to be admissible, must never over-estimate quality
     def calc_heuristic(self, h=None) -> float:
@@ -146,12 +148,12 @@ class Node():
 
     '''
     Generate Successors for Transfers:
-    The general approach taken is: 
+    The general approach taken is:
     1) Create a 'template'/'contract', which involves 2 parties, and 2 resources (and quantities of the resource)
-    2) Iterate over tradable resources, and vary by percentage of Country 1's resources an amount to offer 
+    2) Iterate over tradable resources, and vary by percentage of Country 1's resources an amount to offer
     3) Ensure both parties have required resources to perform trade (Don't allow debt/negative quantities)
-    4) Subtract Trade Resource from both Countries 
-    5) Add Trade Resource/Qty from other party from 
+    4) Subtract Trade Resource from both Countries
+    5) Add Trade Resource/Qty from other party from
     6) Yield the new Node which results from the completed trade
     7) When the new node is instantiated, the probability and impact of the trade are expanded/applied
     '''
@@ -162,8 +164,9 @@ class Node():
         action: Action = action_map[action_id]
 
         # "R21'", "R22'", "R23'"]
-        resource_list: list = ["R2", "R3", "R21", "R22"]
-
+        resource_list: list = ["R2", "R3",
+                               "R21", "R22", "R21'", "R22'", "R23'"]
+        percent_interval: list = [1.00, .80, .75, .5, .25, .10, .05]
         # Building a Schedule for Country '0' - Atlantis
         c1_idx = 0
         c1 = world.countries[c1_idx]
@@ -186,9 +189,9 @@ class Node():
                     if r2.quantity == 0 or r1.name == r2.name:
                         continue
 
-                    # searching over a finite set of 'propositions' based on percentage of resources
-                    for r1_pct in [1.00, .80, .75, .5, .25, .10]:
-                        for r2_pct in [1.00, .80, .75, .5, .25, .10]:
+                    # searching over a finite set of 'propositions' based on different percentage of resources
+                    for r1_pct in percent_interval:
+                        for r2_pct in percent_interval:
 
                             r1_qty = int(r1_pct * r1.quantity)
                             r2_qty = int(r2_pct * r2.quantity)
@@ -208,7 +211,10 @@ class Node():
                             }
 
                         # confirm both countries have the required resources in above proposition to proceed.
-                        if action.is_viable(world, **proposition):
+                        # additionally confirm the schedule is still 'viable', and falls within some definable probability bounds
+                        if math.prod(self.schedule_probability) >= Node.sched_threshold and \
+                                action.is_viable(world, **proposition):
+
                             child: Node = Node(
                                 self, world, action_id, **proposition)
                             yield child

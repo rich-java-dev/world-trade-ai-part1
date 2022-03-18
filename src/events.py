@@ -20,6 +20,7 @@ apply:      "Pure" function taking in a given World State, and applies
 
 from abc import ABC, abstractmethod
 import copy
+
 from world import WorldState
 from country import Country
 from resource import Resource
@@ -198,6 +199,10 @@ Potential Enhancements: Offer multi-Resource Trade Transactions:
 
 class Transfer(Action):
 
+    # Used to Prune searches which become 'untennable', based on some user-defined
+    # threshold of probability of acceptance
+    threshold = 0.5
+
     # Ensure Both Parties of required resources for said transfer
     def is_viable(self, world: WorldState, **kwargs) -> bool:
 
@@ -226,6 +231,9 @@ class Transfer(Action):
         if c2_offer_qty > c2.resources[c2_offer_rsrc].quantity:
             return False
 
+        if self.probability(world, **kwargs) < Transfer.threshold:
+            return False
+
         # return true if both Countries could 'feasibly' trade resource request
         return True
 
@@ -252,7 +260,7 @@ class Transfer(Action):
         c1.resources[c2_offer_rsrc].quantity += c2_offer_qty
         c2.resources[c1_offer_rsrc].quantity += c1_offer_qty
 
-        print_line = f'COUNTRY: {c1.name} TRANSFER {c1_offer_rsrc} x{c1_offer_qty} to COUNTRY: {c2.name} for {c2_offer_rsrc} x{c2_offer_qty}'
+        print_line = f'C{c1_idx+1}:{c1.name}  ({c1_offer_rsrc} x {c1_offer_qty}) to C{c2_idx+1}:{c2.name}  ({c2_offer_rsrc} x {c2_offer_qty})'
 
         return print_line
 
@@ -262,10 +270,11 @@ class Transfer(Action):
         c1_offer: dict = kwargs['c1_offer']
         c1_offer_rsrc = c1_offer['resource']
         c1_offer_qty = int(c1_offer['quantity'])
+        c1_idx: int = kwargs['c1']
         c2_idx: int = kwargs['c2']
         c2: Country = world_state.countries[c2_idx]
 
-        pre_trade_qual: float = calc_quality(world_state, c2_idx)
+        c2_pre_qual: float = calc_quality(world_state, c2_idx)
 
         c2_offer: dict = kwargs['c2_offer']
         c2_offer_rsrc = c2_offer['resource']
@@ -274,18 +283,18 @@ class Transfer(Action):
         c2.resources[c2_offer_rsrc].quantity -= c2_offer_qty
         c2.resources[c1_offer_rsrc].quantity += c1_offer_qty
 
-        after_trade_qual: float = calc_quality(world_state, c2_idx)
+        c2_after_qual: float = calc_quality(world_state, c2_idx)
+        c2_net_gain = c2_after_qual - c2_pre_qual
 
         # perform a sigmoid calculation based on the change in state quality if Country 2 Accepts Trade
         # any increases in state quality will
-        sig = sigmoid(after_trade_qual - pre_trade_qual)
-
+        sig = sigmoid(c2_net_gain)
         return sig
 
 
 action_map: dict = {
-    'Alloy Template': AlloyTemplate(),
-    'Electronics Template': ElectronicsTemplate(),
-    'Housing Template': HousingTemplate(),
+    'Template - Alloy': AlloyTemplate(),
+    'Template - Electronics': ElectronicsTemplate(),
+    'Template - Housing': HousingTemplate(),
     'Transfer': Transfer(),
 }

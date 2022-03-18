@@ -11,8 +11,6 @@ DFS - Greedy Depth First Search. Priority Stack
 
 from node import Node
 
-frontier: any = []
-
 
 class Frontier:
 
