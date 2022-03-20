@@ -9,9 +9,11 @@ import matplotlib.pyplot as plt
 
 # basic sigmoid function implementation
 
+k = 1
 
-def sigmoid(x) -> float:
-    sig = np.where(x < 0, np.exp(x)/(1 + np.exp(x)), 1/(1 + np.exp(-x)))
+
+def sigmoid(x, L=1, x_0=0) -> float:
+    sig = L/(1 + np.exp(-k * (x-x_0)))
     return sig
 
 

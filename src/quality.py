@@ -25,3 +25,7 @@ def calc_quality(state: WorldState, country_idx=0) -> float:
 
     q = housing_goal+electronics_goal+waste_goal+resource_on_hand_goal
     return q
+
+
+def calc_resource_on_hand_quality(state: WorldState, country_idx=0) -> float:
+    return goal_map['raw_resources'].progress(state, country_idx)

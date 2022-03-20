@@ -189,7 +189,7 @@ Potential Enhancements: Offer multi-Resource Trade Transactions:
     },
 
     c2_offer: { -- Country 2 Trade Offer (Proposed By Country 1 Currently)
-        resource:'R21',
+        resource: 'R21',
         quantity: 10,
     }
 }
@@ -229,9 +229,6 @@ class Transfer(Action):
 
         # c2 cannot attempt to trade more than c1's resource quantity
         if c2_offer_qty > c2.resources[c2_offer_rsrc].quantity:
-            return False
-
-        if self.probability(world, **kwargs) < Transfer.threshold:
             return False
 
         # return true if both Countries could 'feasibly' trade resource request

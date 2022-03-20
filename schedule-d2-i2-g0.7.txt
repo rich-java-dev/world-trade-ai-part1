@@ -1,0 +1,37 @@
+Top Solutions:
+Schedule:
+1: Transfer x C1:Atlantis  (R3 x 20) to C4:Dinotopia  (R22 x 1)
+2: Transfer x C1:Atlantis  (R22 x 1) to C5:Erewhon  (R2 x 35)
+Schedule Probability: [1.0, array(0.5019919), array(0.50981024)] = 0.25592061352672185
+id: 2918
+quality: 0.415
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 235 	--	 analog to metallic elements 
+R3 : 180 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R2 x 20) to C4:Dinotopia  (R22 x 1)
+2: Transfer x C1:Atlantis  (R22 x 1) to C5:Erewhon  (R2 x 35)
+Schedule Probability: [1.0, array(0.5019919), array(0.50981024)] = 0.25592061352672185
+id: 3206
+quality: 0.415
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 215 	--	 analog to metallic elements 
+R3 : 200 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
