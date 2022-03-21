@@ -1,0 +1,89 @@
+Top Solutions:
+Schedule:
+Schedule Probability: [1.0] = 1.0
+id: 0
+quality: 0.22999999999999998
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 200 	--	 analog to metallic elements 
+R3 : 200 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 1 	--	 waste 
+R22' : 1 	--	 waste 
+R23' : 1 	--	 waste 
+
+Top Solutions:
+Schedule:
+1: Template - Alloy x 66
+2: Transfer x C1:Atlantis  (R2 x 68) to C3:Carpania  (R22 x 2)
+Schedule Probability: [1.0, 1.0, 0.5268442071492008] = 0.5268442071492008
+id: 1794
+quality: 0.2764361752221386
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 0 	--	 analog to metallic elements 
+R3 : 200 	--	 analog to timber 
+R21 : 66 	--	 analog to metallic alloys 
+R22 : 2 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 67 	--	 waste 
+R22' : 1 	--	 waste 
+R23' : 1 	--	 waste 
+
+Top Solutions:
+Schedule:
+1: Template - Alloy x 66
+2: Transfer x C1:Atlantis  (R2 x 68) to C3:Carpania  (R22 x 2)
+Schedule Probability: [1.0, 1.0, 0.5268442071492008] = 0.5268442071492008
+id: 1794
+quality: 0.2764361752221386
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 0 	--	 analog to metallic elements 
+R3 : 200 	--	 analog to timber 
+R21 : 66 	--	 analog to metallic alloys 
+R22 : 2 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 67 	--	 waste 
+R22' : 1 	--	 waste 
+R23' : 1 	--	 waste 
+
+Schedule:
+1: Template - Alloy x 66
+Schedule Probability: [1.0, 1.0] = 1.0
+id: 1
+quality: 0.25443617522213857
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 68 	--	 analog to metallic elements 
+R3 : 200 	--	 analog to timber 
+R21 : 66 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 67 	--	 waste 
+R22' : 1 	--	 waste 
+R23' : 1 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R3 x 50) to C3:Carpania  (R21 x 2)
+Schedule Probability: [1.0, 0.5362301682614636] = 0.5362301682614636
+id: 746
+quality: 0.23399999999999996
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 200 	--	 analog to metallic elements 
+R3 : 150 	--	 analog to timber 
+R21 : 2 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 1 	--	 waste 
+R22' : 1 	--	 waste 
+R23' : 1 	--	 waste 
+
