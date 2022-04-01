@@ -18,6 +18,8 @@ import math
 import visualize
 from events import Transfer
 import mathfunctions
+import threading
+
 
 # %%
 parser = argparse.ArgumentParser(
@@ -128,7 +130,8 @@ def print_top_solutions():
     for soln in top_solutions:
         print(f'Schedule: ')
         soln.print_schedule()
-        print(f'quality: {soln.calc_quality()}')
+        print(f'quality: {round(soln.calc_quality(), 3)}')
+        print(f'expected utility: {round(soln.calc_expected_utility())}')
         print(f'State:')
         soln.state.countries[0].print()
         print('')
@@ -145,6 +148,10 @@ while(len(frontier) > 0):
     soln_count += 1
     if(soln_count % 1000 == 0):
         print_top_solutions()
+
+    if(soln_count % 10000 == 0):
+        print_top_solutions()
+        visualize.plot(top_solutions[0])
 
     # Avoid generating successors beyond this point
     # additional params to override and force a branch to be terminal/a leaf node
@@ -202,7 +209,8 @@ with open(output_file, 'a+') as output:
             soln.state.countries[0].printer = prt
             prt('Schedule:\n')
             prt(soln.print_schedule())
-            prt(f'quality: {soln.calc_quality()}\n')
+            prt(f'quality: {round(soln.calc_quality())}\n')
+            prt(f'expected utility: {round(soln.calc_expected_utility())}')
             prt(f'State:\n')
             soln.state.countries[0].print()
             prt(f'\n')

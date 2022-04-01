@@ -99,7 +99,7 @@ class Node():
             self.expected_utility.append(self.calc_discounted_reward())
             # TODO - procress kwargs into action
             # factor is the applied number of units of the underlying transform
-            self.schedule[-1] += f' x {factor}  Q:{round(self.calc_quality(), 3)}   EU:{round(self.calc_expected_utility(),3)}'
+            self.schedule[-1] += f' x {factor} \t Q:{round(self.calc_quality(), 3)} \t EU:{round(self.calc_expected_utility(),3)}'
 
     # The intrinsic quality of the State.
 
