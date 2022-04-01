@@ -11,6 +11,7 @@ author: Richard White
 '''
 
 # %%
+import os
 import argparse
 from node import Node
 import visualize
@@ -33,16 +34,19 @@ parser.add_argument('--depth',  '--d', '-d', default=3,
                     type=int, help='Search Depth of the model')
 
 parser.add_argument("--gamma", "--g", "-g", default=0.9,
-                    type=float, help='Decay constant gamma, which dampens/discounts the quality function: domain [0-1]')
+                    type=float, help='Decay constant gamma, \
+                        which dampens/discounts the quality function: domain [0-1]')
 
 parser.add_argument("--k", "-k", default=2.,
                     type=float, help='Logistic Curve Steepness constant')
 
 parser.add_argument("--threshold", "--t", "-t", default=0.50, type=float,
-                    help='Probability Threshold: Do not pursue schedules which are less likely than desired likelihood: domain [0-1]')
+                    help='Probability Threshold: Do not pursue schedules \
+                        which are less likely than desired likelihood: domain [0-1]')
 
 parser.add_argument("--schedule_threshold", "--st", "-st", default=0.50, type=float,
-                    help='Probability Threshold: Do not pursue schedules which are less likely than desired likelihood: domain [0-1]')
+                    help='Probability Threshold: Do not pursue schedules \
+                        which are less likely than desired likelihood: domain [0-1]')
 
 parser.add_argument('--soln_set_size',  '--s', '-s', default=5,
                     type=int, help='Number of Solutions (Depth achieved) to track in the best solutions object')
@@ -56,14 +60,13 @@ parser.add_argument('--initial_state_file',  '--i', '-i', default=1,
                         ')
 
 parser.add_argument("--beam_width", "--b", "-b", default=5250,
-                    type=int, help="beam width - used to prune/reduce search size by limiting the maximum number of generated children at each level")
+                    type=int, help="used to prune/reduce search size by limiting \
+                        the maximum number of successor nodes placed on the stack at each step")
 
 
-parser.add_argument("--max_checks", "--c", "-c", default=1000000,
-                    type=int, help="set a fundamental cap on States checked in search")
-
-parser.add_argument('--output', '--o', '-o', default='',
-                    type=str, help='The output file for a completed schedule')
+parser.add_argument("--max_checks", "--c", "-c", default=10000,
+                    type=int, help="set a fundamental cap on States checked in search. \
+                        NOTE: node/state must not only be viable/non-zero probability, but must satisfy schedule needs")
 
 
 # INPUT SANITATION:
@@ -75,7 +78,6 @@ model: str = args.model
 # heuristic: str = args.heuristic
 depth: int = args.depth
 soln_size: int = args.soln_set_size
-output_file: str = args.output
 initial_state_file: int = args.initial_state_file
 gamma: float = args.gamma
 threshold: float = args.threshold
@@ -85,8 +87,10 @@ beam_width: int = args.beam_width
 max_checks: int = args.max_checks
 
 
-if output_file == '':
-    output_file = f'schedules/schedule-m{model}-d{depth}-i{initial_state_file}-g{gamma}-k{k}-b{beam_width}-c{max_checks}.txt'
+output_dir = f'schedules/schedule-m{model}-d{depth}-i{initial_state_file}-g{gamma}-k{k}-b{beam_width}-c{max_checks}'
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
+
 
 Node.gamma = gamma
 Node.threshold = threshold
@@ -115,6 +119,8 @@ frontier = [root]  # search frontier
 top_solutions = []
 soln_count: int = 0
 
+min_eu = 0
+
 # Continue Search as long as there exists searchable nodes/expansion where depth has not been achieved
 while(len(frontier) > 0):
 
@@ -123,27 +129,32 @@ while(len(frontier) > 0):
     if soln_count >= max_checks:
         break
 
-        # grab the 0th node on the Stack (or Queue)
+    # grab the last node in the list (treated as priority stack or queue)
     node = frontier.pop()
+
+    # Avoid generating successors beyond this point
+    # additional params to override and force a branch to be terminal/a leaf node
+    # this indicates a terminal/invalid path: the leaf is not checked as a solution
+    if node.force_leaf:
+        continue
 
     # CLI/'TOP' like command, that refreshes/clears screen and reposts top solutions every 100 solns checked.
     soln_count += 1
     if(soln_count % 1000 == 0):
         visualize.print_top_solutions(top_solutions, soln_count)
 
-    # Avoid generating successors beyond this point
-    # additional params to override and force a branch to be terminal/a leaf node
-    if node.force_leaf:
-        continue
-
     # keep a small list of top solutions, based on quality order
     soln = node  # copy.deepcopy(node)
 
-    top_solutions.append(soln)  # add solution to "top solutions"
-    top_solutions.sort(key=lambda n: n.calc_quality(),
-                       reverse=True)  # sort top solutions
-    while len(top_solutions) > soln_size:  # only keep the X best solutions
-        removed_soln = top_solutions.pop()
+    # don't bother putting in top solutions if cannot content with the min expected utility already in the top_solutions
+    if soln.calc_expected_utility() > min_eu:
+
+        top_solutions.append(soln)  # add solution to "top solutions"
+        top_solutions.sort(key=lambda n: n.calc_expected_utility(),
+                           reverse=True)  # sort top solutions
+        while len(top_solutions) > soln_size:  # only keep the X best solutions
+            removed_soln = top_solutions.pop()
+        min_eu = min([soln.calc_expected_utility() for soln in top_solutions])
 
     # check if bounded depth has been reached - Recursive Base Case:
     # Avoid generating successors beyond this point
@@ -156,7 +167,7 @@ while(len(frontier) > 0):
     # append to list in reverse order for Depth (Priority Stack)
     # for Best First Search, sort Frontier, and not only successors
     if(model == "DFS"):
-        children.sort(key=lambda n: n.calc_discounted_reward())
+        children.sort(key=lambda n: n.calc_expected_utility())
 
     # Beam search: while still generating all successors, fine tune and only pursue those with highest quality
     while len(children) > beam_width:
@@ -170,7 +181,7 @@ while(len(frontier) > 0):
     # and only sort successors prior to placing on frontier vs. sorting frontier
     # WARNING: this does impact the performance of the search
     if(model == "UCS"):
-        frontier.sort(key=lambda n: n.calc_discounted_reward())
+        frontier.sort(key=lambda n: n.calc_expected_utility())
 
 
-visualize.print_schedules(output_file, top_solutions, soln_count)
+visualize.print_schedules(output_dir, top_solutions, soln_count)

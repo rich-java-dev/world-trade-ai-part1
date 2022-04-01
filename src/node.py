@@ -58,6 +58,7 @@ class Node():
         # NOTE: may replace with a function which builds the schedule by chaining together parent node calls
         self.schedule: list = []
         self.schedule_probability: list = [1.0, ]
+        # Expected Utility is the sum of incremental increases at each step determined by the discounted reward
         self.expected_utility: list = [0., ]
 
         self.likelihood = 1.0  # probability of the current specific action succeeding

@@ -1,4 +1,3 @@
-
 import os
 import matplotlib.pyplot as plt
 from node import Node
@@ -9,15 +8,16 @@ Visualizations tools for plotting Histograms/State evolutions/tracking over time
 '''
 
 
-def print_schedules(output_file: str, top_solutions: list, soln_count: int):
+def print_schedules(output_dir: str, top_solutions: list, soln_count: int):
     # Search finished: print the top results
     print("Top Solutions: ")
-    with open(output_file, 'a+') as output:
+    with open(f'{output_dir}/schedules.txt', 'a+') as output:
         print('')
         print(f'Total States Found: {soln_count}')
         output.write('Top Solutions:\n')
         soln = None
-        while(len(top_solutions) > 0):
+
+        for i in range(len(top_solutions)):
             soln = top_solutions.pop(0)
 
             for prt in [output.write]:
@@ -29,7 +29,8 @@ def print_schedules(output_file: str, top_solutions: list, soln_count: int):
                 prt(f'State:\n')
                 soln.state.countries[0].print()
                 prt(f'\n')
-                plot(soln)
+                plot_and_save(soln, f'{output_dir}-{i+1}',
+                              f"{output_dir}/schedule{i+1}.png")
 
 
 def print_top_solutions(top_solutions: list, soln_count):
@@ -52,11 +53,11 @@ def print_top_solutions(top_solutions: list, soln_count):
         print('')
 
 
-def plot(node: Node):
+def plot_and_save(node: Node, title: str, output_file: str):
     max_depth = node.depth
 
     fig, axs = plt.subplots(1, max_depth+1, sharex=True, sharey=True)
-    fig.suptitle("C1:\n" + node.print_schedule(), x=0, ha='left')
+    fig.suptitle(f"{title}\nC1:\n{node.print_schedule()}", x=0, ha='left')
 
     for i in range(max_depth+1):
 
@@ -69,10 +70,12 @@ def plot(node: Node):
 
         axes.bar(keys, vals)
         axes.set_title(
-            f'{max_depth - i}\nQ={round(node.calc_quality(), 3)}\nEU={round(node.calc_expected_utility(), 3)}')
+            f'{max_depth - i} \n \
+                Q={round(node.calc_quality(), 3)} \n \
+                EU={round(node.calc_expected_utility(), 3)}')
         axes.set_ylabel("Qty")
         node = node.parent
 
     # plt.tight_layout()
     plt.subplots_adjust(top=0.5)
-    plt.show()
+    plt.savefig(output_file)
