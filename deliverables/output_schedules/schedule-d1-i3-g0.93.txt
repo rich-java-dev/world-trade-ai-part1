@@ -1,0 +1,51 @@
+Top Solutions:
+Schedule:
+1: Template - Housing x 33
+Schedule Probability: [1.0, 1.0] = 1.0
+id: 3
+quality: 132.98824736266923
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 967 	--	 analog to metallic elements 
+R3 : 835 	--	 analog to timber 
+R21 : 1 	--	 analog to metallic alloys 
+R22 : 100 	--	 analog to electronics 
+R23 : 133 	--	 analog to housing (and housing sufficiency) 
+R21' : 100 	--	 waste 
+R22' : 100 	--	 waste 
+R23' : 133 	--	 waste 
+
+Schedule:
+Schedule Probability: [1.0] = 1.0
+id: 0
+quality: 108.5
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 1000 	--	 analog to metallic elements 
+R3 : 1000 	--	 analog to timber 
+R21 : 100 	--	 analog to metallic alloys 
+R22 : 100 	--	 analog to electronics 
+R23 : 100 	--	 analog to housing (and housing sufficiency) 
+R21' : 100 	--	 waste 
+R22' : 100 	--	 waste 
+R23' : 100 	--	 waste 
+
+Schedule:
+1: Template - Alloy x 333
+Schedule Probability: [1.0, 1.0] = 1.0
+id: 1
+quality: 108.5
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 334 	--	 analog to metallic elements 
+R3 : 1000 	--	 analog to timber 
+R21 : 433 	--	 analog to metallic alloys 
+R22 : 100 	--	 analog to electronics 
+R23 : 100 	--	 analog to housing (and housing sufficiency) 
+R21' : 433 	--	 waste 
+R22' : 100 	--	 waste 
+R23' : 100 	--	 waste 
+

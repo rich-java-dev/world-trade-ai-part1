@@ -24,7 +24,7 @@ def plot(node: Node):
 
         axes.bar(keys, vals)
         axes.set_title(
-            f'{max_depth - i}\nQ={round(node.calc_quality(), 3)}')
+            f'{max_depth - i}\nQ={round(node.calc_quality(), 3)}\nDU={round(node.calc_discounted_reward(), 3)}')
         axes.set_ylabel("Qty")
         node = node.parent
 

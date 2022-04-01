@@ -58,6 +58,7 @@ class Node():
         # NOTE: may replace with a function which builds the schedule by chaining together parent node calls
         self.schedule: list = []
         self.schedule_probability: list = [1.0, ]
+        self.expected_utility: list = [0., ]
 
         self.likelihood = 1.0  # probability of the current specific action succeeding
 
@@ -76,6 +77,7 @@ class Node():
             self.depth = parent.depth + 1
             self.schedule = [*parent.schedule, action]
             self.schedule_probability = [*parent.schedule_probability, ]
+            self.expected_utility = [*parent.expected_utility, ]
 
         # apply action to parent Node to produce new State
         self.action: str = action
@@ -93,9 +95,11 @@ class Node():
                 self.force_leaf = True
 
             factor = self.action_map[action].apply(self.state, **kwargs)
+
+            self.expected_utility.append(self.calc_discounted_reward())
             # TODO - procress kwargs into action
             # factor is the applied number of units of the underlying transform
-            self.schedule[-1] += f' x {factor}'
+            self.schedule[-1] += f' x {factor}  Q:{round(self.calc_quality(), 3)}   EU:{round(self.calc_expected_utility(),3)}'
 
     # The intrinsic quality of the State.
 
@@ -119,7 +123,6 @@ class Node():
     def calc_discounted_reward(self) -> float:
         return (Node.gamma ** self.depth) * self.calc_reward() * self.likelihood
 
-    # for heuristic to be admissible, must never over-estimate quality
     def calc_heuristic(self, h=None) -> float:
         # define the heuristic
         return self.calc_discounted_reward()
@@ -133,6 +136,8 @@ class Node():
     def calc_schedule_probability(self) -> float:
         return math.prod(self.schedule_probability)
 
+    def calc_expected_utility(self) -> float:
+        return sum(self.expected_utility)
     '''
     Generate Successors
     Expands the current Node in all possible ways:
@@ -188,12 +193,12 @@ class Node():
         # = (7)(6)(5)(5)(5) = 5,250 : however not all of these states are reachable so don't become successors.
         # for example, at beginning of run, no countries have wastes, and most only have 2 resources, so most 1st moves approx: (2)(1)(5)(5)(5) = 250
         return [child for child in (self.collect_children_nodes(c1_idx, c2_idx, r1_offer, r1_qty, r2_offer, r2_qty)
-                for r1_offer in resource_list
-                for r2_offer in resource_list
-                for c2_idx in range(1, len(world.countries))
-                for r1_qty in (int(r1_pct * c1.resources[r1_offer].quantity) for r1_pct in percent_interval)
-                for r2_qty in (int(r2_pct * self.state.countries[c2_idx].resources[r2_offer].quantity) for r2_pct in percent_interval)
-                ) if child is not None]
+                                    for r1_offer in resource_list
+                                    for r2_offer in resource_list
+                                    for c2_idx in range(1, len(world.countries))
+                                    for r1_qty in (int(r1_pct * c1.resources[r1_offer].quantity) for r1_pct in percent_interval)
+                                    for r2_qty in (int(r2_pct * self.state.countries[c2_idx].resources[r2_offer].quantity) for r2_pct in percent_interval)
+                                    ) if child is not None]
 
     def collect_children_nodes(self, c1_idx, c2_idx, r1_offer, r1_qty, r2_offer, r2_qty):
         if(c1_idx == c2_idx):

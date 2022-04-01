@@ -1,0 +1,51 @@
+Top Solutions:
+Schedule:
+Schedule Probability: [1.0] = 1.0
+id: 0
+quality: 2.7
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 700 	--	 analog to metallic elements 
+R3 : 2000 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R3 x 2000) to C3:Carpania  (R2 x 100)
+Schedule Probability: [1.0, 0.9999997495484255] = 0.9999997495484255
+id: 127
+quality: 0.8
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 800 	--	 analog to metallic elements 
+R3 : 0 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R3 x 2000) to C2:Brobdingnag  (R2 x 75)
+Schedule Probability: [1.0, 0.9995473777767595] = 0.9995473777767595
+id: 105
+quality: 0.775
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 775 	--	 analog to metallic elements 
+R3 : 0 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+

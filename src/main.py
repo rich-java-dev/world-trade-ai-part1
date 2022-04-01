@@ -41,13 +41,13 @@ parser.add_argument("--gamma", "--g", "-g", default=0.93,
 parser.add_argument("--k", "-k", default=2.,
                     type=float, help='Logistic Curve Steepness constant')
 
-parser.add_argument("--threshold", "--t", "-t", default=0.60, type=float,
+parser.add_argument("--threshold", "--t", "-t", default=0.50, type=float,
                     help='Probability Threshold: Do not pursue schedules which are less likely than desired likelihood: domain [0-1]')
 
 parser.add_argument("--schedule_threshold", "--st", "-st", default=0.50, type=float,
                     help='Probability Threshold: Do not pursue schedules which are less likely than desired likelihood: domain [0-1]')
 
-parser.add_argument('--soln_set_size',  '--s', '-s', default=3,
+parser.add_argument('--soln_set_size',  '--s', '-s', default=5,
                     type=int, help='Number of Solutions (Depth achieved) to track in the best solutions object')
 
 parser.add_argument('--initial_state_file',  '--i', '-i', default=1,
@@ -58,7 +58,7 @@ parser.add_argument('--initial_state_file',  '--i', '-i', default=1,
                         4) resource poor country in world with even resource distribution (BRUTAL MODE) \
                         ')
 
-parser.add_argument("--beam_width", "--b", "-b", default=50,
+parser.add_argument("--beam_width", "--b", "-b", default=5250,
                     type=int, help="beam width - used to prune/reduce search size by limiting the maximum number of generated children at each level")
 
 parser.add_argument('--output', '--o', '-o', default='schedule.txt',
@@ -145,9 +145,6 @@ while(len(frontier) > 0):
     soln_count += 1
     if(soln_count % 1000 == 0):
         print_top_solutions()
-    # if(soln_count % 10000 == 0):
-    #     top_soln = top_solutions[0]
-    #     visualize.plot(top_soln)
 
     # Avoid generating successors beyond this point
     # additional params to override and force a branch to be terminal/a leaf node

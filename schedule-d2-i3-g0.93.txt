@@ -1,0 +1,55 @@
+Top Solutions:
+Schedule:
+1: Template - Housing x 33
+2: Template - Alloy x 322
+Schedule Probability: [1.0, 1.0, 1.0] = 1.0
+id: 4204
+quality: 134.52068943515835
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 323 	--	 analog to metallic elements 
+R3 : 835 	--	 analog to timber 
+R21 : 323 	--	 analog to metallic alloys 
+R22 : 100 	--	 analog to electronics 
+R23 : 133 	--	 analog to housing (and housing sufficiency) 
+R21' : 422 	--	 waste 
+R22' : 100 	--	 waste 
+R23' : 133 	--	 waste 
+
+Schedule:
+1: Template - Housing x 33
+2: Transfer x C1:Atlantis  (R2 x 967) to C5:Erewhon  (R21 x 25)
+Schedule Probability: [1.0, 1.0, 0.518930507299469] = 0.518930507299469
+id: 4383
+quality: 133.38515036647811
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 0 	--	 analog to metallic elements 
+R3 : 835 	--	 analog to timber 
+R21 : 26 	--	 analog to metallic alloys 
+R22 : 100 	--	 analog to electronics 
+R23 : 133 	--	 analog to housing (and housing sufficiency) 
+R21' : 100 	--	 waste 
+R22' : 100 	--	 waste 
+R23' : 133 	--	 waste 
+
+Schedule:
+1: Template - Housing x 33
+2: Transfer x C1:Atlantis  (R2 x 967) to C4:Dinotopia  (R21 x 25)
+Schedule Probability: [1.0, 1.0, 0.518930507299469] = 0.518930507299469
+id: 4358
+quality: 133.38515036647811
+State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 0 	--	 analog to metallic elements 
+R3 : 835 	--	 analog to timber 
+R21 : 26 	--	 analog to metallic alloys 
+R22 : 100 	--	 analog to electronics 
+R23 : 133 	--	 analog to housing (and housing sufficiency) 
+R21' : 100 	--	 waste 
+R22' : 100 	--	 waste 
+R23' : 133 	--	 waste 
+
