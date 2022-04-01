@@ -11,15 +11,10 @@ author: Richard White
 '''
 
 # %%
-import os
 import argparse
 from node import Node
-import math
 import visualize
-from events import Transfer
 import mathfunctions
-import threading
-
 
 # %%
 parser = argparse.ArgumentParser(
@@ -37,7 +32,7 @@ parser.add_argument('--model', '--m', '-m',  default='DFS',
 parser.add_argument('--depth',  '--d', '-d', default=3,
                     type=int, help='Search Depth of the model')
 
-parser.add_argument("--gamma", "--g", "-g", default=0.93,
+parser.add_argument("--gamma", "--g", "-g", default=0.9,
                     type=float, help='Decay constant gamma, which dampens/discounts the quality function: domain [0-1]')
 
 parser.add_argument("--k", "-k", default=2.,
@@ -54,16 +49,20 @@ parser.add_argument('--soln_set_size',  '--s', '-s', default=5,
 
 parser.add_argument('--initial_state_file',  '--i', '-i', default=1,
                     type=int, help='enum 1-4. initial state file for loading the simulation/search: \
-                        1) resource rich country in world with uneven resource distribution (EASY MODE) \
-                        2) resource poor country in world with uneven resource distribution (HARD MODE) \
-                        3) resource moderate country in world with even resource distribution (NORMAL MODE) \
-                        4) resource poor country in world with even resource distribution (BRUTAL MODE) \
+                        1) resource rich country in world with uneven resource distribution (NORMAL MODE) \
+                        2) resource poor country in world with uneven resource distribution (BRUTAL MODE) \
+                        3) resource moderate country in world with even resource distribution (EASY MODE) \
+                        4) resource poor country in world with even resource distribution (HARD MODE) \
                         ')
 
 parser.add_argument("--beam_width", "--b", "-b", default=5250,
                     type=int, help="beam width - used to prune/reduce search size by limiting the maximum number of generated children at each level")
 
-parser.add_argument('--output', '--o', '-o', default='schedule.txt',
+
+parser.add_argument("--max_checks", "--c", "-c", default=1000000,
+                    type=int, help="set a fundamental cap on States checked in search")
+
+parser.add_argument('--output', '--o', '-o', default='',
                     type=str, help='The output file for a completed schedule')
 
 
@@ -83,16 +82,16 @@ threshold: float = args.threshold
 sched_threshold: float = args.schedule_threshold
 k: float = args.k
 beam_width: int = args.beam_width
+max_checks: int = args.max_checks
 
 
-if output_file == 'schedule.txt':
-    output_file = f'schedule-d{depth}-i{initial_state_file}-g{gamma}.txt'
+if output_file == '':
+    output_file = f'schedules/schedule-m{model}-d{depth}-i{initial_state_file}-g{gamma}-k{k}-b{beam_width}-c{max_checks}.txt'
 
 Node.gamma = gamma
 Node.threshold = threshold
 Node.sched_threshold = sched_threshold
 mathfunctions.k = k
-
 
 # supported models:
 # UCS - Uniform Cost Search - uses Priority Queue/ Dijkstras search expanding/checking nodes with top cost regardless of depth
@@ -116,42 +115,21 @@ frontier = [root]  # search frontier
 top_solutions = []
 soln_count: int = 0
 
-
-def print_top_solutions():
-    '''
-    Render a human readable statistics of the on-going search in progress, including the 'top' results
-
-    '''
-    # windows vs. linux variant
-    os.system('cls')  # os.system('clear')
-
-    print(f'States found: {soln_count}')
-
-    for soln in top_solutions:
-        print(f'Schedule: ')
-        soln.print_schedule()
-        print(f'quality: {round(soln.calc_quality(), 3)}')
-        print(f'expected utility: {round(soln.calc_expected_utility())}')
-        print(f'State:')
-        soln.state.countries[0].print()
-        print('')
-        print('')
-
-
-    # Continue Search as long as there exists searchable nodes/expansion where depth has not been achieved
+# Continue Search as long as there exists searchable nodes/expansion where depth has not been achieved
 while(len(frontier) > 0):
 
-    # grab the 0th node on the Stack (or Queue)
+    # force out of search if max_checks are achieved. Could be a range of reasons
+    # search needs to stopped prematurely after checks
+    if soln_count >= max_checks:
+        break
+
+        # grab the 0th node on the Stack (or Queue)
     node = frontier.pop()
 
     # CLI/'TOP' like command, that refreshes/clears screen and reposts top solutions every 100 solns checked.
     soln_count += 1
     if(soln_count % 1000 == 0):
-        print_top_solutions()
-
-    if(soln_count % 10000 == 0):
-        print_top_solutions()
-        visualize.plot(top_solutions[0])
+        visualize.print_top_solutions(top_solutions, soln_count)
 
     # Avoid generating successors beyond this point
     # additional params to override and force a branch to be terminal/a leaf node
@@ -195,23 +173,4 @@ while(len(frontier) > 0):
         frontier.sort(key=lambda n: n.calc_discounted_reward())
 
 
-# Search finished: print the top results
-print("Top Solutions: ")
-with open(output_file, 'a+') as output:
-    print('')
-    print(f'Total States Found: {soln_count}')
-    output.write('Top Solutions:\n')
-    soln = None
-    while(len(top_solutions) > 0):
-        soln = top_solutions.pop(0)
-
-        for prt in [output.write]:
-            soln.state.countries[0].printer = prt
-            prt('Schedule:\n')
-            prt(soln.print_schedule())
-            prt(f'quality: {round(soln.calc_quality())}\n')
-            prt(f'expected utility: {round(soln.calc_expected_utility())}')
-            prt(f'State:\n')
-            soln.state.countries[0].print()
-            prt(f'\n')
-            visualize.plot(soln)
+visualize.print_schedules(output_file, top_solutions, soln_count)
