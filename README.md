@@ -20,13 +20,36 @@ and varying initial world country/resource distributions,
 
 ## Advanced options
 
-"python src/main.py --help"
-options: 
-- model (--model/--m/-m) - "DFS"(default) / "UCS"
-- depth (--depth/--d/-d) - Search Depth of the model (primary model-bound param)
-- soln_set_size (--s/-s) - size of "top"/tracked solutions relative to the entire search
-- initial_state_file (--i/-i) - 4 coded state files which describe initial world resource allocations
-- output (--o/-o) - output file (txt) final/completed search schedule prints to
+python&nbsp; src\main.py&nbsp; --help<br />
+usage:&nbsp; main.py&nbsp; [-h]&nbsp; [--model&nbsp; MODEL]&nbsp; [--depth&nbsp; DEPTH]&nbsp; [--gamma&nbsp; GAMMA]&nbsp; [--k&nbsp; K]&nbsp; [--threshold&nbsp; THRESHOLD]&nbsp; [--schedule_threshold&nbsp; SCHEDULE_THRESHOLD]&nbsp; [--soln_set_size&nbsp; SOLN_SET_SIZE]&nbsp; [--initial_state_file&nbsp; INITIAL_STATE_FILE]<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [--beam_width&nbsp; BEAM_WIDTH]&nbsp; [--max_solutions&nbsp; MAX_SOLUTIONS]&nbsp; [--max_nodes&nbsp; MAX_NODES]<br />
+<br />
+CLI&nbsp; args&nbsp; to&nbsp; fine-tuning/running&nbsp; variants&nbsp; on&nbsp; the&nbsp; World&nbsp; Trade/Game&nbsp; Search<br />
+<br />
+optional&nbsp; arguments:<br />
+&nbsp; &nbsp; -h,&nbsp; --help&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; show&nbsp; this&nbsp; help&nbsp; message&nbsp; and&nbsp; exit<br />
+&nbsp; &nbsp; --model&nbsp; MODEL,&nbsp; --m&nbsp; MODEL,&nbsp; -m&nbsp; MODEL<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Choosing&nbsp; Search&nbsp; Model-&nbsp; DFS&nbsp; (greedy-local-depth-first-search&nbsp; UCS&nbsp; (uniform-cost&nbsp; search&nbsp; (Djikstra)<br />
+&nbsp; &nbsp; --depth&nbsp; DEPTH,&nbsp; --d&nbsp; DEPTH,&nbsp; -d&nbsp; DEPTH<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Search&nbsp; Depth&nbsp; of&nbsp; the&nbsp; model<br />
+&nbsp; &nbsp; --gamma&nbsp; GAMMA,&nbsp; --g&nbsp; GAMMA,&nbsp; -g&nbsp; GAMMA<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Decay&nbsp; constant&nbsp; gamma,&nbsp; which&nbsp; dampens/discounts&nbsp; the&nbsp; quality&nbsp; function:&nbsp; domain&nbsp; [0-1]<br />
+&nbsp; &nbsp; --k&nbsp; K,&nbsp; -k&nbsp; K&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Logistic&nbsp; Curve&nbsp; Steepness&nbsp; constant<br />
+&nbsp; &nbsp; --threshold&nbsp; THRESHOLD,&nbsp; --t&nbsp; THRESHOLD,&nbsp; -t&nbsp; THRESHOLD<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Probability&nbsp; Threshold:&nbsp; Do&nbsp; not&nbsp; pursue&nbsp; schedules&nbsp; which&nbsp; are&nbsp; less&nbsp; likely&nbsp; than&nbsp; desired&nbsp; likelihood:&nbsp; domain&nbsp; [0-1]<br />
+&nbsp; &nbsp; --schedule_threshold&nbsp; SCHEDULE_THRESHOLD,&nbsp; --st&nbsp; SCHEDULE_THRESHOLD,&nbsp; -st&nbsp; SCHEDULE_THRESHOLD<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Probability&nbsp; Threshold:&nbsp; Do&nbsp; not&nbsp; pursue&nbsp; schedules&nbsp; which&nbsp; are&nbsp; less&nbsp; likely&nbsp; than&nbsp; desired&nbsp; likelihood:&nbsp; domain&nbsp; [0-1]<br />
+&nbsp; &nbsp; --soln_set_size&nbsp; SOLN_SET_SIZE,&nbsp; --s&nbsp; SOLN_SET_SIZE,&nbsp; -s&nbsp; SOLN_SET_SIZE<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Number&nbsp; of&nbsp; Solutions&nbsp; (Depth&nbsp; achieved)&nbsp; to&nbsp; track&nbsp; in&nbsp; the&nbsp; best&nbsp; solutions&nbsp; object<br />
+&nbsp; &nbsp; --initial_state_file&nbsp; INITIAL_STATE_FILE,&nbsp; --i&nbsp; INITIAL_STATE_FILE,&nbsp; -i&nbsp; INITIAL_STATE_FILE<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; enum&nbsp; 1-4.&nbsp; initial&nbsp; state&nbsp; file&nbsp; for&nbsp; loading&nbsp; the&nbsp; simulation/search:&nbsp; 1)&nbsp; resource&nbsp; rich&nbsp; country&nbsp; in&nbsp; world&nbsp; with&nbsp; uneven&nbsp; resource&nbsp; distribution&nbsp; (NORMAL&nbsp; MODE)&nbsp; 2)&nbsp; resource&nbsp; poor&nbsp; country&nbsp; in&nbsp; world&nbsp; with&nbsp; uneven&nbsp; resource<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; distribution&nbsp; (BRUTAL&nbsp; MODE)&nbsp; 3)&nbsp; resource&nbsp; moderate&nbsp; country&nbsp; in&nbsp; world&nbsp; with&nbsp; even&nbsp; resource&nbsp; distribution&nbsp; (EASY&nbsp; MODE)&nbsp; 4)&nbsp; resource&nbsp; poor&nbsp; country&nbsp; in&nbsp; world&nbsp; with&nbsp; even&nbsp; resource&nbsp; distribution&nbsp; (HARD&nbsp; MODE)<br />
+&nbsp; &nbsp; --beam_width&nbsp; BEAM_WIDTH,&nbsp; --b&nbsp; BEAM_WIDTH,&nbsp; -b&nbsp; BEAM_WIDTH<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; used&nbsp; to&nbsp; prune/reduce&nbsp; search&nbsp; size&nbsp; by&nbsp; limiting&nbsp; the&nbsp; maximum&nbsp; number&nbsp; of&nbsp; successor&nbsp; nodes&nbsp; placed&nbsp; on&nbsp; the&nbsp; stack&nbsp; at&nbsp; each&nbsp; step<br />
+&nbsp; &nbsp; --max_solutions&nbsp; MAX_SOLUTIONS,&nbsp; --c&nbsp; MAX_SOLUTIONS,&nbsp; -c&nbsp; MAX_SOLUTIONS<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; set&nbsp; a&nbsp; fundamental&nbsp; cap&nbsp; on&nbsp; how&nbsp; many&nbsp; satisfiable&nbsp; schedules&nbsp; searched.&nbsp; NOTE:&nbsp; node/state&nbsp; must&nbsp; not&nbsp; only&nbsp; be&nbsp; viable/non-zero&nbsp; probability,&nbsp; but&nbsp; must&nbsp; satisfy&nbsp; schedule&nbsp; needs<br />
+&nbsp; &nbsp; --max_nodes&nbsp; MAX_NODES,&nbsp; --n&nbsp; MAX_NODES,&nbsp; -n&nbsp; MAX_NODES<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; set&nbsp; a&nbsp; fundamental&nbsp; cap&nbsp; on&nbsp; States&nbsp; to&nbsp; explore.&nbsp; NOTE:&nbsp; node/state&nbsp; need&nbsp; only&nbsp; be&nbsp; viable<br />
 
 
 ### samples:

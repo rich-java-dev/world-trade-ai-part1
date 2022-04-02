@@ -147,7 +147,7 @@ while(len(frontier) > 0):
     soln = node  # copy.deepcopy(node)
 
     # don't bother putting in top solutions if cannot content with the min expected utility already in the top_solutions
-    if soln.calc_expected_utility() >= min_eu:
+    if len(top_solutions) < soln_size or soln.calc_expected_utility() >= min_eu:
 
         top_solutions.append(soln)  # add solution to "top solutions"
         top_solutions.sort(key=lambda n: n.calc_expected_utility(),

@@ -21,10 +21,10 @@ def print_schedules(output_dir: str, top_solutions: list, soln_count: int):
         for i in range(len(top_solutions)):
             soln = top_solutions.pop(0)
 
-            for prt in [output.write]:
+            for prt in [output.write, print]:
                 soln.state.countries[0].printer = prt
                 prt('Schedule:\n')
-                prt(soln.print_schedule())
+                prt(soln.get_schedule())
                 prt(f'quality: {round(soln.calc_quality())}\n')
                 prt(f'expected utility: {round(soln.calc_expected_utility())}')
                 prt(f'State:\n')
@@ -46,7 +46,7 @@ def print_top_solutions(top_solutions: list, soln_count):
 
     for soln in top_solutions:
         print(f'Schedule: ')
-        soln.print_schedule()
+        print(soln.get_schedule())
         print(f'quality: {round(soln.calc_quality(), 3)}')
         print(f'expected utility: {round(soln.calc_expected_utility())}')
         print(f'State:')
@@ -58,7 +58,7 @@ def plot_and_save(node: Node, title: str, output_file: str):
     max_depth = node.depth
 
     fig, axs = plt.subplots(1, max_depth+1, sharex=True, sharey=True)
-    fig.suptitle(f"{title}\nC1:\n{node.print_schedule()}", x=0, ha='left')
+    fig.suptitle(f"{title}\nC1:\n{node.get_schedule()}", x=0, ha='left')
 
     for i in range(max_depth+1):
 
