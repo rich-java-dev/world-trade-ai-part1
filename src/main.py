@@ -64,9 +64,14 @@ parser.add_argument("--beam_width", "--b", "-b", default=5250,
                         the maximum number of successor nodes placed on the stack at each step")
 
 
-parser.add_argument("--max_checks", "--c", "-c", default=10000,
-                    type=int, help="set a fundamental cap on States checked in search. \
+parser.add_argument("--max_solutions", "--c", "-c", default=10000,
+                    type=int, help="set a fundamental cap on how many satisfiable schedules searched. \
                         NOTE: node/state must not only be viable/non-zero probability, but must satisfy schedule needs")
+
+
+parser.add_argument("--max_nodes", "--n", "-n", default=1000000,
+                    type=int, help="set a fundamental cap on States to explore. \
+                        NOTE: node/state need only be viable")
 
 
 # INPUT SANITATION:
@@ -84,10 +89,11 @@ threshold: float = args.threshold
 sched_threshold: float = args.schedule_threshold
 k: float = args.k
 beam_width: int = args.beam_width
-max_checks: int = args.max_checks
+max_checks: int = args.max_solutions
+max_nodes: int = args.max_nodes
 
 
-output_dir = f'schedules/schedule-m{model}-d{depth}-i{initial_state_file}-g{gamma}-k{k}-b{beam_width}-c{max_checks}'
+output_dir = f'schedules/schedule-m{model}-d{depth}-i{initial_state_file}-g{gamma}-k{k}-b{beam_width}-c{max_checks}-t{threshold}'
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 
@@ -119,24 +125,18 @@ frontier = [root]  # search frontier
 top_solutions = []
 soln_count: int = 0
 
-min_eu = 0
+min_eu = -1.
 
 # Continue Search as long as there exists searchable nodes/expansion where depth has not been achieved
 while(len(frontier) > 0):
 
     # force out of search if max_checks are achieved. Could be a range of reasons
     # search needs to stopped prematurely after checks
-    if soln_count >= max_checks:
+    if soln_count >= max_checks or Node.id >= max_nodes:
         break
 
     # grab the last node in the list (treated as priority stack or queue)
     node = frontier.pop()
-
-    # Avoid generating successors beyond this point
-    # additional params to override and force a branch to be terminal/a leaf node
-    # this indicates a terminal/invalid path: the leaf is not checked as a solution
-    if node.force_leaf:
-        continue
 
     # CLI/'TOP' like command, that refreshes/clears screen and reposts top solutions every 100 solns checked.
     soln_count += 1
@@ -147,7 +147,7 @@ while(len(frontier) > 0):
     soln = node  # copy.deepcopy(node)
 
     # don't bother putting in top solutions if cannot content with the min expected utility already in the top_solutions
-    if soln.calc_expected_utility() > min_eu:
+    if soln.calc_expected_utility() >= min_eu:
 
         top_solutions.append(soln)  # add solution to "top solutions"
         top_solutions.sort(key=lambda n: n.calc_expected_utility(),
@@ -162,7 +162,11 @@ while(len(frontier) > 0):
         continue
 
     # if current depth is not a solution, then expand in all ways
-    children = node.generate_successors()
+    # Avoid pursuing successors which fail to pass schedule
+    # additional params to override and force a branch to be terminal/a leaf node
+    # this indicates a terminal/invalid path: the leaf is not checked as a solution
+    # filter out forced_leaf nodes
+    children = [n for n in node.generate_successors() if not n.force_leaf]
 
     # append to list in reverse order for Depth (Priority Stack)
     # for Best First Search, sort Frontier, and not only successors
@@ -177,8 +181,7 @@ while(len(frontier) > 0):
     frontier.extend(children)
 
     # Best First Search/Uniform Cost Search
-    # for Depth First Search: comment this sort out,
-    # and only sort successors prior to placing on frontier vs. sorting frontier
+    # only sort successors prior to placing on frontier vs. sorting entire frontier
     # WARNING: this does impact the performance of the search
     if(model == "UCS"):
         frontier.sort(key=lambda n: n.calc_expected_utility())

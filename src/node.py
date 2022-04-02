@@ -193,23 +193,17 @@ class Node():
         # (7 resources from C1)(6 resources from C2)(5 countries other than C1)(5 quantity steps over C1 resource)(5 quantity steps over C2 resource)
         # = (7)(6)(5)(5)(5) = 5,250 : however not all of these states are reachable so don't become successors.
         # for example, at beginning of run, no countries have wastes, and most only have 2 resources, so most 1st moves approx: (2)(1)(5)(5)(5) = 250
-        return [child for child in (self.collect_children_nodes(c1_idx, c2_idx, r1_offer, r1_qty, r2_offer, r2_qty)
-                                    for r1_offer in resource_list
-                                    for r2_offer in resource_list
-                                    for c2_idx in range(1, len(world.countries))
-                                    for r1_qty in (int(r1_pct * c1.resources[r1_offer].quantity) for r1_pct in percent_interval)
-                                    for r2_qty in (int(r2_pct * self.state.countries[c2_idx].resources[r2_offer].quantity) for r2_pct in percent_interval)
-                                    ) if child is not None]
+        return [n for n in (self.collect_children_nodes(c1_idx, c2_idx, r1_offer, r1_qty, r2_offer, r2_qty)
+                            for r1_offer in resource_list
+                            for r2_offer in resource_list if r2_offer is not r1_offer
+                            for c2_idx in range(len(world.countries)) if c2_idx is not c1_idx
+                            for r1_qty in (int(r1_pct * c1.resources[r1_offer].quantity)
+                                           for r1_pct in percent_interval) if r1_qty is not 0
+                            for r2_qty in (int(r2_pct * self.state.countries[c2_idx].resources[r2_offer].quantity)
+                                           for r2_pct in percent_interval) if r2_qty is not 0
+                            ) if n is not None]
 
     def collect_children_nodes(self, c1_idx, c2_idx, r1_offer, r1_qty, r2_offer, r2_qty):
-        if(c1_idx == c2_idx):
-            return
-        if(r1_offer == r2_offer):
-            return
-        if(r1_qty == 0):
-            return
-        if(r2_qty == 0):
-            return
 
         # Adhere to API/expectation defined in EVENTS/TRANSFER class
         proposition: dict = {

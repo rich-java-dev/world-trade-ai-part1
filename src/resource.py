@@ -56,21 +56,15 @@ class Resource:
     name: str = ""
     descript: str = ""
     quantity: int = 0
-
     weight: float = 0
-    construction: int = 0
-    infrastructure: int = 0
-    energy: int = 0
-    rnd: int = 0
-    technology: int = 0
-    nutrition: int = 0
-    liquidity: int = 0
-    culture: int = 0
-    critical_resource: bool = False
-    price: int = 0
 
-    def heuristic_value(self) -> float:
-        return self.quantity_on_hand * self.weight
-
-    def calc_utility_to_cost_ratio(self, utility_function) -> float:
-        utility_function(self)
+    # construction: int = 0
+    # infrastructure: int = 0
+    # energy: int = 0
+    # rnd: int = 0
+    # technology: int = 0
+    # nutrition: int = 0
+    # liquidity: int = 0
+    # culture: int = 0
+    # critical_resource: bool = False
+    # price: int = 0

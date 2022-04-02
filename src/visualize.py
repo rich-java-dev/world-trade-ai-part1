@@ -13,7 +13,8 @@ def print_schedules(output_dir: str, top_solutions: list, soln_count: int):
     print("Top Solutions: ")
     with open(f'{output_dir}/schedules.txt', 'a+') as output:
         print('')
-        print(f'Total States Found: {soln_count}')
+        print(f'Total Nodes generated: {Node.id}')
+        print(f'Total Plausible Schedules checked: {soln_count}')
         output.write('Top Solutions:\n')
         soln = None
 
@@ -78,4 +79,7 @@ def plot_and_save(node: Node, title: str, output_file: str):
 
     # plt.tight_layout()
     plt.subplots_adjust(top=0.5)
-    plt.savefig(output_file)
+
+    fig = plt.gcf()
+    fig.set_size_inches(18.5, 10.5)
+    fig.savefig(output_file)

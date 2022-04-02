@@ -231,6 +231,14 @@ class Transfer(Action):
         if c2_offer_qty > c2.resources[c2_offer_rsrc].quantity:
             return False
 
+        # approximate a reasonable trade by assuming C1 cannot offer less than some threshold/ratio of C2s offer/value
+        c1_est_value = c1_offer_qty * \
+            (c1.resources[c1_offer_rsrc].weight + 0.1)
+        c2_est_value = c1_offer_qty * \
+            (c2.resources[c2_offer_rsrc].weight + 0.1)
+        if c1_est_value / c2_est_value < Transfer.threshold:
+            return False
+
         # return true if both Countries could 'feasibly' trade resource request
         return True
 
