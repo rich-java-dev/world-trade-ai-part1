@@ -19,13 +19,12 @@ apply:      "Pure" function taking in a given World State, and applies
 '''
 
 from abc import ABC, abstractmethod
-import copy
 
 from world import WorldState
 from country import Country
 from resource import Resource
 from mathfunctions import sigmoid
-from quality import calc_quality
+from goals import goal_map
 
 # Uses abstract methods as a means to express some static polymorphism/Inheritence
 
@@ -231,13 +230,13 @@ class Transfer(Action):
         if c2_offer_qty > c2.resources[c2_offer_rsrc].quantity:
             return False
 
-        # approximate a reasonable trade by assuming C1 cannot offer less than some threshold/ratio of C2s offer/value
-        c1_est_value = c1_offer_qty * \
-            (c1.resources[c1_offer_rsrc].weight + 0.1)
-        c2_est_value = c1_offer_qty * \
-            (c2.resources[c2_offer_rsrc].weight + 0.1)
-        if c1_est_value / c2_est_value < Transfer.threshold:
-            return False
+        # # approximate a reasonable trade by assuming C1 cannot offer less than some threshold/ratio of C2s offer/value
+        # c1_est_value = c1_offer_qty * \
+        #     (c1.resources[c1_offer_rsrc].weight + 0.1)
+        # c2_est_value = c1_offer_qty * \
+        #     (c2.resources[c2_offer_rsrc].weight + 0.1)
+        # if c1_est_value / c2_est_value < Transfer.threshold:
+        #     return False
 
         # return true if both Countries could 'feasibly' trade resource request
         return True
@@ -270,30 +269,31 @@ class Transfer(Action):
         return print_line
 
     def probability(self, world: WorldState, **kwargs) -> float:
-        world_state: WorldState = copy.deepcopy(world)
+        world_state = world
 
+        c1_idx: int = kwargs['c1']
+        c1: Country = world_state.countries[c1_idx]
         c1_offer: dict = kwargs['c1_offer']
         c1_offer_rsrc = c1_offer['resource']
         c1_offer_qty = int(c1_offer['quantity'])
-        c1_idx: int = kwargs['c1']
+        r1 = c1.resources[c1_offer_rsrc]
+
+        r1_weight = -r1.weight if "'" in r1.name else r1.weight
+        r1_est_val = (r1_weight + 0.1) * c1_offer_qty
+
         c2_idx: int = kwargs['c2']
         c2: Country = world_state.countries[c2_idx]
-
-        c2_pre_qual: float = calc_quality(world_state, c2_idx)
-
         c2_offer: dict = kwargs['c2_offer']
         c2_offer_rsrc = c2_offer['resource']
         c2_offer_qty = int(c2_offer['quantity'])
+        r2 = c2.resources[c2_offer_rsrc]
 
-        c2.resources[c2_offer_rsrc].quantity -= c2_offer_qty
-        c2.resources[c1_offer_rsrc].quantity += c1_offer_qty
-
-        c2_after_qual: float = calc_quality(world_state, c2_idx)
-        c2_net_gain = c2_after_qual - c2_pre_qual
+        r2_weight = -r2.weight if "'" in r2.name else r2.weight
+        r2_est_val = (r2_weight + 0.1) * c2_offer_qty
 
         # perform a sigmoid calculation based on the change in state quality if Country 2 Accepts Trade
         # any increases in state quality will
-        sig = sigmoid(c2_net_gain)
+        sig = sigmoid(r1_est_val - r2_est_val)
         return sig
 
 

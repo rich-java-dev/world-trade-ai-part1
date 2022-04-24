@@ -13,9 +13,13 @@ author: Richard White
 # %%
 import os
 import argparse
+import pickle
+
 from node import Node
 import visualize
 import mathfunctions
+import policy
+
 
 # %%
 parser = argparse.ArgumentParser(
@@ -116,7 +120,6 @@ if(model != "DFS"):
 Node.init_state_idx = initial_state_file
 root: Node = Node()
 
-
 frontier = [root]  # search frontier
 
 # Collections of Nodes which represent viable solutions (depth achieved)
@@ -161,12 +164,17 @@ while(len(frontier) > 0):
     if node.is_solution(depth):
         continue
 
+    policy_present = policy.meets_policy(node.state)
+    if policy_present:
+        children = [policy.apply_policy(node, policy_present)]
+
     # if current depth is not a solution, then expand in all ways
     # Avoid pursuing successors which fail to pass schedule
     # additional params to override and force a branch to be terminal/a leaf node
     # this indicates a terminal/invalid path: the leaf is not checked as a solution
     # filter out forced_leaf nodes
-    children = [n for n in node.generate_successors() if not n.force_leaf]
+    else:
+        children = [n for n in node.generate_successors() if not n.force_leaf]
 
     # append to list in reverse order for Depth (Priority Stack)
     # for Best First Search, sort Frontier, and not only successors
@@ -185,6 +193,12 @@ while(len(frontier) > 0):
     # WARNING: this does impact the performance of the search
     if(model == "UCS"):
         frontier.sort(key=lambda n: n.calc_expected_utility())
+
+
+# Store Soltions in a 'pickled' list to learn from
+soln_pickle = "soln.pickle"
+with open(soln_pickle, 'wb') as outfile:
+    pickle.dump(top_solutions, outfile)
 
 
 visualize.print_schedules(output_dir, top_solutions, soln_count)

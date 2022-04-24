@@ -57,6 +57,7 @@ class Node():
         # describes the history which led to this specific node/state
         # NOTE: may replace with a function which builds the schedule by chaining together parent node calls
         self.schedule: list = []
+        self.actions: list = []
         self.schedule_probability: list = [1.0, ]
         # Expected Utility is the sum of incremental increases at each step determined by the discounted reward
         self.expected_utility: list = [0., ]
@@ -76,6 +77,7 @@ class Node():
         self.parent: Node = parent
         if parent:
             self.depth = parent.depth + 1
+            self.actions = [*parent.actions, action]
             self.schedule = [*parent.schedule, action]
             self.schedule_probability = [*parent.schedule_probability, ]
             self.expected_utility = [*parent.expected_utility, ]
@@ -132,13 +134,28 @@ class Node():
     def is_solution(self, provided_depth) -> bool:
         # CHANGE: now searches to arbitrary depth, but doesn't demand depth to be reached to be viable solution
         # return True
-        return provided_depth == self.depth
+        return provided_depth <= self.depth
 
     def calc_schedule_probability(self) -> float:
         return math.prod(self.schedule_probability)
 
     def calc_expected_utility(self) -> float:
         return sum(self.expected_utility)
+
+    # transition the Node in a single path dictected by the specific action, returning
+
+    def apply(self, actions) -> Node:
+        result = self
+        for action_id in actions:
+            if(action_id == 'Transfer'):
+                continue
+
+            action: Action = result.action_map[action_id]
+            if action.is_viable(result.state):
+                result = Node(result, result.state, action_id)
+
+        return result
+
     '''
     Generate Successors
     Expands the current Node in all possible ways:
@@ -175,7 +192,7 @@ class Node():
     7) When the new node is instantiated, the probability and impact of the trade are expanded/applied
     '''
 
-    def generate_transfer_successors(self):
+    def generate_transfer_successors(self) -> list[Node]:
         world = self.state
         action_id: str = 'Transfer'
         action: Action = action_map[action_id]
@@ -231,6 +248,20 @@ class Node():
             child: Node = Node(
                 self, self.state, 'Transfer', **proposition)
             return child
+
+    '''
+    Look-ahead
+    
+    '''
+
+    def get_max_successor(self):
+        if not self.children:
+            self.children = [n for n in self.generate_successors()
+                             if not n.force_leaf]
+            self.children.sort(
+                key=lambda n: n.calc_expected_utility(), reverse=True)
+
+        return self.children[0]
 
     '''
     Convenience method for printing out the Schedule of the Node/WorldState
