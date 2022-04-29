@@ -94,14 +94,15 @@ def run():
 
     visualize.print_schedules(output_dir, top_solutions, max_checks)
 
-    return {
-        'text': visualize.get_schedules(top_solutions, max_checks),
-        'image1': visualize.get_response_image(f'{output_dir}/schedule1.png'),
-        'image2': visualize.get_response_image(f'{output_dir}/schedule2.png'),
-        'image3': visualize.get_response_image(f'{output_dir}/schedule3.png'),
-        'image4': visualize.get_response_image(f'{output_dir}/schedule4.png'),
-        'image5': visualize.get_response_image(f'{output_dir}/schedule5.png')
+    resp: dict = {
+        'text': visualize.get_schedules(top_solutions, max_checks)
     }
+
+    for i in range(len(top_solutions)):
+        resp[f'image{i+1}'] = visualize.get_response_image(
+            f'{output_dir}/schedule{i+1}.png')
+
+    return resp
 
 
 @app.route('/clear', methods=['POST'])
@@ -109,6 +110,12 @@ def clear():
     if os.path.exists("soln.pickle"):
         os.remove("soln.pickle")
     return ""
+
+
+@app.route('/reset', methods=['POST'])
+def reset():
+    Node.id = 0
+    return "Node Id Reset"
 
 
 if __name__ == '__main__':

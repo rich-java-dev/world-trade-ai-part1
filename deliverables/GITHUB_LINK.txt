@@ -1,1 +1,1 @@
-https://github.com/rich-java-dev/world-trade-ai-part1
+https://github.com/rich-java-dev/world-trade-ai-scheduler

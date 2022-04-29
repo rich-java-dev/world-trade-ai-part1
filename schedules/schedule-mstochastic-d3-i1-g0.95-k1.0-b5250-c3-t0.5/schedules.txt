@@ -1,0 +1,812 @@
+Top Solutions:
+Schedule:
+1: Transfer x C1:Atlantis  (R2 x 175) to C4:Dinotopia  (R3 x 100) 	 Q:2.625 	 EU:-0.071
+2: Transfer x C1:Atlantis  (R2 x 131) to C4:Dinotopia  (R3 x 50) 	 Q:2.544 	 EU:-0.144
+3: Transfer x C1:Atlantis  (R3 x 537) to C2:Brobdingnag  (R2 x 75) 	 Q:2.082 	 EU:-0.54
+Schedule Probability: [1.0, 0.9994472213630764, 0.9996965529699712, 1.0] = 0.9991439420720832
+id: 1170
+quality: 2
+expected utility: -1State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 469 	--	 analog to metallic elements 
+R3 : 1613 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R2 x 70) to C3:Carpania  (R3 x 30) 	 Q:2.66 	 EU:-0.037
+2: Transfer x C1:Atlantis  (R2 x 472) to C3:Carpania  (R3 x 27) 	 Q:2.215 	 EU:-0.439
+3: Transfer x C1:Atlantis  (R3 x 514) to C3:Carpania  (R2 x 321) 	 Q:2.022 	 EU:-0.604
+Schedule Probability: [1.0, 0.9820137900379085, 1.0, 0.9999999958493464] = 0.9820137859619094
+id: 1777
+quality: 2
+expected utility: -1State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 479 	--	 analog to metallic elements 
+R3 : 1543 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R2 x 525) to C2:Brobdingnag  (R3 x 120) 	 Q:2.295 	 EU:-0.385
+2: Transfer x C1:Atlantis  (R3 x 1060) to C3:Carpania  (R2 x 50) 	 Q:1.285 	 EU:-1.296
+3: Transfer x C1:Atlantis  (R3 x 265) to C5:Erewhon  (R2 x 125) 	 Q:1.145 	 EU:-1.416
+Schedule Probability: [1.0, 1.0, 1.0, 0.9999991684719722] = 0.9999991684719722
+id: 582
+quality: 1
+expected utility: -1State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 350 	--	 analog to metallic elements 
+R3 : 795 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Top Solutions:
+Schedule:
+1: Transfer x C1:Atlantis  (R2 x 175) to C5:Erewhon  (R3 x 170) 	 Q:2.695 	 EU:-0.003
+2: Transfer x C1:Atlantis  (R2 x 393) to C4:Dinotopia  (R3 x 100) 	 Q:2.402 	 EU:-0.267
+3: Transfer x C1:Atlantis  (R3 x 227) to C4:Dinotopia  (R2 x 59) 	 Q:2.234 	 EU:-0.411
+Schedule Probability: [1.0, 0.6224593312018546, 0.9999999999998115, 0.9999999494346891] = 0.6224592997268876
+id: 3011
+quality: 2
+expected utility: 0State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 191 	--	 analog to metallic elements 
+R3 : 2043 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R3 x 200) to C3:Carpania  (R2 x 10) 	 Q:2.51 	 EU:-0.18
+2: Transfer x C1:Atlantis  (R3 x 1350) to C2:Brobdingnag  (R2 x 225) 	 Q:1.385 	 EU:-1.196
+3: Transfer x C1:Atlantis  (R3 x 45) to C2:Brobdingnag  (R2 x 37) 	 Q:1.377 	 EU:-1.201
+Schedule Probability: [1.0, 0.9999999943972036, 1.0, 0.6899744811276125] = 0.6899744772618259
+id: 2396
+quality: 1
+expected utility: -1State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 972 	--	 analog to metallic elements 
+R3 : 405 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R2 x 700) to C2:Brobdingnag  (R3 x 120) 	 Q:2.12 	 EU:-0.551
+2: Transfer x C1:Atlantis  (R3 x 212) to C3:Carpania  (R2 x 10) 	 Q:1.918 	 EU:-0.733
+3: Transfer x C1:Atlantis  (R3 x 1908) to C2:Brobdingnag  (R2 x 500) 	 Q:0.51 	 EU:-1.94
+Schedule Probability: [1.0, 1.0, 0.9999999983124701, 1.0] = 0.9999999983124701
+id: 3421
+quality: 1
+expected utility: -2State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 510 	--	 analog to metallic elements 
+R3 : 0 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Top Solutions:
+Schedule:
+1: Transfer x C1:Atlantis  (R2 x 525) to C3:Carpania  (R3 x 300) 	 Q:2.475 	 EU:-0.214
+2: Transfer x C1:Atlantis  (R3 x 575) to C3:Carpania  (R2 x 468) 	 Q:2.368 	 EU:-0.31
+3: Transfer x C1:Atlantis  (R2 x 321) to C4:Dinotopia  (R3 x 100) 	 Q:2.147 	 EU:-0.5
+Schedule Probability: [1.0, 0.9999999998308102, 0.9999774555703496, 0.9999999997475986] = 0.9999774551487678
+id: 4553
+quality: 2
+expected utility: 0State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 322 	--	 analog to metallic elements 
+R3 : 1825 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R2 x 350) to C4:Dinotopia  (R3 x 20) 	 Q:2.37 	 EU:-0.313
+2: Transfer x C1:Atlantis  (R3 x 505) to C4:Dinotopia  (R2 x 275) 	 Q:2.14 	 EU:-0.521
+3: Transfer x C1:Atlantis  (R2 x 625) to C3:Carpania  (R3 x 150) 	 Q:1.665 	 EU:-0.928
+Schedule Probability: [1.0, 0.9999999999999953, 0.9999999998973812, 1.0] = 0.9999999998973765
+id: 3930
+quality: 2
+expected utility: -1State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 0 	--	 analog to metallic elements 
+R3 : 1665 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R3 x 1000) to C3:Carpania  (R2 x 25) 	 Q:1.725 	 EU:-0.926
+2: Transfer x C1:Atlantis  (R3 x 250) to C4:Dinotopia  (R2 x 50) 	 Q:1.525 	 EU:-1.107
+3: Transfer x C1:Atlantis  (R2 x 775) to C2:Brobdingnag  (R3 x 600) 	 Q:1.35 	 EU:-1.257
+Schedule Probability: [1.0, 1.0, 0.9999999979388463, 0.999999974890009] = 0.9999999728288553
+id: 5106
+quality: 1
+expected utility: -1State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 0 	--	 analog to metallic elements 
+R3 : 1350 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Top Solutions:
+Schedule:
+1: Transfer x C1:Atlantis  (R2 x 175) to C3:Carpania  (R3 x 30) 	 Q:2.555 	 EU:-0.138
+2: Transfer x C1:Atlantis  (R2 x 52) to C4:Dinotopia  (R3 x 50) 	 Q:2.553 	 EU:-0.139
+3: Transfer x C1:Atlantis  (R2 x 118) to C3:Carpania  (R3 x 67) 	 Q:2.502 	 EU:-0.182
+Schedule Probability: [1.0, 0.9999994956525918, 0.549833997312478, 0.9939401985084158] = 0.5465018368085162
+id: 6379
+quality: 3
+expected utility: 0State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 355 	--	 analog to metallic elements 
+R3 : 2147 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R2 x 350) to C3:Carpania  (R3 x 225) 	 Q:2.575 	 EU:-0.119
+2: Transfer x C1:Atlantis  (R3 x 222) to C4:Dinotopia  (R2 x 50) 	 Q:2.403 	 EU:-0.274
+3: Transfer x C1:Atlantis  (R3 x 500) to C5:Erewhon  (R2 x 125) 	 Q:2.028 	 EU:-0.595
+Schedule Probability: [1.0, 0.9999962733607158, 0.9999999661050578, 1.0] = 0.9999962394659
+id: 5886
+quality: 2
+expected utility: -1State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 525 	--	 analog to metallic elements 
+R3 : 1503 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R3 x 500) to C5:Erewhon  (R2 x 50) 	 Q:2.25 	 EU:-0.428
+2: Transfer x C1:Atlantis  (R3 x 750) to C4:Dinotopia  (R2 x 50) 	 Q:1.55 	 EU:-1.059
+3: Transfer x C1:Atlantis  (R3 x 750) to C5:Erewhon  (R2 x 450) 	 Q:1.25 	 EU:-1.316
+Schedule Probability: [1.0, 1.0, 1.0, 0.9999999999999065] = 0.9999999999999065
+id: 7029
+quality: 1
+expected utility: -1State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 1250 	--	 analog to metallic elements 
+R3 : 0 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Top Solutions:
+Schedule:
+1: Transfer x C1:Atlantis  (R3 x 200) to C3:Carpania  (R2 x 10) 	 Q:2.51 	 EU:-0.18
+2: Transfer x C1:Atlantis  (R2 x 355) to C3:Carpania  (R3 x 250) 	 Q:2.405 	 EU:-0.275
+3: Transfer x C1:Atlantis  (R2 x 88) to C3:Carpania  (R3 x 25) 	 Q:2.342 	 EU:-0.329
+Schedule Probability: [1.0, 0.9999999943972036, 0.9999724643088853, 0.9981670610575072] = 0.9981395702452602
+id: 8718
+quality: 2
+expected utility: 0State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 267 	--	 analog to metallic elements 
+R3 : 2075 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R2 x 175) to C3:Carpania  (R3 x 75) 	 Q:2.6 	 EU:-0.095
+2: Transfer x C1:Atlantis  (R2 x 393) to C3:Carpania  (R3 x 22) 	 Q:2.229 	 EU:-0.43
+3: Transfer x C1:Atlantis  (R2 x 132) to C4:Dinotopia  (R3 x 20) 	 Q:2.117 	 EU:-0.526
+Schedule Probability: [1.0, 0.9999546021312976, 1.0, 0.9999863259909154] = 0.9999409287429839
+id: 7532
+quality: 2
+expected utility: -1State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 0 	--	 analog to metallic elements 
+R3 : 2117 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R3 x 1500) to C5:Erewhon  (R2 x 500) 	 Q:1.7 	 EU:-0.95
+2: Transfer x C1:Atlantis  (R3 x 250) to C3:Carpania  (R2 x 100) 	 Q:1.55 	 EU:-1.085
+3: Transfer x C1:Atlantis  (R3 x 187) to C4:Dinotopia  (R2 x 50) 	 Q:1.413 	 EU:-1.203
+Schedule Probability: [1.0, 1.0, 0.999999694097773, 0.9999988775548947] = 0.9999985716530111
+id: 8214
+quality: 1
+expected utility: -1State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 1350 	--	 analog to metallic elements 
+R3 : 63 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Top Solutions:
+Schedule:
+1: Transfer x C1:Atlantis  (R3 x 1000) to C5:Erewhon  (R2 x 50) 	 Q:1.75 	 EU:-0.903
+2: Transfer x C1:Atlantis  (R3 x 100) to C2:Brobdingnag  (R2 x 75) 	 Q:1.725 	 EU:-0.923
+3: Transfer x C1:Atlantis  (R2 x 412) to C4:Dinotopia  (R3 x 20) 	 Q:1.333 	 EU:-1.259
+Schedule Probability: [1.0, 1.0, 0.9241418199787566, 1.0] = 0.9241418199787566
+id: 9810
+quality: 1
+expected utility: -1State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 413 	--	 analog to metallic elements 
+R3 : 920 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R3 x 500) to C5:Erewhon  (R2 x 500) 	 Q:2.7 	 EU:0.0
+2: Transfer x C1:Atlantis  (R2 x 900) to C2:Brobdingnag  (R3 x 120) 	 Q:1.92 	 EU:-0.704
+3: Transfer x C1:Atlantis  (R3 x 1620) to C3:Carpania  (R2 x 100) 	 Q:0.4 	 EU:-2.007
+Schedule Probability: [1.0, 0.5, 1.0, 1.0] = 0.5
+id: 10439
+quality: 0
+expected utility: -2State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 400 	--	 analog to metallic elements 
+R3 : 0 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R3 x 2000) to C2:Brobdingnag  (R2 x 150) 	 Q:0.85 	 EU:-1.758
+2: Transfer x C1:Atlantis  (R2 x 637) to C3:Carpania  (R3 x 150) 	 Q:0.363 	 EU:-2.197
+3: Transfer x C1:Atlantis  (R2 x 53) to C3:Carpania  (R3 x 15) 	 Q:0.325 	 EU:-2.229
+Schedule Probability: [1.0, 1.0, 1.0, 0.9781187290638694] = 0.9781187290638694
+id: 9222
+quality: 0
+expected utility: -2State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 160 	--	 analog to metallic elements 
+R3 : 165 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Top Solutions:
+Schedule:
+1: Transfer x C1:Atlantis  (R2 x 350) to C2:Brobdingnag  (R3 x 120) 	 Q:2.47 	 EU:-0.218
+2: Transfer x C1:Atlantis  (R2 x 87) to C4:Dinotopia  (R3 x 50) 	 Q:2.433 	 EU:-0.251
+3: Transfer x C1:Atlantis  (R2 x 131) to C2:Brobdingnag  (R3 x 108) 	 Q:2.41 	 EU:-0.269
+Schedule Probability: [1.0, 0.9999999998973812, 0.9758729785823308, 0.9088770389851439] = 0.886948543108504
+id: 10957
+quality: 2
+expected utility: 0State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 132 	--	 analog to metallic elements 
+R3 : 2278 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R2 x 525) to C3:Carpania  (R3 x 75) 	 Q:2.25 	 EU:-0.428
+2: Transfer x C1:Atlantis  (R2 x 87) to C4:Dinotopia  (R3 x 50) 	 Q:2.213 	 EU:-0.46
+3: Transfer x C1:Atlantis  (R3 x 531) to C3:Carpania  (R2 x 468) 	 Q:2.15 	 EU:-0.514
+Schedule Probability: [1.0, 1.0, 0.9758729785823308, 0.9981670610575072] = 0.9740842629969608
+id: 11682
+quality: 2
+expected utility: -1State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 556 	--	 analog to metallic elements 
+R3 : 1594 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R2 x 525) to C2:Brobdingnag  (R3 x 300) 	 Q:2.475 	 EU:-0.214
+2: Transfer x C1:Atlantis  (R2 x 131) to C4:Dinotopia  (R3 x 20) 	 Q:2.364 	 EU:-0.314
+3: Transfer x C1:Atlantis  (R3 x 1740) to C4:Dinotopia  (R2 x 248) 	 Q:0.872 	 EU:-1.593
+Schedule Probability: [1.0, 0.9999999998308102, 0.999984887904559, 1.0] = 0.9999848877353718
+id: 12250
+quality: 1
+expected utility: -2State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 292 	--	 analog to metallic elements 
+R3 : 580 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Top Solutions:
+Schedule:
+1: Transfer x C1:Atlantis  (R3 x 500) to C3:Carpania  (R2 x 25) 	 Q:2.225 	 EU:-0.451
+2: Transfer x C1:Atlantis  (R2 x 725) to C5:Erewhon  (R3 x 425) 	 Q:1.925 	 EU:-0.722
+3: Transfer x C1:Atlantis  (R3 x 481) to C4:Dinotopia  (R2 x 200) 	 Q:1.644 	 EU:-0.963
+Schedule Probability: [1.0, 1.0, 0.9999999999999065, 0.9999999999993743] = 0.9999999999992808
+id: 12792
+quality: 2
+expected utility: -1State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 200 	--	 analog to metallic elements 
+R3 : 1444 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R3 x 200) to C2:Brobdingnag  (R2 x 75) 	 Q:2.575 	 EU:-0.119
+2: Transfer x C1:Atlantis  (R2 x 387) to C2:Brobdingnag  (R3 x 140) 	 Q:2.328 	 EU:-0.342
+3: Transfer x C1:Atlantis  (R3 x 970) to C3:Carpania  (R2 x 100) 	 Q:1.458 	 EU:-1.088
+Schedule Probability: [1.0, 0.9999962733607158, 0.9999999999812532, 1.0] = 0.9999962733419692
+id: 13973
+quality: 1
+expected utility: -1State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 488 	--	 analog to metallic elements 
+R3 : 970 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R3 x 1000) to C5:Erewhon  (R2 x 375) 	 Q:2.075 	 EU:-0.594
+2: Transfer x C1:Atlantis  (R3 x 750) to C2:Brobdingnag  (R2 x 30) 	 Q:1.355 	 EU:-1.244
+3: Transfer x C1:Atlantis  (R3 x 250) to C2:Brobdingnag  (R2 x 135) 	 Q:1.24 	 EU:-1.342
+Schedule Probability: [1.0, 1.0, 1.0, 0.9999898700090192] = 0.9999898700090192
+id: 13327
+quality: 1
+expected utility: -1State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 1240 	--	 analog to metallic elements 
+R3 : 0 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Top Solutions:
+Schedule:
+1: Transfer x C1:Atlantis  (R2 x 525) to C5:Erewhon  (R3 x 170) 	 Q:2.345 	 EU:-0.337
+2: Transfer x C1:Atlantis  (R3 x 217) to C4:Dinotopia  (R2 x 150) 	 Q:2.278 	 EU:-0.398
+3: Transfer x C1:Atlantis  (R2 x 243) to C2:Brobdingnag  (R3 x 120) 	 Q:2.155 	 EU:-0.503
+Schedule Probability: [1.0, 0.9999999999999996, 0.9987706013787226, 0.9999954482762552] = 0.9987660552508603
+id: 15561
+quality: 2
+expected utility: -1State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 82 	--	 analog to metallic elements 
+R3 : 2073 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R2 x 350) to C4:Dinotopia  (R3 x 20) 	 Q:2.37 	 EU:-0.313
+2: Transfer x C1:Atlantis  (R2 x 350) to C4:Dinotopia  (R3 x 45) 	 Q:2.065 	 EU:-0.589
+3: Transfer x C1:Atlantis  (R3 x 516) to C2:Brobdingnag  (R2 x 150) 	 Q:1.699 	 EU:-0.903
+Schedule Probability: [1.0, 0.9999999999999953, 0.9999999999999432, 0.9999999999999998] = 0.9999999999999383
+id: 15096
+quality: 2
+expected utility: -1State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 150 	--	 analog to metallic elements 
+R3 : 1549 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R3 x 500) to C2:Brobdingnag  (R2 x 75) 	 Q:2.275 	 EU:-0.404
+2: Transfer x C1:Atlantis  (R3 x 1125) to C2:Brobdingnag  (R2 x 22) 	 Q:1.172 	 EU:-1.399
+3: Transfer x C1:Atlantis  (R2 x 597) to C4:Dinotopia  (R3 x 200) 	 Q:0.775 	 EU:-1.74
+Schedule Probability: [1.0, 1.0, 1.0, 1.0] = 1.0
+id: 14462
+quality: 1
+expected utility: -2State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 200 	--	 analog to metallic elements 
+R3 : 575 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Top Solutions:
+Schedule:
+1: Transfer x C1:Atlantis  (R3 x 500) to C5:Erewhon  (R2 x 250) 	 Q:2.45 	 EU:-0.237
+2: Transfer x C1:Atlantis  (R3 x 150) to C3:Carpania  (R2 x 25) 	 Q:2.325 	 EU:-0.35
+3: Transfer x C1:Atlantis  (R2 x 975) to C4:Dinotopia  (R3 x 50) 	 Q:1.4 	 EU:-1.143
+Schedule Probability: [1.0, 0.999999999986112, 0.9999962733607158, 1.0] = 0.9999962733468278
+id: 16154
+quality: 1
+expected utility: -1State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 0 	--	 analog to metallic elements 
+R3 : 1400 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R2 x 525) to C5:Erewhon  (R3 x 170) 	 Q:2.345 	 EU:-0.337
+2: Transfer x C1:Atlantis  (R3 x 1627) to C3:Carpania  (R2 x 75) 	 Q:0.793 	 EU:-1.738
+3: Transfer x C1:Atlantis  (R3 x 54) to C2:Brobdingnag  (R2 x 30) 	 Q:0.769 	 EU:-1.757
+Schedule Probability: [1.0, 0.9999999999999996, 1.0, 0.9168273035060777] = 0.9168273035060772
+id: 16928
+quality: 1
+expected utility: -2State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 280 	--	 analog to metallic elements 
+R3 : 489 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R3 x 2000) to C2:Brobdingnag  (R2 x 30) 	 Q:0.73 	 EU:-1.872
+2: Transfer x C1:Atlantis  (R2 x 547) to C5:Erewhon  (R3 x 425) 	 Q:0.608 	 EU:-1.982
+3: Transfer x C1:Atlantis  (R3 x 318) to C4:Dinotopia  (R2 x 150) 	 Q:0.44 	 EU:-2.126
+Schedule Probability: [1.0, 1.0, 0.9999949695696981, 0.9999999494346891] = 0.9999949190046415
+id: 17378
+quality: 0
+expected utility: -2State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 333 	--	 analog to metallic elements 
+R3 : 107 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Top Solutions:
+Schedule:
+1: Transfer x C1:Atlantis  (R2 x 525) to C2:Brobdingnag  (R3 x 300) 	 Q:2.475 	 EU:-0.214
+2: Transfer x C1:Atlantis  (R2 x 175) to C3:Carpania  (R3 x 75) 	 Q:2.375 	 EU:-0.304
+3: Transfer x C1:Atlantis  (R3 x 593) to C3:Carpania  (R2 x 275) 	 Q:2.057 	 EU:-0.577
+Schedule Probability: [1.0, 0.9999999998308102, 0.9999546021312976, 0.9999999999999845] = 0.9999546019621
+id: 19020
+quality: 2
+expected utility: -1State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 275 	--	 analog to metallic elements 
+R3 : 1782 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R2 x 350) to C3:Carpania  (R3 x 150) 	 Q:2.5 	 EU:-0.19
+2: Transfer x C1:Atlantis  (R2 x 262) to C2:Brobdingnag  (R3 x 120) 	 Q:2.358 	 EU:-0.318
+3: Transfer x C1:Atlantis  (R3 x 1702) to C2:Brobdingnag  (R2 x 281) 	 Q:0.937 	 EU:-1.536
+Schedule Probability: [1.0, 0.9999999979388463, 0.9999993192023292, 1.0] = 0.999999317141177
+id: 17973
+quality: 1
+expected utility: -2State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 369 	--	 analog to metallic elements 
+R3 : 568 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R2 x 700) to C4:Dinotopia  (R3 x 150) 	 Q:2.15 	 EU:-0.523
+2: Transfer x C1:Atlantis  (R3 x 1612) to C3:Carpania  (R2 x 10) 	 Q:0.548 	 EU:-1.968
+3: Transfer x C1:Atlantis  (R3 x 134) to C5:Erewhon  (R2 x 125) 	 Q:0.539 	 EU:-1.974
+Schedule Probability: [1.0, 1.0, 1.0, 0.710949502625004] = 0.710949502625004
+id: 18531
+quality: 1
+expected utility: -2State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 135 	--	 analog to metallic elements 
+R3 : 404 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Top Solutions:
+Schedule:
+1: Transfer x C1:Atlantis  (R2 x 70) to C4:Dinotopia  (R3 x 20) 	 Q:2.65 	 EU:-0.047
+2: Transfer x C1:Atlantis  (R2 x 630) to C3:Carpania  (R3 x 75) 	 Q:2.095 	 EU:-0.548
+3: Transfer x C1:Atlantis  (R3 x 209) to C4:Dinotopia  (R2 x 27) 	 Q:1.913 	 EU:-0.704
+Schedule Probability: [1.0, 0.9933071490757153, 1.0, 0.9999999875307474] = 0.9933071366899174
+id: 20155
+quality: 2
+expected utility: -1State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 27 	--	 analog to metallic elements 
+R3 : 1886 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R2 x 525) to C4:Dinotopia  (R3 x 50) 	 Q:2.225 	 EU:-0.451
+2: Transfer x C1:Atlantis  (R2 x 175) to C4:Dinotopia  (R3 x 15) 	 Q:2.065 	 EU:-0.596
+3: Transfer x C1:Atlantis  (R3 x 206) to C3:Carpania  (R2 x 50) 	 Q:1.909 	 EU:-0.729
+Schedule Probability: [1.0, 1.0, 0.9999998874648379, 0.9999998321172752] = 0.999999719582132
+id: 20650
+quality: 2
+expected utility: -1State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 50 	--	 analog to metallic elements 
+R3 : 1859 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R3 x 500) to C2:Brobdingnag  (R2 x 225) 	 Q:2.425 	 EU:-0.261
+2: Transfer x C1:Atlantis  (R3 x 375) to C5:Erewhon  (R2 x 125) 	 Q:2.175 	 EU:-0.487
+3: Transfer x C1:Atlantis  (R3 x 1125) to C2:Brobdingnag  (R2 x 56) 	 Q:1.106 	 EU:-1.403
+Schedule Probability: [1.0, 0.99999999999886, 0.999999999986112, 1.0] = 0.999999999984972
+id: 19560
+quality: 1
+expected utility: -1State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 1106 	--	 analog to metallic elements 
+R3 : 0 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Top Solutions:
+Schedule:
+1: Template - Alloy x 233 	 Q:2.7 	 EU:0.0
+2: Template - Housing x 77 	 Q:68.765 	 EU:59.624
+3: Transfer x C1:Atlantis  (R3 x 161) to C3:Carpania  (R2 x 50) 	 Q:68.654 	 EU:59.529
+Schedule Probability: [1.0, 1.0, 1.0, 0.999984887904559] = 0.999984887904559
+id: 22260
+quality: 69
+expected utility: 60State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 207 	--	 analog to metallic elements 
+R3 : 1454 	--	 analog to timber 
+R21 : 2 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 77 	--	 analog to housing (and housing sufficiency) 
+R21' : 233 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 77 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R2 x 70) to C4:Dinotopia  (R3 x 20) 	 Q:2.65 	 EU:-0.047
+2: Transfer x C1:Atlantis  (R2 x 472) to C3:Carpania  (R3 x 30) 	 Q:2.208 	 EU:-0.446
+3: Transfer x C1:Atlantis  (R3 x 512) to C5:Erewhon  (R2 x 125) 	 Q:1.821 	 EU:-0.778
+Schedule Probability: [1.0, 0.9933071490757153, 1.0, 1.0] = 0.9933071490757153
+id: 21245
+quality: 2
+expected utility: -1State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 283 	--	 analog to metallic elements 
+R3 : 1538 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R3 x 200) to C4:Dinotopia  (R2 x 200) 	 Q:2.7 	 EU:0.0
+2: Transfer x C1:Atlantis  (R2 x 900) to C4:Dinotopia  (R3 x 100) 	 Q:1.9 	 EU:-0.722
+3: Transfer x C1:Atlantis  (R3 x 475) to C2:Brobdingnag  (R2 x 30) 	 Q:1.455 	 EU:-1.104
+Schedule Probability: [1.0, 0.5, 1.0, 1.0] = 0.5
+id: 23234
+quality: 1
+expected utility: -1State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 30 	--	 analog to metallic elements 
+R3 : 1425 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Top Solutions:
+Schedule:
+1: Template - Alloy x 233 	 Q:2.7 	 EU:0.0
+2: Template - Housing x 77 	 Q:68.765 	 EU:59.624
+3: Transfer x C1:Atlantis  (R2 x 117) to C4:Dinotopia  (R3 x 20) 	 Q:68.668 	 EU:59.541
+Schedule Probability: [1.0, 1.0, 1.0, 0.9999387202603833] = 0.9999387202603833
+id: 1196
+quality: 69
+expected utility: 60State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 40 	--	 analog to metallic elements 
+R3 : 1635 	--	 analog to timber 
+R21 : 2 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 77 	--	 analog to housing (and housing sufficiency) 
+R21' : 233 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 77 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R2 x 350) to C3:Carpania  (R3 x 300) 	 Q:2.65 	 EU:-0.047
+2: Transfer x C1:Atlantis  (R3 x 575) to C4:Dinotopia  (R2 x 50) 	 Q:2.125 	 EU:-0.521
+3: Transfer x C1:Atlantis  (R3 x 1293) to C5:Erewhon  (R2 x 375) 	 Q:1.207 	 EU:-1.308
+Schedule Probability: [1.0, 0.9933071490757153, 1.0, 1.0] = 0.9933071490757153
+id: 1094
+quality: 1
+expected utility: -1State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 775 	--	 analog to metallic elements 
+R3 : 432 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+
+Schedule:
+1: Transfer x C1:Atlantis  (R2 x 70) to C3:Carpania  (R3 x 30) 	 Q:2.66 	 EU:-0.037
+2: Transfer x C1:Atlantis  (R3 x 1015) to C2:Brobdingnag  (R2 x 75) 	 Q:1.72 	 EU:-0.886
+3: Transfer x C1:Atlantis  (R2 x 705) to C3:Carpania  (R3 x 202) 	 Q:1.217 	 EU:-1.317
+Schedule Probability: [1.0, 0.9820137900379085, 1.0, 1.0] = 0.9820137900379085
+id: 411
+quality: 1
+expected utility: -1State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 0 	--	 analog to metallic elements 
+R3 : 1217 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+

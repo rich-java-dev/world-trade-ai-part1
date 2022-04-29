@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 
 # basic sigmoid function implementation
 
-k = 1
+k = .5
 
 
 def sigmoid(x, L=1, x_0=0) -> float:

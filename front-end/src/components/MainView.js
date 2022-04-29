@@ -67,6 +67,18 @@ export const MainView = () => {
         fetch(url, {
             method: "POST",
         })
+        setImg1(null)
+        setImg2(null)
+        setImg3(null)
+        setImg4(null)
+        setImg5(null)
+
+    }
+    const reset = () => {
+        const url = `http://${serverAddr}:${serverPort}/reset`
+        fetch(url, {
+            method: "POST",
+        })
     }
 
     return (
@@ -147,6 +159,7 @@ export const MainView = () => {
 
                 <Button onClick={run}>Run</Button>
                 <Button onClick={clear}>Clear</Button>
+                <Button onClick={reset}>Reset</Button>
 
 
             </Box>

@@ -74,7 +74,7 @@ class AlloyPolicy(Policy):
     def conditions_met(self, world: WorldState) -> bool:
         sat = False
         c: Country = world.countries[0]
-
+        # ... hard code conditions in which Alloy Policy takes affect
         return sat
 
 
