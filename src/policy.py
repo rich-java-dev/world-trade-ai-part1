@@ -16,6 +16,7 @@ from world import WorldState
 from node import Node
 from country import Country
 from resource import Resource
+from goals import goal_map
 from events import Action, AlloyTemplate, HousingTemplate, ElectronicsTemplate
 
 
@@ -33,18 +34,22 @@ class Policy(ABC):
 class TopSolutionPolicy(Policy):
 
     checked: bool = False
+    action_list = []
 
     def actions(self) -> list:
-        actions = []
 
+        if len(TopSolutionPolicy.action_list) > 0:
+            return TopSolutionPolicy.action_list
+
+        actions = []
         try:
             with open('soln.pickle', 'rb') as infile:
                 top_solutions = pickle.load(infile)
                 actions = top_solutions[0].actions
+                TopSolutionPolicy.action_list = actions
+                return TopSolutionPolicy.action_list
         except Exception as ex:
-            print("No pickled solution file found")
-
-        return actions
+            return actions
 
     def conditions_met(self, world: WorldState) -> bool:
         if TopSolutionPolicy.checked:
@@ -67,7 +72,10 @@ class AlloyPolicy(Policy):
         return [AlloyTemplate]
 
     def conditions_met(self, world: WorldState) -> bool:
-        return False
+        sat = False
+        c: Country = world.countries[0]
+
+        return sat
 
 
 policies = {
@@ -85,8 +93,12 @@ def meets_policy(world: WorldState) -> Policy:
     return
 
 
-def apply_policy(node: Node, policy: Policy) -> Node:
-    return node.apply(policy.actions())
+def apply_policy(node: Node, policy: Policy, depth) -> Node:
+    action_list = policy.actions()
+    while len(action_list) > depth:
+        del action_list[-1]
+
+    return node.apply(action_list)
 
 
 def reset_policy_checks():

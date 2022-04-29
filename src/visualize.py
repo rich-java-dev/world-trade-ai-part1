@@ -1,6 +1,12 @@
 import os
 import matplotlib.pyplot as plt
+
+import io
+from base64 import encodebytes
+from PIL import Image
+
 from node import Node
+
 
 '''
 Visualizations tools for plotting Histograms/State evolutions/tracking over time
@@ -19,7 +25,7 @@ def print_schedules(output_dir: str, top_solutions: list, soln_count: int):
         soln = None
 
         for i in range(len(top_solutions)):
-            soln = top_solutions.pop(0)
+            soln = top_solutions[i]
 
             for prt in [output.write, print]:
                 soln.state.countries[0].printer = prt
@@ -32,6 +38,37 @@ def print_schedules(output_dir: str, top_solutions: list, soln_count: int):
                 prt(f'\n')
                 plot_and_save(soln, f'{output_dir}-{i+1}',
                               f"{output_dir}/schedule{i+1}.png")
+
+
+def get_schedule_str(node: Node) -> str:
+
+    sched: str = node.get_schedule()
+    q = round(node.calc_quality())
+    eu = round(node.calc_expected_utility())
+    return f' \
+    \nSchedule: \
+    \n{sched} \
+    \nstate quality : {q} \
+    \nexpected utility: {eu} \
+    \n'
+
+
+def get_schedules(top_solutions: list, soln_count) -> str:
+    # Search finished: print the top results
+
+    schedules = '\n\n'.join([get_schedule_str(n) for n in top_solutions])
+
+    return f' \
+    \n\
+    \nTop Solutions: \
+    \n\
+    \nTotal Nodes generated: {Node.id} \
+    \n\
+    \nTotal Plausible Schedules checked: {soln_count} \
+    \n\
+    \n{schedules} \
+    \n\
+    '
 
 
 def print_top_solutions(top_solutions: list, soln_count):
@@ -83,3 +120,12 @@ def plot_and_save(node: Node, title: str, output_file: str):
     fig = plt.gcf()
     fig.set_size_inches(18.5, 10.5)
     fig.savefig(output_file)
+
+
+def get_response_image(image_path):
+    pil_img = Image.open(image_path, mode='r')  # reads the PIL image
+    byte_arr = io.BytesIO()
+    pil_img.save(byte_arr, format='PNG')  # convert the PIL image to byte array
+    encoded_img = encodebytes(byte_arr.getvalue()).decode(
+        'ascii')  # encode as base64
+    return encoded_img

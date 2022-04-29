@@ -166,7 +166,7 @@ while(len(frontier) > 0):
 
     policy_present = policy.meets_policy(node.state)
     if policy_present:
-        children = [policy.apply_policy(node, policy_present)]
+        children = [policy.apply_policy(node, policy_present, depth)]
 
     # if current depth is not a solution, then expand in all ways
     # Avoid pursuing successors which fail to pass schedule

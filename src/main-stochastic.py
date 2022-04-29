@@ -13,15 +13,17 @@ author: Richard White
 # %%
 import os
 import argparse
+import random
+import copy
+import math
+import pickle
+
+import policy
 from node import Node
 import visualize
 import mathfunctions
-import random
-import copy
-import policy
-import math
 
-
+from traverse import traverse_node
 # %%
 parser = argparse.ArgumentParser(
     description='CLI args to fine-tuning/running variants on the World Trade/Game Search')
@@ -64,7 +66,7 @@ parser.add_argument("--beam_width", "--b", "-b", default=5250,
                         the maximum number of successor nodes placed on the stack at each step")
 
 
-parser.add_argument("--max_solutions", "--c", "-c", default=100,
+parser.add_argument("--max_solutions", "--c", "-c", default=25,
                     type=int, help="set a fundamental cap on how many satisfiable schedules searched. \
                         NOTE: node/state must not only be viable/non-zero probability, but must satisfy schedule needs")
 
@@ -102,42 +104,6 @@ mathfunctions.k = k
 #
 Node.init_state_idx = initial_state_file
 
-# Define a non-back tracking, stochastic (probabilistic) 'walk' until depth bound is reached.
-
-
-def traverse_node(node: Node, depth: int) -> Node:
-    if node.is_solution(depth):
-        return node
-
-    # Implement Policy Check
-    policy_present = policy.meets_policy(node.state)
-    if policy_present:
-        successor = policy.apply_policy(node, policy_present)
-        return traverse_node(successor, depth)
-
-    else:  # No Policy found, so use Stochastic/weighted search
-        children = [n for n in node.generate_successors() if not n.force_leaf]
-        children.sort(key=lambda n: n.calc_expected_utility())
-
-        # use expected utility to weight the decision tree, but use EU in terms of
-        weights = [n.calc_expected_utility() for n in children]
-
-        # calc min weight to use as a shift constant towards a small number
-        try:
-            min_weight = abs(min(weights))
-            weights = [w+min_weight for w in weights]
-            if sum(weights) == 0:
-                weights = [1 for w in weights]
-        except Exception as e:
-            print(e)
-            return node
-
-        # weighted pseudo-random selection from possible successors
-        successor: Node = random.choices(
-            children, [math.exp(w) for w in weights], k=1)[0]
-
-        return traverse_node(successor, depth)
-
 
 # Collections of Nodes which represent viable solutions (depth achieved)
 #  solutions contain the World State, history of transactions,
@@ -166,5 +132,10 @@ for i in range(max_checks):
             removed_soln = top_solutions.pop()
         min_eu = min([soln.calc_expected_utility() for soln in top_solutions])
 
+
+# Store Soltions in a 'pickled' list to learn from
+soln_pickle = "soln.pickle"
+with open(soln_pickle, 'wb') as outfile:
+    pickle.dump(top_solutions, outfile)
 
 visualize.print_schedules(output_dir, top_solutions, max_checks)

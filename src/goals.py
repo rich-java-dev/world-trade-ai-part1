@@ -78,7 +78,7 @@ class BalancedElectronics(Goal):
 
         housing_ratio = r23.quantity/r1.quantity
         electronics_ratio = r22.quantity/r23.quantity
-        max_cap = 2
+        max_cap = 5
 
         # Electronics quality following an Decaying inverse Logit Function:
         # in short, Electronics are a weighted sum, but also have a damping term applied relative to Housing sufficiency.
