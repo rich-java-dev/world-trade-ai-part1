@@ -35,10 +35,11 @@ export const MainView = () => {
 
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
+        console.log(e.target)
+        const { id, value } = e.target;
         setFormValues({
             ...formValues,
-            [name]: value,
+            [id]: value,
         });
     }
 
@@ -55,7 +56,7 @@ export const MainView = () => {
                 setImg1(json.image1)
                 setImg2(json.image2)
                 setImg3(json.image3)
-                setImg4(json.imag4)
+                setImg4(json.image4)
                 setImg5(json.image5)
             })
 
@@ -83,21 +84,21 @@ export const MainView = () => {
                     variant="outlined"
                     type="text"
                     value={formValues.depth}
-                    onChange={handleInputChange} />
+                    onChange={e => handleInputChange(e)} />
 
                 <TextField id="soln_size"
                     label="soln_size"
                     variant="outlined"
                     type="text"
                     value={formValues.soln_size}
-                    onChange={handleInputChange} />
+                    onChange={e => handleInputChange(e)} />
 
                 <TextField id="initial_state_file"
                     label="initial_state_file"
                     variant="outlined"
                     type="text"
                     value={formValues.initial_state_file}
-                    onChange={handleInputChange} />
+                    onChange={e => handleInputChange(e)} />
 
 
                 <TextField id="gamma"
@@ -105,28 +106,28 @@ export const MainView = () => {
                     variant="outlined"
                     type="text"
                     value={formValues.gamma}
-                    onChange={handleInputChange} />
+                    onChange={e => handleInputChange(e)} />
 
                 <TextField id="threshold"
                     label="threshold"
                     variant="outlined"
                     type="text"
                     value={formValues.threshold}
-                    onChange={handleInputChange} />
+                    onChange={e => handleInputChange(e)} />
 
                 <TextField id="sched_threshold"
                     label="sched_threshold"
                     variant="outlined"
                     type="text"
                     value={formValues.sched_threshold}
-                    onChange={handleInputChange} />
+                    onChange={e => handleInputChange(e)} />
 
                 <TextField id="k"
                     label="k"
                     variant="outlined"
                     type="text"
                     value={formValues.k}
-                    onChange={handleInputChange} />
+                    onChange={e => handleInputChange(e)} />
 
 
                 <TextField id="beam_width"
@@ -134,29 +135,30 @@ export const MainView = () => {
                     variant="outlined"
                     type="text"
                     value={formValues.beam_width}
-                    onChange={handleInputChange} />
+                    onChange={e => handleInputChange(e)} />
 
                 <TextField id="max_checks"
                     label="max_checks"
                     variant="outlined"
                     type="text"
                     value={formValues.max_checks}
-                    onChange={handleInputChange} />
+                    onChange={e => handleInputChange(e)} />
 
 
                 <Button onClick={run}>Run</Button>
                 <Button onClick={clear}>Clear</Button>
 
-                <div>
-                    {resultText}
-                </div>
-                <img src={`data:image/jpeg;base64,${img1}`} />
-                <img src={`data:image/jpeg;base64,${img2}`} />
-                <img src={`data:image/jpeg;base64,${img3}`} />
-                <img src={`data:image/jpeg;base64,${img4}`} />
-                <img src={`data:image/jpeg;base64,${img5}`} />
 
             </Box>
-        </div>
+
+            <div>
+                {resultText}
+                <img src={`data:image/jpeg;base64,${img1}`} width="1200" height="700" />
+                <img src={`data:image/jpeg;base64,${img2}`} width="1200" height="700" />
+                <img src={`data:image/jpeg;base64,${img3}`} width="1200" height="700" />
+                <img src={`data:image/jpeg;base64,${img4}`} width="1200" height="700" />
+                <img src={`data:image/jpeg;base64,${img5}`} width="1200" height="700" />
+            </div>
+        </div >
     );
 }

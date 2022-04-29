@@ -1,0 +1,20 @@
+Top Solutions:
+Schedule:
+1: Transfer x C1:Atlantis  (R3 x 200) to C4:Dinotopia  (R2 x 100) 	 Q:2.6 	 EU:-0.095
+2: Transfer x C1:Atlantis  (R2 x 80) to C4:Dinotopia  (R3 x 40) 	 Q:2.56 	 EU:-0.13
+3: Transfer x C1:Atlantis  (R3 x 184) to C4:Dinotopia  (R2 x 90) 	 Q:2.466 	 EU:-0.211
+Schedule Probability: [1.0, 0.9999546021312976, 0.9820137900379085, 0.9999172827771484] = 0.9818879829389346
+id: 596
+quality: 2
+expected utility: 0State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 810 	--	 analog to metallic elements 
+R3 : 1656 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 0 	--	 analog to electronics 
+R23 : 0 	--	 analog to housing (and housing sufficiency) 
+R21' : 0 	--	 waste 
+R22' : 0 	--	 waste 
+R23' : 0 	--	 waste 
+

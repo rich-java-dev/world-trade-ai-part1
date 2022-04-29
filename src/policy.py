@@ -80,7 +80,7 @@ class AlloyPolicy(Policy):
 
 policies = {
     'top': TopSolutionPolicy(),
-    'alloy': AlloyPolicy()
+    # 'alloy': AlloyPolicy()
 }
 
 
@@ -103,3 +103,7 @@ def apply_policy(node: Node, policy: Policy, depth) -> Node:
 
 def reset_policy_checks():
     TopSolutionPolicy.checked = False
+
+
+def reload_policy():
+    TopSolutionPolicy.action_list.clear()

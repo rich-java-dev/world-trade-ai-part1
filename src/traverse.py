@@ -39,6 +39,7 @@ def traverse_node(node: Node, depth: int) -> Node:
     policy_present = policy.meets_policy(node.state)
 
     if policy_present and random.random() > 0.5:
+        print("Policy Found")
         successor = policy.apply_policy(node, policy_present, depth)
         return traverse_node(successor, depth)
 

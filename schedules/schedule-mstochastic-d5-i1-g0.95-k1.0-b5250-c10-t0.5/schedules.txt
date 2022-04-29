@@ -1,0 +1,106 @@
+Top Solutions:
+Schedule:
+1: Template - Alloy x 233 	 Q:2.7 	 EU:0.0
+2: Template - Housing x 77 	 Q:68.765 	 EU:59.624
+3: Template - Electronics x 1 	 Q:69.439 	 EU:60.202
+4: Transfer x C1:Atlantis  (R3 x 161) to C4:Dinotopia  (R2 x 100) 	 Q:69.378 	 EU:60.152
+5: Transfer x C1:Atlantis  (R3 x 145) to C3:Carpania  (R2 x 100) 	 Q:69.333 	 EU:60.118
+Schedule Probability: [1.0, 1.0, 1.0, 1.0, 0.9977621514787236, 0.9890130573694068] = 0.9867997959614496
+id: 68678
+quality: 69
+expected utility: 60State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 355 	--	 analog to metallic elements 
+R3 : 1309 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 2 	--	 analog to electronics 
+R23 : 77 	--	 analog to housing (and housing sufficiency) 
+R21' : 233 	--	 waste 
+R22' : 2 	--	 waste 
+R23' : 77 	--	 waste 
+
+Schedule:
+1: Template - Alloy x 233 	 Q:2.7 	 EU:0.0
+2: Template - Housing x 77 	 Q:68.765 	 EU:59.624
+3: Template - Electronics x 1 	 Q:69.439 	 EU:60.202
+4: Transfer x C1:Atlantis  (R3 x 403) to C4:Dinotopia  (R2 x 50) 	 Q:69.086 	 EU:59.914
+5: Transfer x C1:Atlantis  (R3 x 303) to C2:Brobdingnag  (R2 x 300) 	 Q:69.083 	 EU:59.913
+Schedule Probability: [1.0, 1.0, 1.0, 1.0, 0.9999999999999996, 0.5744425168116591] = 0.5744425168116589
+id: 64579
+quality: 69
+expected utility: 60State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 505 	--	 analog to metallic elements 
+R3 : 909 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 2 	--	 analog to electronics 
+R23 : 77 	--	 analog to housing (and housing sufficiency) 
+R21' : 233 	--	 waste 
+R22' : 2 	--	 waste 
+R23' : 77 	--	 waste 
+
+Schedule:
+1: Template - Alloy x 233 	 Q:2.7 	 EU:0.0
+2: Template - Housing x 77 	 Q:68.765 	 EU:59.624
+3: Template - Electronics x 1 	 Q:69.439 	 EU:60.202
+4: Transfer x C1:Atlantis  (R3 x 403) to C5:Erewhon  (R2 x 125) 	 Q:69.161 	 EU:59.975
+5: Transfer x C1:Atlantis  (R2 x 210) to C2:Brobdingnag  (R3 x 120) 	 Q:69.071 	 EU:59.906
+Schedule Probability: [1.0, 1.0, 1.0, 1.0, 0.9999999999991556, 0.9998766054240137] = 0.9998766054231694
+id: 61073
+quality: 69
+expected utility: 60State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 70 	--	 analog to metallic elements 
+R3 : 1332 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 2 	--	 analog to electronics 
+R23 : 77 	--	 analog to housing (and housing sufficiency) 
+R21' : 233 	--	 waste 
+R22' : 2 	--	 waste 
+R23' : 77 	--	 waste 
+
+Schedule:
+1: Template - Alloy x 233 	 Q:2.7 	 EU:0.0
+2: Template - Housing x 77 	 Q:68.765 	 EU:59.624
+3: Template - Electronics x 1 	 Q:69.439 	 EU:60.202
+4: Transfer x C1:Atlantis  (R3 x 403) to C3:Carpania  (R2 x 75) 	 Q:69.111 	 EU:59.935
+5: Transfer x C1:Atlantis  (R3 x 121) to C2:Brobdingnag  (R2 x 30) 	 Q:69.02 	 EU:59.864
+Schedule Probability: [1.0, 1.0, 1.0, 1.0, 0.9999999999999942, 0.9998883466593704] = 0.9998883466593647
+id: 70362
+quality: 69
+expected utility: 60State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 260 	--	 analog to metallic elements 
+R3 : 1091 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 2 	--	 analog to electronics 
+R23 : 77 	--	 analog to housing (and housing sufficiency) 
+R21' : 233 	--	 waste 
+R22' : 2 	--	 waste 
+R23' : 77 	--	 waste 
+
+Schedule:
+1: Template - Alloy x 233 	 Q:2.7 	 EU:0.0
+2: Template - Housing x 77 	 Q:68.765 	 EU:59.624
+3: Template - Electronics x 1 	 Q:69.439 	 EU:60.202
+4: Transfer x C1:Atlantis  (R3 x 403) to C3:Carpania  (R2 x 50) 	 Q:69.086 	 EU:59.914
+5: Transfer x C1:Atlantis  (R3 x 606) to C5:Erewhon  (R2 x 50) 	 Q:68.53 	 EU:59.484
+Schedule Probability: [1.0, 1.0, 1.0, 1.0, 0.9999999999999996, 1.0] = 0.9999999999999996
+id: 62893
+quality: 69
+expected utility: 59State:
+Country: Atlantis 
+R1 : 100 	--	 analog to population 
+R2 : 255 	--	 analog to metallic elements 
+R3 : 606 	--	 analog to timber 
+R21 : 0 	--	 analog to metallic alloys 
+R22 : 2 	--	 analog to electronics 
+R23 : 77 	--	 analog to housing (and housing sufficiency) 
+R21' : 233 	--	 waste 
+R22' : 2 	--	 waste 
+R23' : 77 	--	 waste 
+

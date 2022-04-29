@@ -31,7 +31,7 @@ CORS(app)
 
 
 @app.route('/run', methods=['GET', 'POST'])
-def train():
+def run():
 
     depth: int = request.args.get('depth', default=3, type=int)
     soln_size: int = request.args.get('soln_set_size', default=5, type=int)
@@ -43,7 +43,7 @@ def train():
         'schedule_threshold', default=0.5, type=float)
     k: float = request.args.get('k', default=1., type=float)
     beam_width: int = request.args.get('beam_width', default=5250, type=int)
-    max_checks: int = request.args.get('max_solutions', default=10, type=int)
+    max_checks: int = request.args.get('max_checks', default=10, type=int)
 
     output_dir = f'schedules/schedule-mstochastic-d{depth}-i{initial_state_file}-g{gamma}-k{k}-b{beam_width}-c{max_checks}-t{threshold}'
     if not os.path.exists(output_dir):
@@ -65,6 +65,8 @@ def train():
     top_solutions = []
     min_eu = -1.
 
+    policy.reload_policy()
+
     # instantiate a root node
     root: Node = Node()
 
@@ -74,7 +76,7 @@ def train():
         policy.reset_policy_checks()
         soln: Node = traverse_node(copy.deepcopy(root), depth)
 
-        # don't bother putting in top solutions if cannot content with the min expected utility already in the top_solutions
+        # don't bother putting in top solutions if cannot contend with the min expected utility already in the top_solutions
         if len(top_solutions) < soln_size or soln.calc_expected_utility() >= min_eu:
 
             top_solutions.append(soln)  # add solution to "top solutions"
